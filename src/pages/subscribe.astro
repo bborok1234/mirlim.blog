@@ -23,21 +23,21 @@ import { SITE_TITLE } from '../consts';
 				<h2>Claude Desktop</h2>
 				<p class="path"><code>~/Library/Application Support/Claude/claude_desktop_config.json</code></p>
 				<div class="code-block">
-					<pre><code id="claude-config">{JSON.stringify({ mcpServers: { "mirlim-blog": { url: "https://mirlim.blog/mcp" } } }, null, 2)}</code></pre>
+					<pre><code id="claude-config" set:html={`{\n  <span class="json-key">"mcpServers"</span>: {\n    <span class="json-key">"mirlim-blog"</span>: {\n      <span class="json-key">"url"</span>: <span class="json-str">"https://mirlim.blog/mcp"</span>\n    }\n  }\n}`} /></pre>
 					<button class="copy-btn" data-target="claude-config">복사</button>
 				</div>
 
 				<h2>Cursor</h2>
 				<p class="path"><code>.cursor/mcp.json</code></p>
 				<div class="code-block">
-					<pre><code id="cursor-config">{JSON.stringify({ mcpServers: { "mirlim-blog": { url: "https://mirlim.blog/mcp" } } }, null, 2)}</code></pre>
+					<pre><code id="cursor-config" set:html={`{\n  <span class="json-key">"mcpServers"</span>: {\n    <span class="json-key">"mirlim-blog"</span>: {\n      <span class="json-key">"url"</span>: <span class="json-str">"https://mirlim.blog/mcp"</span>\n    }\n  }\n}`} /></pre>
 					<button class="copy-btn" data-target="cursor-config">복사</button>
 				</div>
 
 				<h2>Claude Code</h2>
 				<p class="path"><code>~/.claude.json</code>의 <code>mcpServers</code></p>
 				<div class="code-block">
-					<pre><code id="cc-config">{JSON.stringify({ "mirlim-blog": { url: "https://mirlim.blog/mcp" } }, null, 2)}</code></pre>
+					<pre><code id="cc-config" set:html={`{\n  <span class="json-key">"mirlim-blog"</span>: {\n    <span class="json-key">"url"</span>: <span class="json-str">"https://mirlim.blog/mcp"</span>\n  }\n}`} /></pre>
 					<button class="copy-btn" data-target="cc-config">복사</button>
 				</div>
 			</section>
@@ -150,6 +150,8 @@ import { SITE_TITLE } from '../consts';
 		transition: color 0.15s;
 	}
 	.copy-btn:hover { color: var(--text); }
+	.json-key { color: var(--accent); }
+	.json-str { color: var(--success); }
 	.section-label {
 		font-family: var(--font-body);
 		font-size: 0.75rem;
