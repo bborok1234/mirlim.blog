@@ -31,3 +31,4 @@ src/mcp/content-index.json
 
 # wrangler
 .wrangler/
+.gstack/
