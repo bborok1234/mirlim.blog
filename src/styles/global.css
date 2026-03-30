@@ -125,7 +125,20 @@ ul, ol {
 	padding-left: 1.5em;
 	margin-bottom: 1em;
 }
-li { margin-bottom: 0.5em; }
+li {
+	margin-bottom: 0.5em;
+}
+li::marker {
+	color: var(--text-muted);
+}
+
+.prose h2, .prose h3 {
+	margin-top: 2.5em;
+	margin-bottom: 0.75em;
+}
+.prose h2:first-child, .prose h3:first-child {
+	margin-top: 0;
+}
 
 @media (max-width: 720px) {
 	body { font-size: 15px; }
