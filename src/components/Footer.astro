@@ -3,23 +3,26 @@ const today = new Date();
 ---
 
 <footer>
-	&copy; {today.getFullYear()} mirlim. All rights reserved.
-	<p class="mcp-note">
-		이 블로그는 <a href="/subscribe">MCP 서버</a>를 통해 AI 에이전트도 읽을 수 있습니다.
-	</p>
+	<span>&copy; {today.getFullYear()} mirlim</span>
+	<a href="/subscribe">MCP 서버로 구독</a>
 </footer>
 <style>
 	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 48px 24px;
+		border-top: 1px solid var(--border);
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-size: 0.8rem;
+		color: var(--text-muted);
 	}
-	.mcp-note {
-		margin-top: 0.5em;
-		font-size: 0.875em;
+	footer a {
+		color: var(--accent);
+		text-decoration: none;
 	}
-	.mcp-note a {
-		color: rgb(var(--accent));
+	footer a:hover {
+		text-decoration: underline;
 	}
 </style>

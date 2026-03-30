@@ -8,74 +8,41 @@ import Header from '../components/Header.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags = [] } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="ko">
 	<head>
 		<BaseHead title={title} description={description} />
-		<style>
-			main {
-				width: calc(100% - 2em);
-				max-width: 100%;
-				margin: 0;
-			}
-			.hero-image {
-				width: 100%;
-			}
-			.hero-image img {
-				display: block;
-				margin: 0 auto;
-				border-radius: 12px;
-				box-shadow: var(--box-shadow);
-			}
-			.prose {
-				width: 720px;
-				max-width: calc(100% - 2em);
-				margin: auto;
-				padding: 1em;
-				color: rgb(var(--gray-dark));
-			}
-			.title {
-				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
-				line-height: 1;
-			}
-			.title h1 {
-				margin: 0 0 0.5em 0;
-			}
-			.date {
-				margin-bottom: 0.5em;
-				color: rgb(var(--gray));
-			}
-			.last-updated-on {
-				font-style: italic;
-			}
-		</style>
 	</head>
 
 	<body>
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
-				</div>
+				{heroImage && (
+					<div class="hero-image">
+						<Image width={720} height={360} src={heroImage} alt="" />
+					</div>
+				)}
 				<div class="prose">
-					<div class="title">
-						<div class="date">
+					<div class="article-header">
+						<div class="meta">
 							<FormattedDate date={pubDate} />
-							{
-								updatedDate && (
-									<div class="last-updated-on">
-										Last updated on <FormattedDate date={updatedDate} />
-									</div>
-								)
-							}
+							{updatedDate && (
+								<span class="updated">
+									(updated <FormattedDate date={updatedDate} />)
+								</span>
+							)}
 						</div>
 						<h1>{title}</h1>
-						<hr />
+						{tags.length > 0 && (
+							<div class="tags">
+								{tags.map((tag: string) => (
+									<span class:list={['tag', { agent: ['MCP', 'AX', 'AI'].includes(tag) }]}>{tag}</span>
+								))}
+							</div>
+						)}
 					</div>
 					<slot />
 				</div>
@@ -84,3 +51,58 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.hero-image {
+		margin-bottom: 32px;
+	}
+	.hero-image img {
+		width: 100%;
+		border-radius: 8px;
+	}
+	.prose {
+		max-width: 720px;
+		margin: 0 auto;
+	}
+	.article-header {
+		margin-bottom: 48px;
+		padding-bottom: 32px;
+		border-bottom: 1px solid var(--border);
+	}
+	.meta {
+		font-size: 0.8rem;
+		color: var(--text-muted);
+		margin-bottom: 12px;
+	}
+	.updated {
+		font-style: italic;
+	}
+	h1 {
+		font-size: 2.5rem;
+		letter-spacing: -0.02em;
+		line-height: 1.15;
+		margin-bottom: 16px;
+	}
+	.tags {
+		display: flex;
+		gap: 6px;
+		flex-wrap: wrap;
+	}
+	.tag {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		padding: 2px 8px;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 4px;
+		color: var(--text-muted);
+	}
+	.tag.agent {
+		border-color: rgba(59, 130, 246, 0.3);
+		color: var(--accent);
+		background: rgba(59, 130, 246, 0.06);
+	}
+	@media (max-width: 720px) {
+		h1 { font-size: 2rem; }
+	}
+</style>

@@ -21,35 +21,33 @@ const posts = (await getCollection('blog'))
 		<Header />
 		<main>
 			<section class="hero">
-				<h1>mirlim.blog</h1>
+				<h1>AI/AX 시대의<br>생각을 기록합니다</h1>
 				<p class="tagline">{SITE_DESCRIPTION}</p>
 				<div class="mcp-banner">
-					<span class="badge">MCP</span>
-					이 블로그는 AI 에이전트도 읽을 수 있습니다.
-					<a href="/subscribe">에이전트에 구독 추가하기 &rarr;</a>
+					<span class="mcp-badge">MCP</span>
+					<span>이 블로그는 AI 에이전트도 읽을 수 있습니다.</span>
+					<a href="/subscribe">에이전트에 구독 추가 &rarr;</a>
 				</div>
 			</section>
 
-			<section class="recent-posts">
-				<h2>최근 글</h2>
-				<ul>
-					{posts.map((post) => (
-						<li>
-							<a href={`/blog/${post.id}/`}>
-								<h3>{post.data.title}</h3>
-								<p class="meta">
-									<FormattedDate date={post.data.pubDate} />
-									{post.data.tags.length > 0 && (
-										<span class="tags">
-											{post.data.tags.map(tag => <span class="tag">{tag}</span>)}
-										</span>
-									)}
-								</p>
-								<p class="description">{post.data.description}</p>
-							</a>
-						</li>
-					))}
-				</ul>
+			<section class="posts">
+				<h2 class="section-label">최근 글</h2>
+				{posts.map((post) => (
+					<article class="post">
+						<h3 class="post-title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></h3>
+						<div class="post-meta">
+							<FormattedDate date={post.data.pubDate} />
+							{post.data.tags.length > 0 && (
+								<div class="post-tags">
+									{post.data.tags.map(tag => (
+										<span class:list={['tag', { agent: ['MCP', 'AX', 'AI'].includes(tag) }]}>{tag}</span>
+									))}
+								</div>
+							)}
+						</div>
+						<p class="post-desc">{post.data.description}</p>
+					</article>
+				))}
 				<a href="/blog" class="all-posts">모든 글 보기 &rarr;</a>
 			</section>
 		</main>
@@ -58,95 +56,108 @@ const posts = (await getCollection('blog'))
 </html>
 
 <style>
-	main {
-		width: 960px;
-		max-width: calc(100% - 2em);
-		margin: auto;
-		padding: 2em 0;
-	}
 	.hero {
-		text-align: center;
-		padding: 2em 0;
+		padding: 64px 0 48px;
+		border-bottom: 1px solid var(--border);
 	}
 	.hero h1 {
-		font-size: 2.5em;
-		margin-bottom: 0.25em;
+		font-size: 3.5rem;
+		letter-spacing: -0.02em;
+		line-height: 1.1;
+		margin-bottom: 16px;
 	}
 	.tagline {
-		color: rgb(var(--gray));
-		font-size: 1.1em;
-		margin-bottom: 1.5em;
+		color: var(--text-muted);
+		font-size: 1.125rem;
+		max-width: 540px;
+		margin-bottom: 32px;
 	}
 	.mcp-banner {
 		display: inline-flex;
 		align-items: center;
-		gap: 0.5em;
-		padding: 0.75em 1.25em;
-		background: rgb(var(--accent-light));
+		gap: 10px;
+		padding: 10px 16px;
+		background: rgba(59, 130, 246, 0.08);
+		border: 1px solid rgba(59, 130, 246, 0.2);
 		border-radius: 8px;
-		font-size: 0.9em;
+		font-size: 0.875rem;
 		flex-wrap: wrap;
-		justify-content: center;
 	}
-	.badge {
-		background: rgb(var(--accent));
-		color: white;
-		padding: 0.15em 0.5em;
+	.mcp-badge {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		font-weight: 500;
+		background: var(--accent);
+		color: #fff;
+		padding: 2px 8px;
 		border-radius: 4px;
-		font-size: 0.8em;
-		font-weight: bold;
+		letter-spacing: 0.05em;
 	}
 	.mcp-banner a {
-		color: rgb(var(--accent));
+		color: var(--accent);
 		font-weight: 500;
 	}
-	.recent-posts h2 {
-		margin-top: 2em;
+	.posts { padding: 48px 0; }
+	.section-label {
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--text-muted);
+		margin-bottom: 32px;
 	}
-	.recent-posts ul {
-		list-style: none;
-		padding: 0;
+	.post {
+		padding: 24px 0;
+		border-bottom: 1px solid var(--border);
 	}
-	.recent-posts li {
-		margin-bottom: 1.5em;
+	.post:first-of-type { padding-top: 0; }
+	.post-title {
+		font-size: 1.75rem;
+		margin-bottom: 8px;
 	}
-	.recent-posts a {
+	.post-title a {
+		color: var(--text);
 		text-decoration: none;
-		color: inherit;
-		display: block;
-		padding: 1em;
-		border-radius: 8px;
-		transition: background 0.2s;
 	}
-	.recent-posts a:hover {
-		background: rgba(var(--accent-light), 0.5);
+	.post-title a:hover { color: var(--accent); }
+	.post-meta {
+		font-size: 0.8rem;
+		color: var(--text-muted);
+		margin-bottom: 8px;
+		display: flex;
+		align-items: center;
+		gap: 12px;
 	}
-	.recent-posts h3 {
-		margin: 0 0 0.25em;
-		color: rgb(var(--black));
-	}
-	.meta {
-		font-size: 0.85em;
-		color: rgb(var(--gray));
-		margin: 0 0 0.5em;
-	}
-	.tags {
-		margin-left: 0.5em;
-	}
+	.post-tags { display: flex; gap: 6px; }
 	.tag {
-		background: rgb(var(--gray-light));
-		padding: 0.1em 0.4em;
-		border-radius: 3px;
-		font-size: 0.85em;
-		margin-left: 0.25em;
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		padding: 2px 8px;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 4px;
+		color: var(--text-muted);
 	}
-	.description {
-		margin: 0;
-		color: rgb(var(--gray-dark));
+	.tag.agent {
+		border-color: rgba(59, 130, 246, 0.3);
+		color: var(--accent);
+		background: rgba(59, 130, 246, 0.06);
+	}
+	.post-desc {
+		color: var(--text-muted);
+		font-size: 0.95rem;
+		line-height: 1.6;
 	}
 	.all-posts {
 		display: inline-block;
-		margin-top: 1em;
-		color: rgb(var(--accent));
+		margin-top: 24px;
+		color: var(--accent);
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+	@media (max-width: 720px) {
+		.hero h1 { font-size: 2.5rem; }
+		.post-title { font-size: 1.375rem; }
 	}
 </style>

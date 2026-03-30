@@ -5,44 +5,54 @@ import HeaderLink from './HeaderLink.astro';
 
 <header>
 	<nav>
-		<h2><a href="/">{SITE_TITLE}</a></h2>
-		<div class="internal-links">
+		<a href="/" class="logo">{SITE_TITLE}</a>
+		<div class="links">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/subscribe">Subscribe</HeaderLink>
+			<HeaderLink href="/subscribe" class="subscribe-link">Subscribe</HeaderLink>
 			<HeaderLink href="/about">About</HeaderLink>
 		</div>
 	</nav>
 </header>
 <style>
 	header {
-		margin: 0;
-		padding: 0 1em;
-		background: white;
-		box-shadow: 0 2px 8px rgba(var(--black), 5%);
-	}
-	h2 {
-		margin: 0;
-		font-size: 1em;
-	}
-
-	h2 a,
-	h2 a.active {
-		text-decoration: none;
+		border-bottom: 1px solid var(--border);
 	}
 	nav {
+		max-width: 720px;
+		margin: 0 auto;
+		padding: 20px 24px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 	}
-	nav a {
-		padding: 1em 0.5em;
-		color: var(--black);
-		border-bottom: 4px solid transparent;
+	.logo {
+		font-family: var(--font-display);
+		font-size: 1.25rem;
+		color: var(--text);
 		text-decoration: none;
 	}
-	nav a.active {
+	.links {
+		display: flex;
+		gap: 24px;
+	}
+	.links :global(a) {
+		color: var(--text-muted);
 		text-decoration: none;
-		border-bottom-color: var(--accent);
+		font-size: 0.875rem;
+		font-weight: 500;
+		transition: color 0.15s;
+	}
+	.links :global(a:hover),
+	.links :global(a.active) {
+		color: var(--text);
+	}
+	.links :global(a.subscribe-link) {
+		color: var(--accent);
+	}
+	@media (max-width: 720px) {
+		nav { padding: 16px; }
+		.links { gap: 16px; }
+		.links :global(a) { font-size: 0.8rem; }
 	}
 </style>
