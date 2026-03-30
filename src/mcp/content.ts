@@ -1,6 +1,4 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import matter from 'gray-matter';
+import postsData from './content-index.json';
 
 export interface BlogPost {
 	slug: string;
@@ -14,50 +12,19 @@ export interface BlogPost {
 	body: string;
 }
 
-const CONTENT_DIR = path.resolve(process.cwd(), 'src/content/blog');
-
-function parsePosts(): BlogPost[] {
-	if (!fs.existsSync(CONTENT_DIR)) return [];
-
-	const files = fs.readdirSync(CONTENT_DIR).filter(f => f.endsWith('.md') || f.endsWith('.mdx'));
-
-	return files
-		.map(file => {
-			const raw = fs.readFileSync(path.join(CONTENT_DIR, file), 'utf-8');
-			const { data, content } = matter(raw);
-
-			if (data.draft) return null;
-
-			return {
-				slug: file.replace(/\.(md|mdx)$/, ''),
-				title: data.title ?? '',
-				description: data.description ?? '',
-				summary: data.summary,
-				pubDate: String(data.pubDate),
-				updatedDate: data.updatedDate ? String(data.updatedDate) : undefined,
-				tags: data.tags ?? [],
-				concepts: data.concepts,
-				body: content,
-			};
-		})
-		.filter((p): p is BlogPost => p !== null)
-		.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
-}
-
-let cachedPosts: BlogPost[] | null = null;
+const posts: BlogPost[] = postsData as BlogPost[];
 
 export function getPosts(): BlogPost[] {
-	if (!cachedPosts) cachedPosts = parsePosts();
-	return cachedPosts;
+	return posts;
 }
 
 export function getPost(slug: string): BlogPost | undefined {
-	return getPosts().find(p => p.slug === slug);
+	return posts.find(p => p.slug === slug);
 }
 
 export function searchPosts(query: string): BlogPost[] {
 	const q = query.toLowerCase();
-	return getPosts().filter(p =>
+	return posts.filter(p =>
 		p.title.toLowerCase().includes(q) ||
 		p.description.toLowerCase().includes(q) ||
 		p.body.toLowerCase().includes(q) ||
@@ -67,7 +34,7 @@ export function searchPosts(query: string): BlogPost[] {
 
 export function askBlog(question: string): { answer: string; sources: string[] } {
 	const q = question.toLowerCase();
-	const matches = getPosts().filter(p =>
+	const matches = posts.filter(p =>
 		p.title.toLowerCase().includes(q) ||
 		p.body.toLowerCase().includes(q) ||
 		p.tags.some(t => t.toLowerCase().includes(q)) ||

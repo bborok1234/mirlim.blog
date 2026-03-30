@@ -7,12 +7,14 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "prebuild": "bun run scripts/build-content-index.ts",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "mcp": "bun run src/mcp/stdio.ts"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^13.1.4",
     "@astrojs/mdx": "^5.0.3",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
