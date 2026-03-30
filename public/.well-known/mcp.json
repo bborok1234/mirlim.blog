@@ -1,0 +1,7 @@
+{
+  "name": "mirlim.blog",
+  "description": "AI/AX 시대의 생각과 전문지식을 공유하는 블로그. 에이전트가 글을 읽고, 검색하고, 질문할 수 있습니다.",
+  "url": "https://mirlim.blog/mcp",
+  "transport": "streamable-http",
+  "tools": ["list_posts", "get_post", "search_posts", "ask_blog", "suggest_topic"]
+}

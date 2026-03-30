@@ -1,0 +1,152 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+
+const posts = (await getCollection('blog'))
+	.filter(p => !p.data.draft)
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 5);
+---
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<h1>mirlim.blog</h1>
+				<p class="tagline">{SITE_DESCRIPTION}</p>
+				<div class="mcp-banner">
+					<span class="badge">MCP</span>
+					이 블로그는 AI 에이전트도 읽을 수 있습니다.
+					<a href="/subscribe">에이전트에 구독 추가하기 &rarr;</a>
+				</div>
+			</section>
+
+			<section class="recent-posts">
+				<h2>최근 글</h2>
+				<ul>
+					{posts.map((post) => (
+						<li>
+							<a href={`/blog/${post.id}/`}>
+								<h3>{post.data.title}</h3>
+								<p class="meta">
+									<FormattedDate date={post.data.pubDate} />
+									{post.data.tags.length > 0 && (
+										<span class="tags">
+											{post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+										</span>
+									)}
+								</p>
+								<p class="description">{post.data.description}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+				<a href="/blog" class="all-posts">모든 글 보기 &rarr;</a>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	main {
+		width: 960px;
+		max-width: calc(100% - 2em);
+		margin: auto;
+		padding: 2em 0;
+	}
+	.hero {
+		text-align: center;
+		padding: 2em 0;
+	}
+	.hero h1 {
+		font-size: 2.5em;
+		margin-bottom: 0.25em;
+	}
+	.tagline {
+		color: rgb(var(--gray));
+		font-size: 1.1em;
+		margin-bottom: 1.5em;
+	}
+	.mcp-banner {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5em;
+		padding: 0.75em 1.25em;
+		background: rgb(var(--accent-light));
+		border-radius: 8px;
+		font-size: 0.9em;
+		flex-wrap: wrap;
+		justify-content: center;
+	}
+	.badge {
+		background: rgb(var(--accent));
+		color: white;
+		padding: 0.15em 0.5em;
+		border-radius: 4px;
+		font-size: 0.8em;
+		font-weight: bold;
+	}
+	.mcp-banner a {
+		color: rgb(var(--accent));
+		font-weight: 500;
+	}
+	.recent-posts h2 {
+		margin-top: 2em;
+	}
+	.recent-posts ul {
+		list-style: none;
+		padding: 0;
+	}
+	.recent-posts li {
+		margin-bottom: 1.5em;
+	}
+	.recent-posts a {
+		text-decoration: none;
+		color: inherit;
+		display: block;
+		padding: 1em;
+		border-radius: 8px;
+		transition: background 0.2s;
+	}
+	.recent-posts a:hover {
+		background: rgba(var(--accent-light), 0.5);
+	}
+	.recent-posts h3 {
+		margin: 0 0 0.25em;
+		color: rgb(var(--black));
+	}
+	.meta {
+		font-size: 0.85em;
+		color: rgb(var(--gray));
+		margin: 0 0 0.5em;
+	}
+	.tags {
+		margin-left: 0.5em;
+	}
+	.tag {
+		background: rgb(var(--gray-light));
+		padding: 0.1em 0.4em;
+		border-radius: 3px;
+		font-size: 0.85em;
+		margin-left: 0.25em;
+	}
+	.description {
+		margin: 0;
+		color: rgb(var(--gray-dark));
+	}
+	.all-posts {
+		display: inline-block;
+		margin-top: 1em;
+		color: rgb(var(--accent));
+	}
+</style>

@@ -1,0 +1,25 @@
+{
+  "name": "mirlim-blog",
+  "type": "module",
+  "version": "0.1.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "mcp": "bun run src/mcp/stdio.ts"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.3",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "@modelcontextprotocol/sdk": "^1.28.0",
+    "astro": "^6.1.1",
+    "gray-matter": "^4.0.3",
+    "sharp": "^0.34.3",
+    "zod": "^4.3.6"
+  }
+}
