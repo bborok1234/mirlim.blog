@@ -8,7 +8,11 @@ export interface BlogPost {
 	pubDate: string;
 	updatedDate?: string;
 	tags: string[];
+	category?: string;
+	series?: string;
+	seriesOrder?: number;
 	concepts?: { name: string; related?: string[] }[];
+	toolsUsed?: string[];
 	body: string;
 }
 

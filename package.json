@@ -11,7 +11,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "mcp": "bun run src/mcp/stdio.ts"
+    "mcp": "bun run src/mcp/stdio.ts",
+    "new": "bun run scripts/new-post.ts"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.1.4",

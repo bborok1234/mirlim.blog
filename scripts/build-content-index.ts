@@ -10,7 +10,11 @@ interface BlogPost {
 	pubDate: string;
 	updatedDate?: string;
 	tags: string[];
+	category?: string;
+	series?: string;
+	seriesOrder?: number;
 	concepts?: { name: string; related?: string[] }[];
+	toolsUsed?: string[];
 	body: string;
 }
 
@@ -35,7 +39,11 @@ function buildIndex(): BlogPost[] {
 				pubDate: String(data.pubDate),
 				updatedDate: data.updatedDate ? String(data.updatedDate) : undefined,
 				tags: data.tags ?? [],
+				category: data.category,
+				series: data.series,
+				seriesOrder: data.seriesOrder,
 				concepts: data.concepts,
+				toolsUsed: data.toolsUsed,
 				body: content,
 			};
 		})
