@@ -20,6 +20,7 @@ Options:
   --tags      쉼표로 구분된 태그 (예: "MCP,AX,tutorial")
   --series    시리즈 이름
   --order     시리즈 내 순서 (숫자)
+  --slug      명시적 slug 지정 (예: "my-post-slug")
   --draft     드래프트로 생성 (default: true)
   --tools     사용한 도구들 (예: "Claude Code,gstack")`);
 	process.exit(0);
@@ -39,18 +40,17 @@ const series = getFlag('series');
 const seriesOrder = getFlag('order');
 const toolsRaw = getFlag('tools') ?? '';
 const tools = toolsRaw ? toolsRaw.split(',').map(t => t.trim()) : [];
+const explicitSlug = getFlag('slug');
 const isDraft = !args.includes('--no-draft');
 
-// Generate slug from title
-const slug = title
-	.toLowerCase()
-	.replace(/[가-힣]+/g, (match) => {
-		// Simple romanization hint: just use the date for Korean titles
-		return '';
-	})
-	.replace(/[^a-z0-9]+/g, '-')
-	.replace(/^-|-$/g, '')
-	|| `post-${Date.now()}`;
+// Generate slug from title (or use explicit --slug)
+const slug = explicitSlug
+	?? (title
+		.toLowerCase()
+		.replace(/[가-힣]+/g, () => '')
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '')
+	|| `post-${Date.now()}`);
 
 const date = new Date().toISOString().split('T')[0];
 const filename = `${slug || date}.md`;

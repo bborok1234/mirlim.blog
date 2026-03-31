@@ -49,6 +49,10 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [] } = Astro
 			</article>
 		</main>
 		<Footer />
+		<script>
+			import mermaid from 'mermaid';
+			mermaid.initialize({ startOnLoad: true, theme: 'default' });
+		</script>
 	</body>
 </html>
 

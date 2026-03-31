@@ -26,6 +26,9 @@ src/mcp/content-index.json
 # jetbrains setting folder
 .idea/
 
+# pipeline run artifacts
+.pipeline/
+
 # omc state
 .omc/
 
