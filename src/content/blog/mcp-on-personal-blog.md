@@ -57,18 +57,18 @@ suggest_topic   — 독자→작성자 토픽 제안
 
 MCP에는 두 가지 공식 transport가 있다. stdio와 Streamable HTTP.
 
+**로컬 (stdio)**
+
 ```mermaid
-graph TD
-  subgraph LOCAL["로컬 stdio"]
-    direction LR
-    C1["Claude Desktop"] -->|"stdin/stdout"| S1["MCP Server"]
-    S1 --> D1["content-index.json"]
-  end
-  subgraph REMOTE["원격 Streamable HTTP"]
-    direction LR
-    C2["외부 에이전트"] -->|"HTTP POST"| S2["mcp 엔드포인트"]
-    S2 --> D2["content-index.json"]
-  end
+graph LR
+  C1["Claude Desktop"] -->|"stdin/stdout"| S1["MCP Server"] --> D1["content-index.json"]
+```
+
+**원격 (Streamable HTTP)**
+
+```mermaid
+graph LR
+  C2["외부 에이전트"] -->|"HTTP POST"| S2["mcp 엔드포인트"] --> D2["content-index.json"]
 ```
 
 **stdio**는 간단하다. 클라이언트(Claude Desktop 같은)가 MCP 서버를 subprocess로 띄우고, stdin/stdout으로 JSON-RPC 메시지를 주고받는다. 내 구현은 11줄이다:
