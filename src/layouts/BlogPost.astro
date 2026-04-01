@@ -51,7 +51,21 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [] } = Astro
 		<Footer />
 		<script>
 			import mermaid from 'mermaid';
-			mermaid.initialize({ startOnLoad: true, theme: 'default' });
+			mermaid.initialize({
+				startOnLoad: true,
+				theme: 'dark',
+				themeVariables: {
+					background: '#0A0A0B',
+					primaryColor: '#1E1E22',
+					primaryTextColor: '#E8E8ED',
+					primaryBorderColor: '#3B82F6',
+					lineColor: '#6B6B76',
+					secondaryColor: '#141416',
+					tertiaryColor: '#1C1C1F',
+					fontFamily: 'Instrument Sans, sans-serif',
+					fontSize: '14px',
+				},
+			});
 		</script>
 	</body>
 </html>

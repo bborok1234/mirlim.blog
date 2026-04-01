@@ -58,7 +58,7 @@ suggest_topic   — 독자→작성자 토픽 제안
 MCP에는 두 가지 공식 transport가 있다. stdio와 Streamable HTTP.
 
 ```mermaid
-graph TB
+graph LR
   subgraph LOCAL["로컬 stdio"]
     C1["Claude Desktop"] -->|"stdin/stdout"| S1["MCP Server"]
     S1 --> D1["content-index.json"]
