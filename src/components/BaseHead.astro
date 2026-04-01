@@ -19,7 +19,7 @@ const { title, description, image = FallbackImage, slug, pubDate, updatedDate, t
 
 const imageUrl = slug
 	? new URL(`/og/${slug}.png`, Astro.site).toString()
-	: new URL(image.src, Astro.url).toString();
+	: new URL('/og/default.png', Astro.site).toString();
 const isArticle = !!pubDate;
 
 const jsonLd = isArticle

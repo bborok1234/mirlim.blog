@@ -211,6 +211,55 @@ async function main() {
     const path = await generateOgImage(post, fonts);
     console.log(`  done: ${path}`);
   }
+  // Homepage default OG image
+  const defaultPath = `${OUTPUT_DIR}/default.png`;
+  if (!existsSync(defaultPath)) {
+    const svg = await satori(
+      {
+        type: 'div',
+        props: {
+          style: {
+            width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
+            justifyContent: 'space-between', padding: '60px', background: '#0A0A0B',
+            fontFamily: 'Instrument Sans, Noto Sans KR',
+          },
+          children: [
+            {
+              type: 'div',
+              props: {
+                style: { display: 'flex', flexDirection: 'column', gap: '20px' },
+                children: [
+                  { type: 'h1', props: { style: { fontSize: '56px', color: '#E8E8ED', lineHeight: 1.2, margin: 0 }, children: 'mirlim.blog' } },
+                  { type: 'p', props: { style: { fontSize: '24px', color: '#6B6B76', margin: 0 }, children: 'AI/AX 시대의 생각을 기록합니다' } },
+                ],
+              },
+            },
+            {
+              type: 'div',
+              props: {
+                style: { display: 'flex', alignItems: 'center', gap: '12px' },
+                children: [
+                  { type: 'span', props: { style: { fontSize: '14px', color: '#3B82F6', background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.3)', padding: '4px 12px', borderRadius: '4px' }, children: 'MCP' } },
+                  { type: 'span', props: { style: { fontSize: '14px', color: '#6B6B76' }, children: 'AI 에이전트도 읽을 수 있는 블로그' } },
+                ],
+              },
+            },
+          ],
+        },
+      },
+      {
+        width: WIDTH, height: HEIGHT,
+        fonts: [
+          { name: 'Instrument Sans', data: fonts.latin, style: 'normal' as const, weight: 600 },
+          { name: 'Noto Sans KR', data: fonts.kr, style: 'normal' as const, weight: 700 },
+        ],
+      },
+    );
+    const png = await sharp(Buffer.from(svg)).png().toBuffer();
+    writeFileSync(defaultPath, png);
+    console.log(`  done: ${defaultPath}`);
+  }
+
   console.log('OG images complete.');
 }
 
