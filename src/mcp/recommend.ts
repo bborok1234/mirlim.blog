@@ -61,6 +61,31 @@ export function findRelatedPosts(
 }
 
 /**
+ * Find related post slugs for a given post slug, using its concepts.
+ * Returns slugs of other posts that share concepts (excluding the input slug).
+ */
+export function findRelatedPostsBySlug(
+  slug: string,
+  graph: ConceptsGraph,
+  limit = 3,
+): string[] {
+  const slugScores = new Map<string, number>();
+
+  for (const node of Object.values(graph.nodes)) {
+    if (!node.posts.includes(slug)) continue;
+    for (const relatedSlug of findRelatedPosts(node.name, graph)) {
+      if (relatedSlug === slug) continue;
+      slugScores.set(relatedSlug, (slugScores.get(relatedSlug) ?? 0) + 1);
+    }
+  }
+
+  return [...slugScores.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([s]) => s);
+}
+
+/**
  * Generate next-topic recommendations using three strategies.
  */
 export function recommendTopics(

@@ -8,10 +8,37 @@ interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
+	pubDate?: Date;
+	updatedDate?: Date;
+	tags?: string[];
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, image = FallbackImage } = Astro.props;
+const { title, description, image = FallbackImage, pubDate, updatedDate, tags } = Astro.props;
+
+const imageUrl = new URL(image.src, Astro.url).toString();
+const isArticle = !!pubDate;
+
+const jsonLd = isArticle
+	? {
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: title,
+		description,
+		image: imageUrl,
+		datePublished: pubDate.toISOString(),
+		dateModified: (updatedDate || pubDate).toISOString(),
+		author: { '@type': 'Person', name: 'mirlim', url: 'https://mirlim.blog/about' },
+		publisher: { '@type': 'Person', name: 'mirlim' },
+		mainEntityOfPage: canonicalURL.toString(),
+		...(tags?.length ? { keywords: tags.join(', ') } : {}),
+	}
+	: {
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: SITE_TITLE,
+		url: Astro.site?.toString(),
+	};
 ---
 
 <!-- Global Metadata -->
@@ -46,7 +73,7 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image.src, Astro.url)} />
+<meta property="og:image" content={imageUrl} />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:site_name" content={SITE_TITLE} />
 
@@ -55,4 +82,7 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+<meta property="twitter:image" content={imageUrl} />
+
+<!-- JSON-LD -->
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

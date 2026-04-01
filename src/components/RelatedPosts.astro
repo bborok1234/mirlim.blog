@@ -1,0 +1,94 @@
+---
+interface RelatedPost {
+	slug: string;
+	title: string;
+	description: string;
+	tags: string[];
+}
+
+interface Props {
+	posts: RelatedPost[];
+}
+
+const { posts } = Astro.props;
+---
+
+{posts.length > 0 && (
+	<section class="related-posts">
+		<h2 class="section-label">관련 글</h2>
+		{posts.map((post) => (
+			<article class="related-post">
+				<h3 class="related-title">
+					<a href={`/blog/${post.slug}/`}>{post.title}</a>
+				</h3>
+				{post.tags.length > 0 && (
+					<div class="related-tags">
+						{post.tags.slice(0, 3).map(tag => (
+							<span class:list={['tag', { agent: ['MCP', 'AX', 'AI'].includes(tag) }]}>{tag}</span>
+						))}
+					</div>
+				)}
+				<p class="related-desc">{post.description}</p>
+			</article>
+		))}
+	</section>
+)}
+
+<style>
+	.related-posts {
+		margin-top: 48px;
+		padding-top: 32px;
+		border-top: 1px solid var(--border);
+	}
+	.section-label {
+		font-family: var(--font-body);
+		font-size: 0.75rem;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		color: var(--text-muted);
+		margin-bottom: 24px;
+	}
+	.related-post {
+		padding: 16px 0;
+		border-bottom: 1px solid var(--border);
+	}
+	.related-post:last-child {
+		border-bottom: none;
+	}
+	.related-title {
+		font-size: 1.125rem;
+		margin-bottom: 6px;
+	}
+	.related-title a {
+		color: var(--text);
+		text-decoration: none;
+	}
+	.related-title a:hover {
+		color: var(--accent);
+	}
+	.related-tags {
+		display: flex;
+		gap: 6px;
+		margin-bottom: 6px;
+	}
+	.tag {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		padding: 2px 8px;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 4px;
+		color: var(--text-muted);
+	}
+	.tag.agent {
+		border-color: rgba(59, 130, 246, 0.3);
+		color: var(--accent);
+		background: rgba(59, 130, 246, 0.06);
+	}
+	.related-desc {
+		color: var(--text-muted);
+		font-size: 0.875rem;
+		line-height: 1.5;
+	}
+</style>

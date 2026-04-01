@@ -1,6 +1,9 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import RelatedPosts from '../../components/RelatedPosts.astro';
+import { findRelatedPostsBySlug } from '../../mcp/recommend.js';
+import { getGraph, getPost as getMcpPost } from '../../mcp/content.js';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -13,8 +16,16 @@ type Props = CollectionEntry<'blog'>;
 
 const post = Astro.props;
 const { Content } = await render(post);
+
+const graph = getGraph();
+const relatedSlugs = findRelatedPostsBySlug(post.id, graph, 3);
+const relatedPosts = relatedSlugs
+	.map(slug => getMcpPost(slug))
+	.filter(Boolean)
+	.map(p => ({ slug: p!.slug, title: p!.title, description: p!.description, tags: p!.tags }));
 ---
 
 <BlogPost {...post.data}>
 	<Content />
+	<RelatedPosts posts={relatedPosts} />
 </BlogPost>

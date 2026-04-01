@@ -13,7 +13,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [] } = Astro
 
 <html lang="ko">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} pubDate={pubDate} updatedDate={updatedDate} tags={tags} />
 	</head>
 
 	<body>
