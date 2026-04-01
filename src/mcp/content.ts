@@ -1,4 +1,6 @@
 import postsData from './content-index.json';
+import graphData from './concepts-graph.json';
+import type { ConceptsGraph } from '../../scripts/build-concepts-graph.js';
 
 export interface BlogPost {
 	slug: string;
@@ -17,6 +19,7 @@ export interface BlogPost {
 }
 
 const posts: BlogPost[] = postsData as BlogPost[];
+const graph: ConceptsGraph = graphData as ConceptsGraph;
 
 export function getPosts(): BlogPost[] {
 	return posts;
@@ -34,6 +37,10 @@ export function searchPosts(query: string): BlogPost[] {
 		p.body.toLowerCase().includes(q) ||
 		p.tags.some(t => t.toLowerCase().includes(q))
 	);
+}
+
+export function getGraph(): ConceptsGraph {
+  return graph;
 }
 
 export function askBlog(question: string): { answer: string; sources: string[] } {

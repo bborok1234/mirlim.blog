@@ -1,6 +1,7 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
-import { getPosts, getPost, searchPosts, askBlog } from './content.js';
+import { getPosts, getPost, searchPosts, askBlog, getGraph } from './content.js';
+import { recommendTopics, findRelatedPosts, scoreNovelty } from './recommend.js';
 
 const suggestions: { topic: string; context?: string; timestamp: string }[] = [];
 
@@ -58,6 +59,37 @@ export function createMcpServer() {
 	}, async ({ question }) => {
 		const result = askBlog(question);
 		return { content: [{ type: 'text' as const, text: JSON.stringify(result, null, 2) }] };
+	});
+
+	server.tool('explore_concepts', 'concepts 그래프를 탐색합니다. 특정 concept 조회 또는 전체 목록 반환.', {
+		name: z.string().optional().describe('조회할 concept 이름. 없으면 전체 목록 반환.'),
+	}, async ({ name }) => {
+		const graph = getGraph();
+		if (name) {
+			const node = graph.nodes[name];
+			if (!node) {
+				return { content: [{ type: 'text' as const, text: `Concept을 찾을 수 없습니다: "${name}"` }], isError: true };
+			}
+			return { content: [{ type: 'text' as const, text: JSON.stringify(node, null, 2) }] };
+		}
+		const summary = Object.values(graph.nodes).map(n => ({
+			name: n.name,
+			postCount: n.postCount,
+			neighbors: n.neighbors.length,
+		}));
+		return { content: [{ type: 'text' as const, text: JSON.stringify({ concepts: summary, meta: graph.meta }, null, 2) }] };
+	});
+
+	server.tool('recommend_topic', '다음에 쓸 글 토픽을 추천합니다. concepts 그래프 기반 novelty scoring.', {
+		limit: z.number().optional().describe('추천 수 (기본: 5)'),
+		strategy: z.enum(['bridge', 'deepen', 'frontier', 'all']).optional().describe('추천 전략 (기본: all)'),
+	}, async ({ limit, strategy }) => {
+		const graph = getGraph();
+		let results = recommendTopics(graph, limit ?? 5);
+		if (strategy && strategy !== 'all') {
+			results = results.filter(r => r.strategy === strategy);
+		}
+		return { content: [{ type: 'text' as const, text: JSON.stringify(results, null, 2) }] };
 	});
 
 	server.tool('suggest_topic', '블로그 작성자에게 토픽을 제안합니다. 어떤 주제에 대한 글이 있으면 좋겠는지 알려주세요.', {

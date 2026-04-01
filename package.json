@@ -7,12 +7,13 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "bun run scripts/build-content-index.ts",
+    "prebuild": "bun run scripts/build-content-index.ts && bun run scripts/build-concepts-graph.ts",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
     "mcp": "bun run src/mcp/stdio.ts",
-    "new": "bun run scripts/new-post.ts"
+    "new": "bun run scripts/new-post.ts",
+    "test": "vitest run"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.1.4",
@@ -23,7 +24,11 @@
     "astro": "^6.1.1",
     "gray-matter": "^4.0.3",
     "mermaid": "^11.13.0",
+    "remark-gfm": "^4.0.1",
     "sharp": "^0.34.3",
     "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.2"
   }
 }
