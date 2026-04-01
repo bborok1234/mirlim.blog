@@ -146,11 +146,24 @@ AskUserQuestion으로 사용자에게 brief를 보여주고:
 - 글당 1-2개. 복잡한 개념을 설명할 때 텍스트 대신 사용
 - 다이어그램 전후에 설명 텍스트 필수 (다이어그램만 던지지 않음)
 
+**Mermaid 필수 규칙 (렌더링 깨짐 방지):**
+- 모든 노드 레이블을 큰따옴표로 감싸기: `A["텍스트"]` (특수문자, 한국어 안전)
+- `<br/>`, `/`, `:` 등 특수문자를 노드 레이블에 넣지 않기
+- subgraph 안에 `direction` 지시자 사용 금지 (mermaid 11.x에서 미지원)
+- 비교/대조 다이어그램은 subgraph 대신 별도 다이어그램 2개로 분리
+
+**Mermaid 가독성 규칙 (사람이 읽기 좋게):**
+- LR(좌→우)은 노드 3-4개 이하의 단순 흐름에만 사용
+- 노드 5개 이상이면 TD(위→아래) 사용
+- 동일한 에지 라벨이 3회 이상 반복되면 제거 (텍스트로 설명)
+- 연속 의문문 4개 이상 나열 금지 (AI 패턴)
+- 한 다이어그램에 노드 8개 초과 시 분리 검토
+
+예시 (좋은 패턴):
+
 ```mermaid
 graph LR
-  A[사용자] --> B[Claude Code]
-  B --> C[MCP 서버]
-  C --> D[블로그 콘텐츠]
+  A["입력"] --> B["처리"] --> C["출력"]
 ```
 
 **Hero 이미지 프롬프트**:
@@ -235,13 +248,14 @@ bun run scripts/new-post.ts "제목" --slug <slug> --category <category> --tags 
 
 생성된 파일에 최종 초안 내용을 Write. draft: true로 유지 (사용자가 원하면 false로 변경).
 
-### 4b: 빌드로그 생성
+### 4b: 빌드로그 (내부 artifact만, 블로그 발행하지 않음)
 
 `updateRun(runDir, { slug: '<발행된-slug>' })`
 
-```bash
-bun run scripts/write-post/compile-build-log.ts <runDir>
-```
+빌드로그는 `.pipeline/runs/<run-id>/` 안에 artifact로만 보존한다.
+블로그 글로 발행하지 않는다. 나중에 CMS/비공개 대시보드에서 열람용.
+
+`compile-build-log.ts`가 존재하면 실행하되, 출력물을 `src/content/blog/`에 쓰지 않는다.
 
 ### 4c: 콘텐츠 인덱스 리빌드
 
