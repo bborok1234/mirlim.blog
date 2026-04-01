@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "prebuild": "bun run scripts/build-content-index.ts && bun run scripts/build-concepts-graph.ts",
+    "prebuild": "bun run scripts/build-content-index.ts && bun run scripts/build-concepts-graph.ts && bun run scripts/generate-og.ts",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -25,6 +25,7 @@
     "gray-matter": "^4.0.3",
     "mermaid": "^11.13.0",
     "remark-gfm": "^4.0.1",
+    "satori": "^0.26.0",
     "sharp": "^0.34.3",
     "zod": "^4.3.6"
   },

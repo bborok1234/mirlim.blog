@@ -8,15 +8,18 @@ interface Props {
 	title: string;
 	description: string;
 	image?: ImageMetadata;
+	slug?: string;
 	pubDate?: Date;
 	updatedDate?: Date;
 	tags?: string[];
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const { title, description, image = FallbackImage, pubDate, updatedDate, tags } = Astro.props;
+const { title, description, image = FallbackImage, slug, pubDate, updatedDate, tags } = Astro.props;
 
-const imageUrl = new URL(image.src, Astro.url).toString();
+const imageUrl = slug
+	? new URL(`/og/${slug}.png`, Astro.site).toString()
+	: new URL(image.src, Astro.url).toString();
 const isArticle = !!pubDate;
 
 const jsonLd = isArticle
@@ -46,6 +49,9 @@ const jsonLd = isArticle
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <link rel="icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0A0A0B" />
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
 	rel="alternate"

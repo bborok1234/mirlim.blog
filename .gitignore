@@ -16,6 +16,8 @@ pnpm-debug.log*
 # generated build artifacts
 src/mcp/content-index.json
 src/mcp/concepts-graph.json
+public/og/
+public/fonts/
 
 # environment variables
 .env

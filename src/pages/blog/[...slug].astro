@@ -25,7 +25,7 @@ const relatedPosts = relatedSlugs
 	.map(p => ({ slug: p!.slug, title: p!.title, description: p!.description, tags: p!.tags }));
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} slug={post.id}>
 	<Content />
 	<RelatedPosts posts={relatedPosts} />
 </BlogPost>
