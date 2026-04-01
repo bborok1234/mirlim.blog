@@ -7,7 +7,7 @@ category: 'build-log'
 series: 'mirlim.blog 만들기'
 tags: ['build-log', 'Content Pipeline', 'Claude Code']
 toolsUsed: ['Claude Code', 'Post Compiler']
-draft: false
+draft: true
 concepts:
   - name: 'Content Pipeline'
     related: ['Claude Code', 'automation', 'Post Compiler']
