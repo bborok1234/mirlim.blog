@@ -1,6 +1,7 @@
 /**
  * OG 이미지 자동 생성 스크립트.
  * prebuild 체인에서 실행. 각 포스트에 대해 1200x630 PNG 생성.
+ * 디자인: B+C 조합 — gradient glow + geometric corner accents.
  */
 import satori from 'satori';
 import sharp from 'sharp';
@@ -73,6 +74,24 @@ function getPostsMeta(): PostMeta[] {
     .filter(Boolean) as PostMeta[];
 }
 
+function cornerAccents() {
+  return [
+    // top-left
+    { type: 'div' as const, props: { style: { position: 'absolute' as const, top: '20px', left: '20px', width: '48px', height: '3px', background: '#3B82F6' } } },
+    { type: 'div' as const, props: { style: { position: 'absolute' as const, top: '20px', left: '20px', width: '3px', height: '48px', background: '#3B82F6' } } },
+    // bottom-right
+    { type: 'div' as const, props: { style: { position: 'absolute' as const, bottom: '20px', right: '20px', width: '48px', height: '3px', background: '#3B82F6' } } },
+    { type: 'div' as const, props: { style: { position: 'absolute' as const, bottom: '20px', right: '20px', width: '3px', height: '48px', background: '#3B82F6' } } },
+  ];
+}
+
+function gradientOrbs() {
+  return [
+    { type: 'div' as const, props: { style: { position: 'absolute' as const, top: '-60px', right: '-60px', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(59,130,246,0.16) 0%, transparent 65%)', display: 'flex' as const } } },
+    { type: 'div' as const, props: { style: { position: 'absolute' as const, bottom: '-100px', left: '-60px', width: '300px', height: '300px', background: 'radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 65%)', display: 'flex' as const } } },
+  ];
+}
+
 async function generateOgImage(post: PostMeta, fonts: { latin: ArrayBuffer; kr: ArrayBuffer }) {
   const categoryLabel = categoryLabels[post.category] || post.category;
 
@@ -81,99 +100,40 @@ async function generateOgImage(post: PostMeta, fonts: { latin: ArrayBuffer; kr: 
       type: 'div',
       props: {
         style: {
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          padding: '60px',
-          background: '#0A0A0B',
-          fontFamily: 'Instrument Sans, Noto Sans KR',
+          width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
+          justifyContent: 'space-between', padding: '48px 56px',
+          background: '#0A0A0B', fontFamily: 'Instrument Sans, Noto Sans KR',
+          position: 'relative',
         },
         children: [
+          ...gradientOrbs(),
+          ...cornerAccents(),
+          // Top: brand + category
           {
             type: 'div',
             props: {
-              style: { display: 'flex', flexDirection: 'column', gap: '16px' },
+              style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
               children: [
-                {
-                  type: 'div',
-                  props: {
-                    style: { display: 'flex', alignItems: 'center', gap: '12px' },
-                    children: [
-                      {
-                        type: 'span',
-                        props: {
-                          style: {
-                            fontSize: '14px',
-                            color: '#3B82F6',
-                            background: 'rgba(59,130,246,0.1)',
-                            border: '1px solid rgba(59,130,246,0.3)',
-                            padding: '4px 12px',
-                            borderRadius: '4px',
-                          },
-                          children: categoryLabel,
-                        },
-                      },
-                      {
-                        type: 'span',
-                        props: {
-                          style: { fontSize: '14px', color: '#6B6B76' },
-                          children: post.pubDate,
-                        },
-                      },
-                    ],
-                  },
-                },
-                {
-                  type: 'h1',
-                  props: {
-                    style: {
-                      fontSize: post.title.length > 30 ? '42px' : '52px',
-                      color: '#E8E8ED',
-                      lineHeight: 1.2,
-                      margin: 0,
-                    },
-                    children: post.title,
-                  },
-                },
+                { type: 'span', props: { style: { fontSize: '34px', color: '#E8E8ED', fontWeight: 700 }, children: 'mirlim.blog' } },
+                { type: 'span', props: { style: { fontSize: '18px', color: '#3B82F6', border: '1px solid rgba(59,130,246,0.4)', padding: '6px 16px', borderRadius: '6px', letterSpacing: '0.04em' }, children: categoryLabel } },
               ],
             },
           },
+          // Center: title
+          {
+            type: 'h1',
+            props: {
+              style: { fontSize: '54px', color: '#E8E8ED', lineHeight: 1.2, margin: 0 },
+              children: post.title,
+            },
+          },
+          // Bottom: tagline
           {
             type: 'div',
             props: {
-              style: {
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              },
+              style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center' },
               children: [
-                {
-                  type: 'span',
-                  props: {
-                    style: { fontSize: '20px', color: '#E8E8ED' },
-                    children: 'mirlim.blog',
-                  },
-                },
-                {
-                  type: 'div',
-                  props: {
-                    style: {
-                      width: '36px',
-                      height: '36px',
-                      borderRadius: '8px',
-                      background: '#0A0A0B',
-                      border: '1px solid #1E1E22',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '20px',
-                      color: '#E8E8ED',
-                    },
-                    children: 'm',
-                  },
-                },
+                { type: 'span', props: { style: { fontSize: '20px', color: '#6B6B76' }, children: 'AI/AX 시대의 생각을 기록합니다' } },
               ],
             },
           },
@@ -181,8 +141,7 @@ async function generateOgImage(post: PostMeta, fonts: { latin: ArrayBuffer; kr: 
       },
     },
     {
-      width: WIDTH,
-      height: HEIGHT,
+      width: WIDTH, height: HEIGHT,
       fonts: [
         { name: 'Instrument Sans', data: fonts.latin, style: 'normal' as const, weight: 600 },
         { name: 'Noto Sans KR', data: fonts.kr, style: 'normal' as const, weight: 700 },
@@ -196,69 +155,73 @@ async function generateOgImage(post: PostMeta, fonts: { latin: ArrayBuffer; kr: 
   return outPath;
 }
 
+async function generateDefaultOg(fonts: { latin: ArrayBuffer; kr: ArrayBuffer }) {
+  const svg = await satori(
+    {
+      type: 'div',
+      props: {
+        style: {
+          width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
+          justifyContent: 'space-between', padding: '48px 56px',
+          background: '#0A0A0B', fontFamily: 'Instrument Sans, Noto Sans KR',
+          position: 'relative',
+        },
+        children: [
+          ...gradientOrbs(),
+          ...cornerAccents(),
+          // Top: empty spacer
+          { type: 'div', props: { style: { display: 'flex' } } },
+          // Center: brand hero
+          {
+            type: 'div',
+            props: {
+              style: { display: 'flex', flexDirection: 'column', gap: '16px' },
+              children: [
+                { type: 'h1', props: { style: { fontSize: '64px', color: '#E8E8ED', lineHeight: 1.2, margin: 0 }, children: 'mirlim.blog' } },
+                { type: 'p', props: { style: { fontSize: '28px', color: '#6B6B76', margin: 0 }, children: 'AI/AX 시대의 생각을 기록합니다' } },
+              ],
+            },
+          },
+          // Bottom: MCP badge
+          {
+            type: 'div',
+            props: {
+              style: { display: 'flex', alignItems: 'center', gap: '12px' },
+              children: [
+                { type: 'span', props: { style: { fontSize: '18px', color: '#3B82F6', border: '1px solid rgba(59,130,246,0.4)', padding: '6px 16px', borderRadius: '6px' }, children: 'MCP' } },
+                { type: 'span', props: { style: { fontSize: '20px', color: '#6B6B76' }, children: 'AI 에이전트도 읽을 수 있는 블로그' } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    {
+      width: WIDTH, height: HEIGHT,
+      fonts: [
+        { name: 'Instrument Sans', data: fonts.latin, style: 'normal' as const, weight: 600 },
+        { name: 'Noto Sans KR', data: fonts.kr, style: 'normal' as const, weight: 700 },
+      ],
+    },
+  );
+  const png = await sharp(Buffer.from(svg)).png().toBuffer();
+  writeFileSync(`${OUTPUT_DIR}/default.png`, png);
+}
+
 async function main() {
   mkdirSync(OUTPUT_DIR, { recursive: true });
   const fonts = await loadFonts();
   const posts = getPostsMeta();
 
+  // Always regenerate all (design changes affect every image)
   console.log(`Generating OG images for ${posts.length} posts...`);
   for (const post of posts) {
-    const outPath = `${OUTPUT_DIR}/${post.slug}.png`;
-    if (existsSync(outPath)) {
-      console.log(`  skip: ${post.slug} (exists)`);
-      continue;
-    }
     const path = await generateOgImage(post, fonts);
     console.log(`  done: ${path}`);
   }
-  // Homepage default OG image
-  const defaultPath = `${OUTPUT_DIR}/default.png`;
-  if (!existsSync(defaultPath)) {
-    const svg = await satori(
-      {
-        type: 'div',
-        props: {
-          style: {
-            width: '100%', height: '100%', display: 'flex', flexDirection: 'column',
-            justifyContent: 'space-between', padding: '60px', background: '#0A0A0B',
-            fontFamily: 'Instrument Sans, Noto Sans KR',
-          },
-          children: [
-            {
-              type: 'div',
-              props: {
-                style: { display: 'flex', flexDirection: 'column', gap: '20px' },
-                children: [
-                  { type: 'h1', props: { style: { fontSize: '56px', color: '#E8E8ED', lineHeight: 1.2, margin: 0 }, children: 'mirlim.blog' } },
-                  { type: 'p', props: { style: { fontSize: '24px', color: '#6B6B76', margin: 0 }, children: 'AI/AX 시대의 생각을 기록합니다' } },
-                ],
-              },
-            },
-            {
-              type: 'div',
-              props: {
-                style: { display: 'flex', alignItems: 'center', gap: '12px' },
-                children: [
-                  { type: 'span', props: { style: { fontSize: '14px', color: '#3B82F6', background: 'rgba(59,130,246,0.1)', border: '1px solid rgba(59,130,246,0.3)', padding: '4px 12px', borderRadius: '4px' }, children: 'MCP' } },
-                  { type: 'span', props: { style: { fontSize: '14px', color: '#6B6B76' }, children: 'AI 에이전트도 읽을 수 있는 블로그' } },
-                ],
-              },
-            },
-          ],
-        },
-      },
-      {
-        width: WIDTH, height: HEIGHT,
-        fonts: [
-          { name: 'Instrument Sans', data: fonts.latin, style: 'normal' as const, weight: 600 },
-          { name: 'Noto Sans KR', data: fonts.kr, style: 'normal' as const, weight: 700 },
-        ],
-      },
-    );
-    const png = await sharp(Buffer.from(svg)).png().toBuffer();
-    writeFileSync(defaultPath, png);
-    console.log(`  done: ${defaultPath}`);
-  }
+
+  await generateDefaultOg(fonts);
+  console.log(`  done: ${OUTPUT_DIR}/default.png`);
 
   console.log('OG images complete.');
 }
