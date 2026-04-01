@@ -143,8 +143,29 @@ li::marker {
 /* 각주 위첨자 간격 */
 [data-footnote-ref] { margin-left: 2px; }
 
-/* Mermaid 다이어그램 상하 여백 */
-.prose pre.mermaid { margin: 2em 0; }
+/* Mermaid 다이어그램 */
+.prose pre.mermaid {
+	margin: 2em 0;
+	padding: 24px 16px;
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	overflow-x: auto;
+}
+.prose pre.mermaid svg {
+	max-width: 100%;
+	height: auto;
+}
+/* mermaid 노드 텍스트 패딩 보정 */
+.prose pre.mermaid .node rect,
+.prose pre.mermaid .node polygon {
+	rx: 4;
+	ry: 4;
+}
+.prose pre.mermaid .cluster rect {
+	rx: 8 !important;
+	ry: 8 !important;
+}
 
 @media (max-width: 720px) {
 	body { font-size: 15px; }

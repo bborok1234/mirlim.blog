@@ -54,9 +54,16 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [] } = Astro
 			mermaid.initialize({
 				startOnLoad: true,
 				theme: 'dark',
+				flowchart: {
+					padding: 16,
+					nodeSpacing: 30,
+					rankSpacing: 40,
+					useMaxWidth: true,
+					htmlLabels: true,
+				},
 				themeVariables: {
 					background: '#0A0A0B',
-					primaryColor: '#1E1E22',
+					primaryColor: '#1C1C1F',
 					primaryTextColor: '#E8E8ED',
 					primaryBorderColor: '#3B82F6',
 					lineColor: '#6B6B76',
@@ -64,6 +71,10 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [] } = Astro
 					tertiaryColor: '#1C1C1F',
 					fontFamily: 'Instrument Sans, sans-serif',
 					fontSize: '14px',
+					nodeBorder: '#3B82F6',
+					clusterBkg: '#141416',
+					clusterBorder: '#1E1E22',
+					edgeLabelBackground: '#141416',
 				},
 			});
 		</script>

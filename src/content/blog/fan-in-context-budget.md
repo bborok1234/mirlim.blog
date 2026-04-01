@@ -39,11 +39,11 @@ Fan-out은 쉬웠다. Fan-in에서 벽에 부딪혔다.
 
 ```mermaid
 graph LR
-  O[메인 에이전트] -->|프롬프트 + 요소| W1[Worker 1]
-  O -->|프롬프트 + 요소| W2[Worker 2]
-  O -->|프롬프트 + 요소| W3[Worker 3]
-  O -->|프롬프트 + 요소| W4[...]
-  O -->|프롬프트 + 요소| WN[Worker N]
+  O["메인 에이전트"] --> W1["Worker 1"]
+  O --> W2["Worker 2"]
+  O --> W3["Worker 3"]
+  O --> W4["..."]
+  O --> WN["Worker N"]
 ```
 
 각 워커에게 동일한 프롬프트와 개별 요소를 넘기면 된다. Rate limiting만 신경 쓰면 구현은 간단하다. Promise.allSettled로 부분 실패도 처리되고, 배치 크기만 조절하면 API 제한도 넘기지 않는다.
