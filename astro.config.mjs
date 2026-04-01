@@ -3,6 +3,7 @@
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import remarkGfm from 'remark-gfm';
 import rehypeMermaidSimple from './src/plugins/rehype-mermaid-simple.mjs';
 import { defineConfig } from 'astro/config';
 
@@ -16,6 +17,7 @@ export default defineConfig({
 			type: 'shiki',
 			excludeLangs: ['mermaid'],
 		},
+		remarkPlugins: [remarkGfm],
 		rehypePlugins: [rehypeMermaidSimple],
 	},
 });

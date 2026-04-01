@@ -140,6 +140,12 @@ li::marker {
 	margin-top: 0;
 }
 
+/* 각주 위첨자 간격 */
+[data-footnote-ref] { margin-left: 2px; }
+
+/* Mermaid 다이어그램 상하 여백 */
+.prose pre.mermaid { margin: 2em 0; }
+
 @media (max-width: 720px) {
 	body { font-size: 15px; }
 	main { padding: 24px 16px; }
