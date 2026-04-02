@@ -31,6 +31,24 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], slug, se
 				)}
 				<div class="prose">
 					<div class="article-header">
+						{series && seriesPosts.length > 1 && (
+							<details class="series-top">
+								<summary>
+									<span class="series-badge">SERIES</span>
+									<span class="series-info">
+										<a href={`/blog/series/${encodeURIComponent(series)}`}>{series}</a>
+										<span class="series-pos">{seriesPosts.sort((a, b) => a.order - b.order).findIndex(p => p.slug === slug) + 1} / {seriesPosts.length}</span>
+									</span>
+								</summary>
+								<ol class="series-toc">
+									{seriesPosts.sort((a, b) => a.order - b.order).map((p) => (
+										<li class:list={[{ current: p.slug === slug }]}>
+											{p.slug === slug ? <span>{p.title}</span> : <a href={`/blog/${p.slug}/`}>{p.title}</a>}
+										</li>
+									))}
+								</ol>
+							</details>
+						)}
 						<div class="meta">
 							<FormattedDate date={pubDate} />
 							{updatedDate && (
@@ -138,6 +156,79 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], slug, se
 		color: var(--accent);
 		background: rgba(59, 130, 246, 0.06);
 	}
+	.series-top {
+		margin-bottom: 16px;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+	.series-top summary {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 10px 16px;
+		cursor: pointer;
+		list-style: none;
+	}
+	.series-top summary::-webkit-details-marker { display: none; }
+	.series-top summary::after {
+		content: '▸';
+		font-size: 0.75rem;
+		color: var(--text-muted);
+		margin-left: auto;
+		transition: transform 0.15s;
+	}
+	.series-top[open] summary::after { transform: rotate(90deg); }
+	.series-badge {
+		font-family: var(--font-mono);
+		font-size: 0.65rem;
+		font-weight: 600;
+		background: var(--accent);
+		color: #fff;
+		padding: 2px 6px;
+		border-radius: 4px;
+		letter-spacing: 0.05em;
+		flex-shrink: 0;
+	}
+	.series-info { display: flex; align-items: center; gap: 8px; }
+	.series-info a {
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: var(--text);
+		text-decoration: none;
+	}
+	.series-info a:hover { color: var(--accent); }
+	.series-pos {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--text-muted);
+	}
+	.series-toc {
+		list-style: none;
+		padding: 0 16px 12px;
+		margin: 0;
+		border-top: 1px solid var(--border);
+		counter-reset: stoc;
+	}
+	.series-toc li {
+		counter-increment: stoc;
+		padding: 6px 0;
+		font-size: 0.875rem;
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+	}
+	.series-toc li::before {
+		content: counter(stoc) ".";
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--text-muted);
+		min-width: 18px;
+	}
+	.series-toc li a { color: var(--text-muted); text-decoration: none; }
+	.series-toc li a:hover { color: var(--accent); }
+	.series-toc li.current span { color: var(--text); font-weight: 500; }
 	@media (max-width: 720px) {
 		h1 { font-size: 2rem; }
 	}

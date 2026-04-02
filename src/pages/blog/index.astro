@@ -26,6 +26,11 @@ const posts = (await getCollection('blog'))
 						<h2 class="post-title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
 						<div class="post-meta">
 							<FormattedDate date={post.data.pubDate} />
+							{post.data.series && (
+								<a href={`/blog/series/${encodeURIComponent(post.data.series)}`} class="series-link">
+									<span class="series-badge">SERIES</span>{post.data.series}
+								</a>
+							)}
 							{post.data.tags.length > 0 && (
 								<div class="post-tags">
 									{post.data.tags.map(tag => (
@@ -84,6 +89,25 @@ const posts = (await getCollection('blog'))
 		border-color: rgba(59, 130, 246, 0.3);
 		color: var(--accent);
 		background: rgba(59, 130, 246, 0.06);
+	}
+	.series-link {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		font-size: 0.75rem;
+		color: var(--text-muted);
+		text-decoration: none;
+	}
+	.series-link:hover { color: var(--accent); }
+	.series-badge {
+		font-family: var(--font-mono);
+		font-size: 0.6rem;
+		font-weight: 600;
+		background: var(--accent);
+		color: #fff;
+		padding: 1px 4px;
+		border-radius: 3px;
+		letter-spacing: 0.05em;
 	}
 	.post-desc {
 		color: var(--text-muted);
