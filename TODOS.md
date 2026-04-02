@@ -82,9 +82,9 @@
 - **What:** 글 중간에 밈, 짤, 일러스트 삽입 시스템
 - **Depends on:** 글 10개+ 축적 후 읽기 경험 개선 필요성 확인
 
-### Pretext 기반 디자인 보강
-- **What:** chenglou/pretext 라이브러리 활용 레이아웃 개선
-- **Depends on:** 현재 디자인으로 충분히 운영 가능. 콘텐츠 축적 후
+### ~~Pretext 기반 디자인 보강~~ 보류
+- **What:** chenglou/pretext 라이브러리 활용 타이포그래피 개선 (Knuth-Plass 양끝맞춤 등)
+- **Status:** 조사 완료 (2026-04-02). @chenglou/pretext v0.0.4는 한글(0xAC00-0xD7AF)을 CJK로 분류해 글자 단위 줄바꿈 적용. 한국어에 필요한 word-break: keep-all 미지원. 라이브러리가 한국어 어절 단위 줄바꿈을 지원할 때까지 보류.
 
 ### 콘텐츠 관리 전략 (CMS / 저장소)
 - **What:** git 기반 관리의 한계 해결. 헤드리스 CMS 검토.
