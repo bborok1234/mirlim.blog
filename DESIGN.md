@@ -36,7 +36,7 @@
 - **Surface Hover:** #1C1C1F
 - **Border:** #1E1E22
 - **Text:** #E8E8ED — 밝은 회색
-- **Text Muted:** #6B6B76
+- **Text Muted:** #7E7E8A
 - **Accent (MCP/Agent):** #3B82F6 — 차가운 블루. MCP 배지, 에이전트 관련 링크, Subscribe에 사용
 - **Accent Hover:** #2563EB
 - **Success:** #10B981 — 에메랄드. 코드 하이라이트, 활성 상태
