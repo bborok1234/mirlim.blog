@@ -22,7 +22,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], slug } =
 			<article>
 				{heroImage && (
 					<div class="hero-image">
-						<Image width={720} height={360} src={heroImage} alt="" />
+						<Image width={720} height={360} src={heroImage} alt={title} />
 					</div>
 				)}
 				<div class="prose">
