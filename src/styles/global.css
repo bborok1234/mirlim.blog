@@ -57,6 +57,11 @@ a {
 }
 a:hover { color: var(--accent-hover); }
 
+:focus-visible {
+	outline: 2px solid var(--accent);
+	outline-offset: 2px;
+}
+
 p { margin-bottom: 1em; }
 .prose p { margin-bottom: 1.5em; }
 
