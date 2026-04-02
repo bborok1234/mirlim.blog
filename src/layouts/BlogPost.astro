@@ -5,10 +5,14 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import Header from '../components/Header.astro';
+import SeriesNav from '../components/SeriesNav.astro';
 
-type Props = CollectionEntry<'blog'>['data'] & { slug?: string };
+type Props = CollectionEntry<'blog'>['data'] & {
+	slug?: string;
+	seriesPosts?: Array<{ slug: string; title: string; order: number }>;
+};
 
-const { title, description, pubDate, updatedDate, heroImage, tags = [], slug } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags = [], slug, series, seriesPosts = [] } = Astro.props;
 ---
 
 <html lang="ko">
@@ -45,6 +49,9 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], slug } =
 						)}
 					</div>
 					<slot />
+					{series && seriesPosts.length > 1 && (
+						<SeriesNav seriesName={series} posts={seriesPosts} currentSlug={slug!} />
+					)}
 				</div>
 			</article>
 		</main>

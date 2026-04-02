@@ -23,9 +23,18 @@ const relatedPosts = relatedSlugs
 	.map(slug => getMcpPost(slug))
 	.filter(Boolean)
 	.map(p => ({ slug: p!.slug, title: p!.title, description: p!.description, tags: p!.tags }));
+
+// Series data
+let seriesPosts: Array<{ slug: string; title: string; order: number }> = [];
+if (post.data.series) {
+	const allPosts = await getCollection('blog');
+	seriesPosts = allPosts
+		.filter(p => !p.data.draft && p.data.series === post.data.series)
+		.map(p => ({ slug: p.id, title: p.data.title, order: p.data.seriesOrder ?? 0 }));
+}
 ---
 
-<BlogPost {...post.data} slug={post.id}>
+<BlogPost {...post.data} slug={post.id} seriesPosts={seriesPosts}>
 	<Content />
 	<RelatedPosts posts={relatedPosts} />
 </BlogPost>

@@ -7,6 +7,8 @@ category: 'essay'
 tags: ['AI Agent', 'AX', 'Developer Tools', 'Runtime']
 toolsUsed: ['Claude Code', 'Post Compiler']
 heroImagePrompt: 'Minimalist technical illustration of a fragile tower built from stacked document pages (labeled .md), balancing precariously on a thin terminal window base. A solid geometric structure (representing a proper runtime) stands nearby, casting a shadow. Dark background, blueprint grid, blue and white palette, clean architectural style.'
+series: '에이전트 시대의 개발환경'
+seriesOrder: 1
 draft: false
 concepts:
   - name: 'Context-as-OS'

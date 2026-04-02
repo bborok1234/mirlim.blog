@@ -1,0 +1,109 @@
+---
+interface SeriesPost {
+	slug: string;
+	title: string;
+	order: number;
+}
+
+interface Props {
+	seriesName: string;
+	posts: SeriesPost[];
+	currentSlug: string;
+}
+
+const { seriesName, posts, currentSlug } = Astro.props;
+const sorted = [...posts].sort((a, b) => a.order - b.order);
+const currentIdx = sorted.findIndex(p => p.slug === currentSlug);
+---
+
+<nav class="series-nav" aria-label="시리즈 네비게이션">
+	<div class="series-header">
+		<span class="series-label">SERIES</span>
+		<a href={`/blog/series/${encodeURIComponent(seriesName)}`} class="series-name">{seriesName}</a>
+		<span class="series-count">{currentIdx + 1} / {sorted.length}</span>
+	</div>
+	<ol class="series-list">
+		{sorted.map((post) => (
+			<li class:list={[{ current: post.slug === currentSlug }]}>
+				{post.slug === currentSlug ? (
+					<span class="current-title">{post.title}</span>
+				) : (
+					<a href={`/blog/${post.slug}/`}>{post.title}</a>
+				)}
+			</li>
+		))}
+	</ol>
+</nav>
+
+<style>
+	.series-nav {
+		margin-top: 48px;
+		padding: 24px;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 8px;
+	}
+	.series-header {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-bottom: 16px;
+	}
+	.series-label {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		font-weight: 600;
+		background: var(--accent);
+		color: #fff;
+		padding: 2px 8px;
+		border-radius: 4px;
+		letter-spacing: 0.05em;
+	}
+	.series-name {
+		font-family: var(--font-display);
+		font-size: 1.125rem;
+		color: var(--text);
+		text-decoration: none;
+	}
+	.series-name:hover { color: var(--accent); }
+	.series-count {
+		font-family: var(--font-mono);
+		font-size: 0.75rem;
+		color: var(--text-muted);
+		margin-left: auto;
+	}
+	.series-list {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		counter-reset: series;
+	}
+	.series-list li {
+		counter-increment: series;
+		padding: 8px 0;
+		border-top: 1px solid var(--border);
+		font-size: 0.95rem;
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+	}
+	.series-list li::before {
+		content: counter(series) ".";
+		font-family: var(--font-mono);
+		font-size: 0.8rem;
+		color: var(--text-muted);
+		min-width: 20px;
+	}
+	.series-list li a {
+		color: var(--text-muted);
+		text-decoration: none;
+	}
+	.series-list li a:hover { color: var(--accent); }
+	.series-list li.current {
+		color: var(--text);
+	}
+	.current-title {
+		color: var(--text);
+		font-weight: 500;
+	}
+</style>
