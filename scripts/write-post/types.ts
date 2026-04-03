@@ -46,6 +46,7 @@ export interface Brief {
   concepts: BriefConcept[];
   titleOptions: string[];
   heroImagePrompt?: string;
+  memeStrategy?: MemeStrategy;
   selectedAngle?: string;
   selectedTitle?: string;
 }
@@ -63,6 +64,18 @@ export interface Review {
   slopPatterns: SlopPattern[];
   verdict: 'pass' | 'revise' | 'reject';
   comments: string[];
+}
+
+export interface MemePlacement {
+  afterSection: string;
+  concept: string;
+  suggestedFormat: string;
+}
+
+export interface MemeStrategy {
+  useMemes: boolean;
+  reason: string;
+  placements: MemePlacement[];
 }
 
 export interface Recommendation {

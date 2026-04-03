@@ -72,6 +72,14 @@ img {
 	border-radius: 8px;
 }
 
+/* 인라인 밈/짤 이미지 */
+.prose img[src*="/memes/"] {
+	display: block;
+	max-width: 480px;
+	margin: 32px auto;
+	border: 1px solid var(--border);
+}
+
 code {
 	font-family: var(--font-mono);
 	font-size: 0.85em;

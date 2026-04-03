@@ -26,7 +26,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], slug, se
 			<article>
 				{heroImage && (
 					<div class="hero-image">
-						<Image width={720} height={360} src={heroImage} alt={title} />
+						<Image width={1440} height={810} src={heroImage} alt="" loading="eager" />
 					</div>
 				)}
 				<div class="prose">
@@ -108,10 +108,13 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], slug, se
 
 <style>
 	.hero-image {
-		margin-bottom: 32px;
+		max-width: 720px;
+		margin: 0 auto 32px;
 	}
 	.hero-image img {
 		width: 100%;
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
 		border-radius: 8px;
 	}
 	.prose {
