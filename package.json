@@ -10,6 +10,7 @@
     "prebuild": "bun run scripts/build-content-index.ts && bun run scripts/build-concepts-graph.ts && bun run scripts/generate-og.ts",
     "build": "astro build",
     "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy --config dist/server/wrangler.json",
     "astro": "astro",
     "mcp": "bun run src/mcp/stdio.ts",
     "new": "bun run scripts/new-post.ts",
