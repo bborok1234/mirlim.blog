@@ -33,7 +33,7 @@ concepts:
 
 ## 처음 생각한 건 단순했다
 
-Claude Code에 "이 주제로 글 써줘" 하면 되는 거 아닌가? 솔직히 그것도 된다. 근데 결과물이 — 어떻게 말하면 좋을까 — ChatGPT가 쓴 티가 난다.
+Claude Code에 "이 주제로 글 써줘" 하면 되는 거 아닌가? 솔직히 그것도 된다. 근데 결과물이, 어떻게 말하면 좋을까, ChatGPT가 쓴 티가 난다.
 
 4,200개 글을 16개월 동안 추적한 연구가 있다. 순수 AI가 쓴 콘텐츠는 평균 23% 낮은 검색 순위를 받았다. 반면 AI가 초안을 쓰고 사람이 제대로 편집한 글은? 사람이 직접 쓴 글과 4% 차이밖에 안 났다.
 
@@ -62,7 +62,7 @@ graph TD
 
 ## 실제로 만든 것들
 
-### Run Artifact — 과정이 곧 기록
+### Run Artifact: 과정이 곧 기록
 
 파이프라인을 한 번 실행하면 `.pipeline/runs/2026-03-31-claude-code/` 같은 폴더가 생긴다. 안에는:
 
@@ -75,21 +75,21 @@ graph TD
 | `review.json` | AI slop 검수 결과 |
 | `recommendations.json` | 다음 글 추천 3개 |
 
-이 구조가 좋은 이유는 두 가지다. 첫째, 세션이 끊겨도 `--resume`으로 이어서 할 수 있다. 둘째, 이 artifact 자체가 빌드로그 글의 원재료가 된다. 과정을 기록하려고 따로 노력할 필요가 없다 — 파이프라인이 알아서 남긴다.
+이 구조가 좋은 이유는 두 가지다. 첫째, 세션이 끊겨도 `--resume`으로 이어서 할 수 있다. 둘째, 이 artifact 자체가 빌드로그 글의 원재료가 된다. 과정을 기록하려고 따로 노력할 필요가 없다. 파이프라인이 알아서 남긴다.
 
-### Claude Code Skill — 자연어 오케스트레이터
+### Claude Code Skill: 자연어 오케스트레이터
 
 파이프라인 로직을 TypeScript로 짜지 않았다. `.claude/commands/write-post.md`에 마크다운으로 작성했다. Claude Code skill이라는 건데, 쉽게 말하면 Claude Code에게 주는 작업 지시서다.
 
 왜 코드가 아니라 자연어인가? 글이 5개도 안 되는 시점에서 rigid한 코드보다 유연한 에이전트 오케스트레이션이 낫다. 리서치 범위가 달라지거나, 검수 기준이 바뀌거나, 새로운 단계가 필요해질 때 마크다운 파일 하나만 수정하면 된다.
 
 코드로 구현한 건 딱 두 가지만이다:
-- `scripts/write-post/run.ts` — run artifact 생성/로드/업데이트
-- `scripts/write-post/compile-build-log.ts` — run artifact를 빌드로그 글로 변환
+- `scripts/write-post/run.ts`: run artifact 생성/로드/업데이트
+- `scripts/write-post/compile-build-log.ts`: run artifact를 빌드로그 글로 변환
 
 상태 관리와 변환 같은 **결정적 동작**은 코드로, **유연한 판단**은 에이전트에게. 이 분업이 Phase 1A의 핵심 설계 결정이었다.
 
-### AI Slop 검수 — 한국어에서의 삽질
+### AI Slop 검수: 한국어에서의 삽질
 
 AI가 쓴 영어 글의 문제점은 잘 알려져 있다. "delve", "crucial", "landscape" 같은 단어들. 근데 한국어는 다른 패턴이다.
 
@@ -107,9 +107,9 @@ AI가 쓴 영어 글의 문제점은 잘 알려져 있다. "delve", "crucial", "
 
 이 리스트를 skill에 "금지 표현"으로 넣었다. 모델에게 "자연스럽게 써"라고 하는 것보다 "이건 쓰지 마"라고 하는 게 훨씬 효과적이다.
 
-## Mermaid 다이어그램 — 작은 삽질
+## Mermaid 다이어그램, 작은 삽질
 
-글에 시각 요소가 필요했다. 텍스트만 있는 기술 블로그는 읽기 힘드니까. Mermaid 다이어그램이 답이었다 — 마크다운 안에 코드블록으로 작성하면 알아서 렌더링된다.
+글에 시각 요소가 필요했다. 텍스트만 있는 기술 블로그는 읽기 힘드니까. Mermaid 다이어그램이 답이었다. 마크다운 안에 코드블록으로 작성하면 알아서 렌더링된다.
 
 `rehype-mermaid` 플러그인을 설치했다. 빌드가 터졌다. Playwright가 필요하단다. Cloudflare Pages 빌드 환경에서는 Chromium이 안 돌아간다.
 
@@ -127,7 +127,7 @@ graph TD
 
 ## 지금 읽고 있는 이 글이 첫 번째 실행 결과다
 
-메타한 이야기지만 — 이 글 자체가 Post Compiler의 첫 번째 실행이다. `.pipeline/runs/2026-03-31-claude-code/`에 이 글의 리서치, brief, 초안, 검수 결과가 다 들어있다.
+메타한 이야기지만, 이 글 자체가 Post Compiler의 첫 번째 실행이다. `.pipeline/runs/2026-03-31-claude-code/`에 이 글의 리서치, brief, 초안, 검수 결과가 다 들어있다.
 
 파이프라인이 실제로 한 일:
 1. MCP로 기존 글(ai-native-blog) 참조
@@ -142,9 +142,9 @@ graph TD
 
 지금은 글이 2개뿐이라 파이프라인의 진가가 안 나온다. 진짜 재미는 글이 5개, 10개 쌓이면서 시작된다.
 
-- **concepts 그래프** — 글마다 frontmatter에 concepts가 있다. 이걸 그래프로 엮으면 "이 주제는 이미 다뤘고, 저 주제는 아직"이 보인다
-- **novelty scoring** — 새 글의 concepts가 기존 그래프와 얼마나 겹치는지 계산. 중복이면 경고
-- **reasoning trail** — MCP에 `get_post_process` 도구 추가. 외부 에이전트가 "이 글은 어떻게 만들어졌는지" 쿼리 가능
+- **concepts 그래프**: 글마다 frontmatter에 concepts가 있다. 이걸 그래프로 엮으면 "이 주제는 이미 다뤘고, 저 주제는 아직"이 보인다
+- **novelty scoring**: 새 글의 concepts가 기존 그래프와 얼마나 겹치는지 계산. 중복이면 경고
+- **reasoning trail**: MCP에 `get_post_process` 도구 추가. 외부 에이전트가 "이 글은 어떻게 만들어졌는지" 쿼리 가능
 
 웹의 52%가 AI가 만든 콘텐츠라고 한다. 양의 문제는 이미 해결됐다. 남은 건 "이 글은 어떤 과정을 거쳐 나왔는가"를 증명하는 것. Post Compiler의 run artifact가 그 시작점이 될 수 있다고 생각한다.
 
