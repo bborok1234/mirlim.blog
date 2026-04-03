@@ -1,21 +1,16 @@
 import type { APIRoute } from 'astro';
-import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
+import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
 import { createMcpServer } from '../mcp/server.js';
 
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
 	const server = createMcpServer();
-	const transport = new StreamableHTTPServerTransport({ sessionIdGenerator: undefined });
+	const transport = new WebStandardStreamableHTTPServerTransport({ sessionIdGenerator: undefined });
 
 	await server.connect(transport);
 
-	const body = await request.text();
-	const response = await transport.handleRequest(request, body);
-
-	await server.close();
-
-	return response;
+	return transport.handleRequest(request);
 };
 
 export const GET: APIRoute = async () => {
