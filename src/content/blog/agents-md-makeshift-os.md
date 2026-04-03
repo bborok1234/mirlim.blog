@@ -6,6 +6,7 @@ pubDate: '2026-04-02'
 category: 'essay'
 tags: ['AI Agent', 'AX', 'Developer Tools', 'Runtime']
 toolsUsed: ['Claude Code', 'Post Compiler']
+heroImage: '../../assets/heroes/agents-md-makeshift-os.jpg'
 heroImagePrompt: 'Minimalist technical illustration of a fragile tower built from stacked document pages (labeled .md), balancing precariously on a thin terminal window base. A solid geometric structure (representing a proper runtime) stands nearby, casting a shadow. Dark background, blueprint grid, blue and white palette, clean architectural style.'
 series: '에이전트 시대의 개발환경'
 seriesOrder: 1

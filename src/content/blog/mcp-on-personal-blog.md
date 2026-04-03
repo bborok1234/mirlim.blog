@@ -6,6 +6,7 @@ pubDate: '2026-04-01'
 category: 'essay'
 tags: ['MCP', 'AI Agent', 'AX', 'Cloudflare Workers']
 toolsUsed: ['Claude Code', 'Post Compiler']
+heroImage: '../../assets/heroes/mcp-on-personal-blog.jpg'
 heroImagePrompt: 'Technical illustration showing a minimalist blog interface on the left connected by glowing protocol lines to multiple AI agent icons on the right. The connection lines pass through a central hub labeled with tool icons. Dark background, blueprint grid, blue and white palette, clean geometric style.'
 series: 'mirlim.blog 만들기'
 seriesOrder: 3

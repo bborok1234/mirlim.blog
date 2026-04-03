@@ -6,6 +6,7 @@ pubDate: '2026-03-31'
 category: 'essay'
 tags: ['AI', 'AX', 'Claude Code', 'Korea', 'Vibe Coding']
 toolsUsed: ['Claude Code', 'Post Compiler']
+heroImage: '../../assets/heroes/korea-learning-vs-building.jpg'
 heroImagePrompt: 'Split illustration: left side shows a classroom with rows of screens displaying tutorial videos and course thumbnails, crowded and glowing blue. Right side shows a single desk with a laptop displaying a live product with a payment badge and users counter, minimal and calm. Dark background, editorial style, subtle contrast between consumption and creation.'
 draft: false
 concepts:

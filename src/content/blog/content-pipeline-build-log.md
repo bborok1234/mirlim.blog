@@ -8,6 +8,7 @@ series: 'mirlim.blog 만들기'
 seriesOrder: 2
 tags: ['Claude Code', 'Content Pipeline', 'AI', 'automation']
 toolsUsed: ['Claude Code', 'Post Compiler']
+heroImage: '../../assets/heroes/content-pipeline-build-log.jpg'
 heroImagePrompt: 'Minimalist isometric illustration of a content assembly line: raw materials (research notes, web searches) entering from left, passing through processing stations (brief, draft, review checkpoints), and emerging as a polished document on the right. Blue and white palette with subtle orange accents at the review checkpoint. Clean technical aesthetic, no text.'
 draft: false
 concepts:

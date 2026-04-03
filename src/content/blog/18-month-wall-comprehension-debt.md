@@ -6,6 +6,7 @@ pubDate: '2026-04-02'
 category: 'essay'
 tags: ['AI Agent', 'AX', 'Technical Debt', 'Developer Tools']
 toolsUsed: ['Claude Code', 'Post Compiler']
+heroImage: '../../assets/heroes/18-month-wall-comprehension-debt.jpg'
 heroImagePrompt: 'Minimalist technical illustration of a towering structure of code blocks rapidly being assembled by robotic arms on the left side, while on the right side a single human figure stands before an identical but crumbling structure, trying to read fading text on the blocks. Time progression from left (bright, new) to right (weathered, 18 months later). Dark background, blueprint grid, blue and white palette, clean architectural style.'
 series: '에이전트 시대의 개발환경'
 seriesOrder: 3

@@ -6,6 +6,7 @@ pubDate: '2026-04-03'
 category: 'essay'
 tags: ['AI', 'AX', 'Product Strategy', 'SaaS']
 toolsUsed: ['Claude Code', 'Post Compiler']
+heroImage: '../../assets/heroes/ai-is-lab-not-brain.jpg'
 heroImagePrompt: 'Minimalist split illustration. Left side: a glowing brain icon connected to chaotic scattered outputs, with dollar signs flowing out continuously. Right side: a clean laboratory setup with organized experiment tubes feeding into a single solid machine producing consistent outputs. Dark background, blueprint grid, blue and white palette, clean architectural style.'
 draft: false
 concepts:

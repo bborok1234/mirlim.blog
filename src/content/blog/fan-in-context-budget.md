@@ -6,6 +6,7 @@ pubDate: '2026-03-31'
 category: 'essay'
 tags: ['AI Agent', 'Context Window', 'AX', 'Runtime']
 toolsUsed: ['Claude Code', 'Post Compiler']
+heroImage: '../../assets/heroes/fan-in-context-budget.jpg'
 heroImagePrompt: 'Abstract technical illustration of a central node receiving streams of data from dozens of smaller nodes arranged in a radial pattern. The central node glows with constrained blue light while peripheral nodes emit white data streams. Some streams are compressed/filtered before reaching center. Dark background, minimal style, blueprint aesthetic with grid lines.'
 draft: false
 concepts:

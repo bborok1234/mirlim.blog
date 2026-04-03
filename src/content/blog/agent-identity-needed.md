@@ -6,6 +6,7 @@ pubDate: '2026-04-02'
 category: 'essay'
 tags: ['AI Agent', 'AX', 'Developer Tools', 'Governance']
 toolsUsed: ['Claude Code', 'Post Compiler']
+heroImage: '../../assets/heroes/agent-identity-needed.jpg'
 heroImagePrompt: 'Minimalist technical illustration of an AI agent represented as a geometric humanoid figure standing at a border checkpoint. The agent holds up a glowing digital ID card with cryptographic patterns. Behind the checkpoint, a vast network of code repositories and connected systems stretches into the distance. Dark background, blueprint grid, blue and white palette, clean architectural style.'
 series: '에이전트 시대의 개발환경'
 seriesOrder: 2
