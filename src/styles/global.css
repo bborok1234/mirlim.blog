@@ -72,9 +72,14 @@ img {
 	border-radius: 8px;
 }
 
-/* 인라인 밈/짤 이미지 */
-.prose img[src*="/memes/"] {
+/* .prose 내 이미지 하단 여백 */
+.prose img {
 	display: block;
+	margin-bottom: 2em;
+}
+
+/* 인라인 밈/짤 이미지 */
+.prose img[alt*="/"] {
 	max-width: 480px;
 	margin: 32px auto;
 	border: 1px solid var(--border);
@@ -99,6 +104,7 @@ pre {
 	font-family: var(--font-mono);
 	font-size: 0.85rem;
 	line-height: 1.6;
+	margin-bottom: 2em;
 }
 pre > code {
 	all: unset;
@@ -109,7 +115,7 @@ pre > code {
 blockquote {
 	border-left: 3px solid var(--accent);
 	padding: 0 0 0 24px;
-	margin: 0 0 1em;
+	margin: 0 0 2em;
 	color: var(--text-muted);
 	font-size: 1.1em;
 }
@@ -123,6 +129,7 @@ hr {
 table {
 	width: 100%;
 	border-collapse: collapse;
+	margin-bottom: 2em;
 }
 th, td {
 	text-align: left;

@@ -185,6 +185,9 @@ graph LR
 - 마크다운 문법: `![설명](../../assets/memes/파일명.jpg)`
 - 개발자 커뮤니티에서 검증된 포맷 사용 (Drake, "this is fine", distracted boyfriend 등)
 - `src/assets/memes/`에 저장, 재사용 가능
+- 밈 생성 명령어: `bun run scripts/meme.ts create <template> <slug> "텍스트1" "텍스트2"`
+- 사용 가능한 템플릿: drake, distracted, buttons, uno, change-my-mind, batman, woman-cat 등
+- Step 3(초안 작성) 중 memeStrategy에 따라 밈을 자동 생성하고 마크다운에 삽입
 
 **이미지 배치 리듬**: hero → ~300단어 텍스트 → 첫 다이어그램 또는 밈 → ~400단어 → 두번째 다이어그램 → 마무리
 
