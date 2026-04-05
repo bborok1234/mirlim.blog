@@ -5,7 +5,7 @@
 
 import fs from 'node:fs';
 import path from 'node:path';
-import type { RunManifest } from './types';
+import type { RunManifest, StateTransition } from './types';
 
 const PIPELINE_DIR = path.resolve(process.cwd(), '.pipeline/runs');
 
@@ -85,6 +85,53 @@ export function listRuns(): RunManifest[] {
     .filter(d => fs.existsSync(path.join(PIPELINE_DIR, d, 'run.json')))
     .map(d => JSON.parse(fs.readFileSync(path.join(PIPELINE_DIR, d, 'run.json'), 'utf-8')) as RunManifest)
     .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+}
+
+/** 상태 전환 + 히스토리 기록 */
+export function transitionRun(
+  runDir: string,
+  toStatus: RunManifest['status'],
+  opts: { auto?: boolean; editor_notes?: string; phase?: number; error?: string } = {},
+): RunManifest {
+  const manifestPath = path.join(runDir, 'run.json');
+  const manifest: RunManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+
+  const transition: StateTransition = {
+    from: manifest.status,
+    to: toStatus,
+    at: new Date().toISOString(),
+    auto: opts.auto ?? true,
+  };
+  if (opts.editor_notes) transition.editor_notes = opts.editor_notes;
+
+  if (!manifest.history) manifest.history = [];
+  manifest.history.push(transition);
+
+  manifest.status = toStatus;
+  manifest.updatedAt = new Date().toISOString();
+  if (opts.phase !== undefined) manifest.phase = opts.phase;
+  if (opts.editor_notes) manifest.editor_notes = opts.editor_notes;
+  if (opts.error) manifest.error = opts.error;
+  if (toStatus !== 'failed') manifest.error = undefined;
+
+  writeManifest(runDir, manifest);
+  return manifest;
+}
+
+/** failed 상태에서 이전 상태로 복구 */
+export function retryRun(runDir: string): RunManifest {
+  const manifestPath = path.join(runDir, 'run.json');
+  const manifest: RunManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+
+  if (manifest.status !== 'failed') {
+    throw new Error(`Cannot retry: status is "${manifest.status}", not "failed"`);
+  }
+
+  const history = manifest.history ?? [];
+  const failTransition = [...history].reverse().find(t => t.to === 'failed');
+  const previousStatus = failTransition?.from ?? 'briefing';
+
+  return transitionRun(runDir, previousStatus as RunManifest['status'], { auto: false });
 }
 
 function writeManifest(runDir: string, manifest: RunManifest): void {

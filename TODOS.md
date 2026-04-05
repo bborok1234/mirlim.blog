@@ -50,12 +50,20 @@
   - Month 1: 월 1,000 PV
   - Month 3: 월 5,000 PV, 키워드 10개+ 노출
 
+## Editorial Engine Phase A (다음 작업)
+- **What:** Editorial State Machine. 토픽 추천(`recommendTopics()`) + `claude -p --no-confirm`으로 Post Compiler 호출 + review CLI로 비동기 승인/거절.
+- **Why:** AI 편집실 핵심 루프 검증. "에이전트가 혼자 돌고 사람은 나중에 큐 확인"하는 비동기 워크플로우.
+- **구현:** 기존 `scripts/write-post/run.ts` 확장 (RunManifest에 history[] 추가). 새 파일 2개 (`editorial-engine.ts`, `review-cli.ts`). 7개 테스트.
+- **Design doc:** `~/.gstack/projects/bborok1234-mirlim.blog/mirlim-main-design-20260405-234230.md`
+- **Depends on:** 없음 (기존 인프라 완성)
+- **다음:** 2주 dogfooding → Phase B (소셜 배포 자동화)
+
 ## Tier 3: 성장 인프라 (전환 트리거: 월 3,000 PV)
 - **What:** 트래픽 기반이 생긴 후 성장 가속
 - **항목:**
   - 뉴스레터 구독 (Resend/Buttondown + 이메일 구독 폼)
   - MCP 서버 원격 배포 + "Add to Claude" 버튼
-  - Editorial Autopilot (자동 토픽 선정 + 무인 초안 + 알림)
+  - ~~Editorial Autopilot~~ → Editorial Engine Phase A로 시작, Phase B(소셜), Phase C(프레임워크)로 확장
   - 소셜 공유 최적화
 
 ---

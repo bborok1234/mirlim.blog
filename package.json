@@ -14,6 +14,8 @@
     "astro": "astro",
     "mcp": "bun run src/mcp/stdio.ts",
     "new": "bun run scripts/new-post.ts",
+    "editorial": "bun run scripts/editorial-engine.ts",
+    "review": "bun run scripts/review-cli.ts",
     "test": "vitest run"
   },
   "dependencies": {

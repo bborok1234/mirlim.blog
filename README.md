@@ -73,6 +73,8 @@ Claude Code에 아래 프롬프트를 붙여넣으세요:
 | 명령 | 역할 | 설명 |
 |------|------|------|
 | `/write-post "토픽"` | Content Compiler | 리서치→brief→초안→검수→발행 원스톱 파이프라인 |
+| `bun run editorial` | Editorial Engine | AI 편집실 — 토픽 추천, 비동기 초안 생성, 리뷰 큐 |
+| `bun run review` | Review CLI | 리뷰 큐 관리 — 승인/거절/수정 지시 |
 | `bun run new "제목"` | Scaffolder | 빈 포스트 스캐폴딩 (수동 작성 시) |
 
 ### /write-post 옵션
@@ -85,6 +87,43 @@ Claude Code에 아래 프롬프트를 붙여넣으세요:
 /write-post --resume 2026-03-31-mcp-subscription       # 중단된 run 재개
 ```
 
+### Editorial Engine (AI 편집실)
+
+concepts graph 기반으로 토픽을 자동 추천하고, Post Compiler를 비동기로 호출해서 초안을 생성합니다.
+사람은 나중에 리뷰 큐를 확인하고 승인/거절/수정 지시만 하면 됩니다.
+
+```bash
+# 1. 토픽 추천 받기
+bun run editorial brief
+
+# 2. 선택한 토픽으로 초안 생성 (claude -p로 비동기 실행)
+bun run editorial draft 1
+
+# 3. 리뷰 대기 항목 확인
+bun run review
+
+# 4. 승인/거절/수정
+bun run review approve <run-id>
+bun run review reject <run-id> "사유"
+bun run review revise <run-id> "도입부 톤 수정"
+
+# 유틸리티
+bun run editorial status              # 전체 큐 상태
+bun run editorial retry <run-id>      # 실패 항목 재시도
+```
+
+**상태 흐름:**
+```
+brief → research → draft → review → published
+                              ↓ ↗
+                           (revise)
+                              ↓
+                           archived
+```
+
+Editorial Engine은 Post Compiler(`/write-post`)를 감싸는 얇은 레이어입니다.
+기존 `.pipeline/runs/`를 그대로 사용하며, `RunManifest`에 `history[]`와 `source` 필드가 추가됩니다.
+
 ## Architecture
 
 ```
@@ -96,11 +135,15 @@ src/
 └── layouts/             ← 레이아웃
 
 scripts/
+├── editorial-engine.ts  ← Editorial Engine CLI (토픽 추천/초안/상태)
+├── review-cli.ts        ← 리뷰 큐 CLI (승인/거절/수정)
 ├── new-post.ts          ← 포스트 스캐폴딩 CLI
+├── generate-og.ts       ← OG 이미지 자동 생성 (satori + sharp)
 ├── build-content-index.ts ← MCP용 콘텐츠 인덱스 빌드
+├── build-concepts-graph.ts ← Concepts 지식 그래프 빌드
 └── write-post/          ← Post Compiler 파이프라인
-    ├── types.ts         ← RunManifest, Brief, Review 스키마
-    ├── run.ts           ← Run artifact 관리 (생성/로드/업데이트)
+    ├── types.ts         ← RunManifest, Brief, Review, StateTransition 스키마
+    ├── run.ts           ← Run artifact 관리 + 상태 전환 + 히스토리
     └── compile-build-log.ts ← Run artifact → build-log 변환
 
 .claude/commands/
@@ -128,7 +171,7 @@ bun run mcp
 # https://mirlim.blog/mcp (Streamable HTTP)
 ```
 
-**도구**: `list_posts`, `get_post`, `search_posts`, `ask_blog`, `suggest_topic`
+**도구 (7개)**: `list_posts`, `get_post`, `search_posts`, `ask_blog`, `explore_concepts`, `recommend_topic`, `suggest_topic`
 
 ## Commands
 
@@ -137,9 +180,13 @@ bun run mcp
 | `bun install` | 의존성 설치 |
 | `bun run dev` | 로컬 개발 서버 (localhost:4321) |
 | `bun run build` | 프로덕션 빌드 |
+| `bun run deploy` | 빌드 + Cloudflare Workers 배포 |
 | `bun run preview` | 빌드 프리뷰 |
 | `bun run new "제목"` | 새 포스트 스캐폴딩 |
+| `bun run editorial <cmd>` | Editorial Engine (brief/draft/retry/status) |
+| `bun run review <cmd>` | 리뷰 큐 (approve/reject/revise) |
 | `bun run mcp` | MCP 서버 로컬 실행 |
+| `bun run test` | vitest 테스트 실행 |
 
 ## Content Categories
 

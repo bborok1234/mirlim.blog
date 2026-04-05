@@ -3,6 +3,14 @@
  * 디자인 문서의 RunManifest, Brief, Review 인터페이스 구현.
  */
 
+export interface StateTransition {
+  from: string;
+  to: string;
+  at: string;
+  auto: boolean;
+  editor_notes?: string;
+}
+
 export interface RunManifest {
   id: string;
   topic: string;
@@ -13,12 +21,18 @@ export interface RunManifest {
     | 'reviewing'
     | 'compiling'
     | 'completed'
-    | 'failed';
+    | 'failed'
+    | 'archived';
   phase: number;
   createdAt: string;
   updatedAt: string;
   slug?: string;
   error?: string;
+  history?: StateTransition[];
+  editor_notes?: string;
+  source?: 'manual' | 'editorial-engine';
+  strategy?: string;
+  novelty_score?: number;
 }
 
 export interface BriefAngle {

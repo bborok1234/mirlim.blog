@@ -39,23 +39,32 @@ Posts are created as drafts by default. Add `--no-draft` to publish immediately.
 - `draft` — true면 빌드에서 제외
 
 ### Content Workflow
+
+**수동 (기존):**
 1. `bun run new` 로 스캐폴딩
 2. 글 작성 (Claude Code로 리서치/초안 작성 가능)
 3. `bun run dev` 로 로컬 프리뷰
 4. frontmatter에서 `draft: false` 로 변경
 5. `bun run build` 로 빌드 확인
-6. 커밋 + 배포
+6. 커밋 + `bun run deploy`
+
+**Editorial Engine (비동기):**
+1. `bun run editorial brief` — concepts graph 기반 토픽 추천
+2. `bun run editorial draft <번호>` — 선택한 토픽으로 비동기 초안 생성
+3. `bun run review` — 리뷰 큐 확인
+4. `bun run review approve <run-id>` — 승인 → 발행
+5. `bun run build && bun run deploy` — 빌드 + 배포
 
 ### MCP Server
 - 콘텐츠 인덱스: `bun run scripts/build-content-index.ts` (빌드 시 자동 실행)
 - 로컬 테스트: `bun run mcp` (stdio transport)
 - 프로덕션: `/mcp` 엔드포인트 (Streamable HTTP transport)
-- 5개 도구: list_posts, get_post, search_posts, ask_blog, suggest_topic
+- 7개 도구: list_posts, get_post, search_posts, ask_blog, explore_concepts, recommend_topic, suggest_topic
 
 ### Images
 - Hero images: `src/assets/` 에 저장, frontmatter의 `heroImage`로 참조
 - Inline images: 마크다운에서 상대 경로로 참조
-- OG images: 추후 자동 생성 예정
+- OG images: prebuild에서 satori+sharp로 자동 생성 (`scripts/generate-og.ts`)
 
 ## Skill routing
 
