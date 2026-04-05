@@ -50,13 +50,24 @@
   - Month 1: 월 1,000 PV
   - Month 3: 월 5,000 PV, 키워드 10개+ 노출
 
-## Editorial Engine Phase A (다음 작업)
-- **What:** Editorial State Machine. 토픽 추천(`recommendTopics()`) + `claude -p --no-confirm`으로 Post Compiler 호출 + review CLI로 비동기 승인/거절.
-- **Why:** AI 편집실 핵심 루프 검증. "에이전트가 혼자 돌고 사람은 나중에 큐 확인"하는 비동기 워크플로우.
-- **구현:** 기존 `scripts/write-post/run.ts` 확장 (RunManifest에 history[] 추가). 새 파일 2개 (`editorial-engine.ts`, `review-cli.ts`). 7개 테스트.
-- **Design doc:** `~/.gstack/projects/bborok1234-mirlim.blog/mirlim-main-design-20260405-234230.md`
-- **Depends on:** 없음 (기존 인프라 완성)
-- **다음:** 2주 dogfooding → Phase B (소셜 배포 자동화)
+## ~~Editorial Engine Phase A~~ ✅ 완료 (2026-04-06)
+- `scripts/editorial-engine.ts` — 토픽 추천(concepts graph) + `claude -p`로 Post Compiler 비동기 호출
+- `scripts/review-cli.ts` — 리뷰 큐 승인/거절/수정 지시
+- 기존 `run.ts` 확장: StateTransition history[], transitionRun(), retryRun()
+- 8개 테스트 추가 (29 total pass)
+- Design doc: `~/.gstack/projects/bborok1234-mirlim.blog/mirlim-main-design-20260405-234230.md`
+
+## Editorial Engine Dogfooding + Phase B (다음 작업)
+- **What:** Phase A를 2주간 실사용하면서 검증, 이후 Phase B(소셜 배포 자동화) 설계
+- **Why:** "에이전트가 혼자 돌고 사람은 나중에 큐 확인"하는 루프가 실제로 동작하는지 검증
+- **Dogfooding 목표:**
+  - `bun run editorial brief` → 토픽 선정 → `bun run editorial draft` → `bun run review approve` 루프로 최소 3편 발행
+  - `claude -p` 안정성 확인, --no-confirm 플래그 필요 여부 검증
+  - 리뷰 큐 UX 피드백 수집
+- **Phase B 범위 (dogfooding 후):**
+  - 글 발행 → LinkedIn/Threads 포스트 자동 생성 + 승인 큐
+  - 뉴스레터 포맷 변환
+- **Depends on:** Phase A 완료 ✅
 
 ## Tier 3: 성장 인프라 (전환 트리거: 월 3,000 PV)
 - **What:** 트래픽 기반이 생긴 후 성장 가속
