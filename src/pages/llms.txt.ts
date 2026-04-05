@@ -5,7 +5,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 export const prerender = true;
 
 export const GET: APIRoute = () => {
-	const posts = getPosts().filter(p => !p.slug.startsWith('build-log-'));
+	const posts = getPosts();
 
 	const postList = posts
 		.sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime())

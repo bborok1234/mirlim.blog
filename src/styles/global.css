@@ -80,7 +80,7 @@ img {
 
 /* 인라인 밈/짤 이미지 */
 .prose img[alt*="/"] {
-	max-width: 480px;
+	max-width: min(480px, 100%);
 	margin: 32px auto;
 	border: 1px solid var(--border);
 }
@@ -190,9 +190,20 @@ li::marker {
 
 @media (max-width: 720px) {
 	body { font-size: 15px; }
-	main { padding: 24px 16px; }
+	main { padding: 24px 20px; }
 	h1 { font-size: 2rem; }
 	h2 { font-size: 1.5rem; }
+}
+
+/* Stretched link: title covers entire article */
+.stretched-link {
+	position: static;
+}
+.stretched-link::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 0;
 }
 
 .sr-only {

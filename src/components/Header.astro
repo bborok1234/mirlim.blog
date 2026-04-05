@@ -52,8 +52,14 @@ import HeaderLink from './HeaderLink.astro';
 		color: var(--accent);
 	}
 	@media (max-width: 720px) {
-		nav { padding: 16px; }
-		.links { gap: 16px; }
-		.links :global(a) { font-size: 0.8rem; }
+		nav { padding: 16px 20px; }
+		.links { gap: 8px; }
+		.links :global(a) {
+			font-size: 0.8rem;
+			padding: 10px 8px;
+			min-height: 44px;
+			display: inline-flex;
+			align-items: center;
+		}
 	}
 </style>

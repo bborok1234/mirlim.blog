@@ -9,7 +9,6 @@ import { SITE_TITLE } from '../../../consts';
 const categoryLabels: Record<string, string> = {
 	essay: '에세이',
 	tutorial: '튜토리얼',
-	'build-log': '빌드로그',
 	research: '리서치',
 	note: '노트',
 };
@@ -45,13 +44,13 @@ const label = categoryLabels[category] || category;
 			<section class="posts">
 				{posts.map((post: any) => (
 					<article class="post">
-						<h2 class="post-title"><a href={`/blog/${post.id}/`}>{post.data.title}</a></h2>
+						<h2 class="post-title"><a href={`/blog/${post.id}/`} class="stretched-link">{post.data.title}</a></h2>
 						<div class="post-meta">
 							<FormattedDate date={post.data.pubDate} />
 							{post.data.tags.length > 0 && (
 								<div class="post-tags">
 									{post.data.tags.map((tag: string) => (
-										<span class:list={['tag', { agent: ['MCP', 'AX', 'AI'].includes(tag) }]}>{tag}</span>
+										<a href={`/blog/tag/${encodeURIComponent(tag)}`} class:list={['tag', { agent: ['MCP', 'AX', 'AI'].includes(tag) }]}>{tag}</a>
 									))}
 								</div>
 							)}
@@ -68,14 +67,21 @@ const label = categoryLabels[category] || category;
 <style>
 	h1 { font-size: 2.5rem; margin-bottom: 8px; }
 	.count { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 32px; }
-	.post { padding: 24px 0; border-bottom: 1px solid var(--border); }
+	.post-meta { position: relative; z-index: 1; }
+	.post { position: relative; padding: 24px 0; border-bottom: 1px solid var(--border); }
 	.post:first-of-type { padding-top: 0; }
-	.post-title { font-size: 1.75rem; margin-bottom: 8px; }
+	.post-title { font-size: 1.5rem; margin-bottom: 8px; }
 	.post-title a { color: var(--text); text-decoration: none; }
 	.post-title a:hover { color: var(--accent); }
-	.post-meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
-	.post-tags { display: flex; gap: 6px; }
-	.tag { font-family: var(--font-mono); font-size: 0.7rem; padding: 2px 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); }
+	.post-meta { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+	.post-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+	.tag { font-family: var(--font-mono); font-size: 0.7rem; padding: 2px 8px; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; color: var(--text-muted); text-decoration: none; }
+	.tag:hover { border-color: var(--text-muted); color: var(--text); }
 	.tag.agent { border-color: rgba(59, 130, 246, 0.3); color: var(--accent); background: rgba(59, 130, 246, 0.06); }
+	.tag.agent:hover { border-color: var(--accent); }
 	.post-desc { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+	@media (max-width: 720px) {
+		.post-title { font-size: 1.25rem; }
+		.post-tags { display: none; }
+	}
 </style>

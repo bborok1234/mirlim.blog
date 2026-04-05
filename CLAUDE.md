@@ -20,7 +20,6 @@ In QA mode, flag any code that doesn't match DESIGN.md.
 ### Categories
 - `essay` — 생각, 오피니언, 에세이
 - `tutorial` — 기술 튜토리얼, 가이드
-- `build-log` — 프로젝트 빌딩 일지
 - `research` — AX 리서치, 업계 분석
 - `note` — 짧은 메모, TIL, 스니펫
 

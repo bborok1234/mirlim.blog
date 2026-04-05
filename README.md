@@ -49,13 +49,13 @@ Claude: 초안 작성 중... draft-v1.md 저장.
 You: 발행해줘
 
 Claude: ✅ 발행 완료: src/content/blog/mcp-subscription-guide.md
-        ✅ 빌드로그 생성: src/content/blog/build-log-mcp-subscription-guide.md (draft)
+        ✅ 빌드로그 생성: .pipeline/runs/2026-03-31-mcp-subscription/build-log.md
         ✅ 콘텐츠 인덱스 리빌드 완료
         
         📌 다음 글 추천:
         1. "MCP 서버 디버깅 가이드" (tutorial)
         2. "AI-native 뉴스레터 설계" (essay)
-        3. "블로그 에이전트 분석 대시보드" (build-log)
+        3. "블로그 에이전트 분석 대시보드" (essay)
 ```
 
 ## Install — 30초
@@ -147,9 +147,10 @@ bun run mcp
 |----------|------|
 | `essay` | 생각, 오피니언, 에세이 |
 | `tutorial` | 기술 튜토리얼, 가이드 |
-| `build-log` | 프로젝트 빌딩 일지 |
 | `research` | AX 리서치, 업계 분석 |
 | `note` | 짧은 메모, TIL, 스니펫 |
+
+> **Pipeline build-log**: `/write-post` 실행 시 `.pipeline/runs/`에 작성 과정이 자동 기록됩니다. 이것은 콘텐츠 카테고리가 아니라 파이프라인 아티팩트입니다.
 
 ## Stack
 

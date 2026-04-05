@@ -16,7 +16,7 @@ if (args.length === 0 || args[0] === '--help') {
 	console.log(`Usage: bun run scripts/new-post.ts "제목" [options]
 
 Options:
-  --category  essay|tutorial|build-log|research|note (default: essay)
+  --category  essay|tutorial|research|note (default: essay)
   --tags      쉼표로 구분된 태그 (예: "MCP,AX,tutorial")
   --series    시리즈 이름
   --order     시리즈 내 순서 (숫자)

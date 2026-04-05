@@ -13,7 +13,7 @@
 - GitHub 리포 생성 (bborok1234/mirlim.blog, public)
 - Cloudflare Pages 배포 + 커스텀 도메인 mirlim.blog
 - robots.txt, og:locale, og:site_name 추가
-- build-log 파일 정리 (블로그에서 제거, .pipeline/runs/에 artifact로 보존)
+- ~~build-log 파일 정리 (블로그에서 제거, .pipeline/runs/에 artifact로 보존)~~ ✅
 - mermaid 다크 테마 + 렌더링 규칙 정립
 
 ---

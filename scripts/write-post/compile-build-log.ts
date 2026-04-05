@@ -1,11 +1,12 @@
 #!/usr/bin/env bun
 /**
- * Run artifact → build-log 카테고리 글 자동 변환.
+ * Run artifact → build-log 아티팩트 자동 생성.
  *
  * Usage:
  *   bun run scripts/write-post/compile-build-log.ts <run-dir>
  *
- * run artifact 폴더를 읽어 build-log 카테고리의 draft 글을 생성.
+ * run artifact 폴더를 읽어 작성 과정 기록(build-log)을 같은 run 폴더에 저장.
+ * 이것은 콘텐츠 카테고리가 아니라 파이프라인 투명성 아티팩트입니다.
  */
 
 import fs from 'node:fs';
@@ -46,22 +47,12 @@ const sections: string[] = [];
 
 // Frontmatter
 const title = brief?.selectedTitle ?? manifest.topic;
-const buildLogSlug = `build-log-${manifest.slug ?? manifest.id}`;
 const date = new Date().toISOString().split('T')[0];
 
 sections.push('---');
-sections.push(`title: '[Build Log] ${title} — 작성 과정'`);
-sections.push(`description: '${title} 글의 리서치, 초안, 검수 과정을 기록한 빌드로그.'`);
-sections.push(`summary: 'Post Compiler 파이프라인으로 작성된 빌드로그. 리서치부터 발행까지의 전 과정.'`);
-sections.push(`pubDate: '${date}'`);
-sections.push(`category: 'build-log'`);
-sections.push(`series: 'mirlim.blog 만들기'`);
-sections.push(`tags: ['build-log', 'Content Pipeline', 'Claude Code']`);
-sections.push(`toolsUsed: ['Claude Code', 'Post Compiler']`);
-sections.push(`draft: true`);
-sections.push('concepts:');
-sections.push("  - name: 'Content Pipeline'");
-sections.push("    related: ['Claude Code', 'automation', 'Post Compiler']");
+sections.push(`title: '${title} — 작성 과정'`);
+sections.push(`run_id: '${manifest.id}'`);
+sections.push(`date: '${date}'`);
 sections.push('---');
 sections.push('');
 
@@ -139,13 +130,8 @@ sections.push(`_이 빌드로그는 Post Compiler 파이프라인 \`${manifest.i
 sections.push('');
 
 const content = sections.join('\n');
-const outputPath = path.join(process.cwd(), 'src/content/blog', `${buildLogSlug}.md`);
-
-if (fs.existsSync(outputPath)) {
-  console.error(`Build log already exists: ${outputPath}`);
-  process.exit(1);
-}
+const outputPath = path.join(runDir, 'build-log.md');
 
 fs.writeFileSync(outputPath, content);
 console.log(`Build log created: ${outputPath}`);
-console.log(`Run: ${manifest.id} | Slug: ${buildLogSlug} | Draft: true`);
+console.log(`Run: ${manifest.id}`);

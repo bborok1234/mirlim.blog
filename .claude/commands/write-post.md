@@ -13,7 +13,7 @@
 
 입력에서 다음을 추출하세요:
 - **topic**: 글감 (필수, 첫 번째 인자 또는 따옴표 안의 문자열)
-- **--category**: essay|tutorial|build-log|research|note (기본: essay)
+- **--category**: essay|tutorial|research|note (기본: essay)
 - **--series**: 시리즈 이름 (선택)
 - **--order**: 시리즈 순서 (선택)
 - **--resume**: 기존 run ID로 재개 (선택)
@@ -178,7 +178,7 @@ graph LR
 
 **인라인 밈/짤 전략** (Brief 단계에서 결정):
 - Brief의 `memeStrategy` 필드로 사용 여부를 명시적으로 결정
-- 밈이 적합한 글: build-log, 가벼운 essay, note
+- 밈이 적합한 글: 가벼운 essay, note
 - 밈이 부적합한 글: 거버넌스/보안 주제, 심각한 톤의 research
 - 글당 최대 2개, 무거운 논증 뒤 호흡 용도로 배치
 - 도입부/마무리에는 넣지 않음, 밈 사이 최소 300단어 간격
@@ -240,7 +240,7 @@ concepts:
 13. 이모지 남용
 
 **noveltyScore**: 기존 글과 얼마나 다른 내용인지 (0-100)
-**reproducibilityScore**: 독자가 단계를 따라할 수 있는지 (0-100, tutorial/build-log에 특히 중요)
+**reproducibilityScore**: 독자가 단계를 따라할 수 있는지 (0-100, tutorial에 특히 중요)
 **verdict**: pass, revise, reject
 
 revise면 수정 후 `draft-v2.md` 생성하고 재검수. reject면 사용자에게 알리고 중단.

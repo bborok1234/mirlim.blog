@@ -61,7 +61,7 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], slug, se
 						{tags.length > 0 && (
 							<div class="tags">
 								{tags.map((tag: string) => (
-									<span class:list={['tag', { agent: ['MCP', 'AX', 'AI'].includes(tag) }]}>{tag}</span>
+									<a href={`/blog/tag/${encodeURIComponent(tag)}`} class:list={['tag', { agent: ['MCP', 'AX', 'AI'].includes(tag) }]}>{tag}</a>
 								))}
 							</div>
 						)}
@@ -153,11 +153,19 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], slug, se
 		border: 1px solid var(--border);
 		border-radius: 4px;
 		color: var(--text-muted);
+		text-decoration: none;
+	}
+	.tag:hover {
+		border-color: var(--text-muted);
+		color: var(--text);
 	}
 	.tag.agent {
 		border-color: rgba(59, 130, 246, 0.3);
 		color: var(--accent);
 		background: rgba(59, 130, 246, 0.06);
+	}
+	.tag.agent:hover {
+		border-color: var(--accent);
 	}
 	.series-top {
 		margin-bottom: 16px;

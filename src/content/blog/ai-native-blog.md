@@ -3,7 +3,7 @@ title: '블로그에 독자가 두 종류 있다면'
 description: '사람만 읽는 블로그에서 AI 에이전트도 읽는 블로그로. frontmatter 설계, concepts 그래프, MCP 도구 설계까지, 두 종류의 독자를 위해 블로그를 처음부터 다시 설계한 과정.'
 summary: '사람은 브라우저로, 에이전트는 MCP로 읽는 블로그를 만들었다. 구조화된 frontmatter와 concepts 그래프가 에이전트용 인터페이스의 시작점이다.'
 pubDate: '2026-03-30T14:00:00+09:00'
-category: 'build-log'
+category: 'essay'
 tags: ['AI', 'AX', 'MCP', 'blog']
 series: 'mirlim.blog 만들기'
 seriesOrder: 1

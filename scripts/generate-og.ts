@@ -42,7 +42,6 @@ async function loadFonts() {
 const categoryLabels: Record<string, string> = {
   essay: 'Essay',
   tutorial: 'Tutorial',
-  'build-log': 'Build Log',
   research: 'Research',
   note: 'Note',
 };
