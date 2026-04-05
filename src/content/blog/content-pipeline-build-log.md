@@ -32,6 +32,8 @@ concepts:
 
 그래서 파이프라인을 만들기로 했다. 글 한 편 쓰는 과정을 시스템으로.
 
+![Building a content pipeline / Actually writing blog posts](../../assets/memes/pipeline-vs-writing.jpg)
+
 ## 처음 생각한 건 단순했다
 
 Claude Code에 "이 주제로 글 써줘" 하면 되는 거 아닌가? 솔직히 그것도 된다. 근데 결과물이, 어떻게 말하면 좋을까, ChatGPT가 쓴 티가 난다.

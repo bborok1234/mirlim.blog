@@ -57,6 +57,8 @@ graph LR
 
 배우는 것에서 멈추고, 만드는 것으로 넘어가지 못하는 패턴이 반복되고 있다.
 
+![Buying another AI course / Shipping an actual product](../../assets/memes/korea-learning.jpg)
+
 ## Stripe가 없는 나라에서 인디해커 하기
 
 여기서 잠깐. "한국인이 안 만드는 건 성향 문제"라고 결론 내리기 전에 환경을 봐야 한다.

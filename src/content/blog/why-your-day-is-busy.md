@@ -68,7 +68,7 @@ Microsoft의 Work Trend Index 데이터가 이걸 숫자로 보여준다. 평균
 
 그리고 사람들이 "감"이라고 부르는 것도 상당 부분은 구조화가 안 된 판단이다. "이 회사 출신은 좀 다르지" 같은 건 영원한 진리가 아니라 검증 안 된 가설에 가깝다. 입사 후 퍼포먼스라는 현실 피드백을 통해 계속 깨지고 수정돼야 하는 것이다. 코어가 아니라 측정과 조정의 대상이다.
 
-<!-- TODO: Drake 밈 추가 (회의에서 채용 논의 vs 회의 끝나고 실제 이력서 보기) -->
+![Discussing work in meetings / Actually doing the work after meetings](../../assets/memes/work-about-work.jpg)
 
 ## 에러 핸들러로 산다는 것
 
