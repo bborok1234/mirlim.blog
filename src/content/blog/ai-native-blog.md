@@ -9,6 +9,7 @@ series: 'mirlim.blog 만들기'
 seriesOrder: 1
 toolsUsed: ['Claude Code', 'gstack', 'MCP SDK']
 heroImage: '../../assets/heroes/ai-native-blog.jpg'
+draft: true
 concepts:
   - name: 'Agent Experience'
     related: ['UX', 'MCP', 'AI-native']
