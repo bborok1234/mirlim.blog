@@ -1,7 +1,7 @@
 # TODOS
 
 ## ~~Phase 1B: Concepts 그래프 + 추천 엔진~~ ✅ 완료 (2026-03-31)
-- `scripts/build-concepts-graph.ts` — 15개 concepts adjacency list 그래프 (prebuild 체인)
+- `scripts/build-concepts-graph.ts` — 29개 concepts adjacency list 그래프 (prebuild 체인)
 - `src/mcp/recommend.ts` — scoreNovelty, recommendTopics(bridge/deepen/frontier), findRelatedPosts
 - MCP 도구 2개: `explore_concepts`, `recommend_topic`
 - vitest 세팅 + 테스트 21개 통과
@@ -11,36 +11,44 @@
 
 ## ~~Tier 0: 배포~~ ✅ 완료 (2026-04-01)
 - GitHub 리포 생성 (bborok1234/mirlim.blog, public)
-- Cloudflare Pages 배포 + 커스텀 도메인 mirlim.blog
+- Cloudflare Workers 배포 + 커스텀 도메인 mirlim.blog
 - robots.txt, og:locale, og:site_name 추가
-- ~~build-log 파일 정리 (블로그에서 제거, .pipeline/runs/에 artifact로 보존)~~ ✅
+- build-log 카테고리 제거, .pipeline/runs/에 artifact로 보존
 - mermaid 다크 테마 + 렌더링 규칙 정립
+
+## ~~Tier 2: SEO 인프라~~ ✅ 대부분 완료 (2026-04-05)
+- ~~JSON-LD 구조화 데이터 (BlogPosting, WebSite, Person)~~ ✅
+- ~~OG 이미지 자동 생성 (satori + sharp, prebuild 체인)~~ ✅ 10개 포스트 + default
+- ~~카테고리/태그 랜딩 페이지~~ ✅
+- ~~llms.txt~~ ✅ AEO 최적화
+- 관련 글 추천 UI (concepts graph 데이터 있음, 포스트 하단 UI 미구현) → Tier 1로 이동
+
+## ~~디자인/UX 개선~~ ✅ 완료 (2026-04-05)
+- 피처 카드 flat 전환 + stretched-link 패턴
+- 태그 링크화, 모바일 네비 터치타겟 44px
+- 글로벌 모바일 여백 20px, About 페이지 리디자인
+- 밈 이미지 모바일 overflow 수정
+
+## ~~MCP HTTP 도구 동기화~~ ✅ 완료 (2026-04-05)
+- stdio/HTTP 모두 동일한 7개 도구: list_posts, get_post, search_posts, ask_blog, explore_concepts, recommend_topic, suggest_topic
+
+## ~~인라인 이미지/밈~~ ✅ 완료 (2026-04-04)
+- imgflip API 기반 밈 생성 도구 추가
+- 3개 글에 Drake 밈 삽입, max-width min(480px, 100%) 모바일 대응
 
 ---
 
 ## Tier 1: 콘텐츠 축적 + 배포 채널 (진행 중)
-- **What:** 외부 토픽 에세이 5개 이상 작성 + 커뮤니티 배포
-- **Why:** 글이 자산. 인프라보다 콘텐츠가 먼저. 신규 도메인은 구글 샌드박스 3-6개월.
-- **Status:** 1/5 완료 (mcp-on-personal-blog)
+- **What:** 커뮤니티 배포
+- **Why:** 글이 자산. 신규 도메인은 구글 샌드박스 3-6개월.
+- **Status:** 글 10개 완료, 관련 글 추천 UI 완료 (6/10 포스트에 표시), Google Search Console 연동 완료
 - **남은 작업:**
-  - 에세이 4개 추가 작성 (`/write-post`)
-  - Google Search Console 등록 (사람 작업)
   - Naver Search Advisor 등록 (사람 작업)
-  - 커뮤니티 공유: GeekNews, disquiet.io, Twitter/X (사람 작업)
+  - 소셜 배포 자동화: LinkedIn, Threads 중심. 글 발행 시 자동으로 소셜 포스트 생성/배포하는 파이프라인 기획
 - **성공 지표:**
-  - Week 2: 글 5개+, GeekNews 1회+ 프론트페이지
+  - GeekNews 1회+ 프론트페이지
   - Month 1: 월 1,000 PV
   - Month 3: 월 5,000 PV, 키워드 10개+ 노출
-
-## Tier 2: SEO 인프라 + 내부 링크
-- **What:** 글이 5개+ 쌓인 후 SEO 인프라 효과 극대화
-- **Depends on:** Tier 1 (글 5개 이상)
-- **항목:**
-  - JSON-LD 구조화 데이터 (BlogPosting, WebSite, Person)
-  - OG 이미지 자동 생성 (satori + sharp, 빌드 타임)
-  - 관련 글 추천 UI (concepts graph 활용, 포스트 하단)
-  - 카테고리/태그 랜딩 페이지
-  - llms.txt — AEO 최적화
 
 ## Tier 3: 성장 인프라 (전환 트리거: 월 3,000 PV)
 - **What:** 트래픽 기반이 생긴 후 성장 가속
@@ -59,11 +67,6 @@
 - **Why:** Stateless HTTP 엔드포인트에서 요청 끝나면 데이터 유실.
 - **Depends on:** MCP 서버 원격 배포 + 실제 트래픽 발생 후
 
-### MCP HTTP 엔드포인트 도구 동기화
-- **What:** stdio 서버 7개 도구 vs HTTP 5개 도구 불일치 해소
-- **Why:** 같은 이름의 MCP 서버인데 transport에 따라 기능이 다르면 혼란
-- **Context:** explore_concepts, recommend_topic이 HTTP에 빠져있음. recommend.ts import 시 번들 크기 이슈.
-
 ### Phase 2: MCP Reasoning Trail
 - **What:** `get_post_process(slug)` MCP 도구 추가. .pipeline/runs/ 데이터를 외부 에이전트에 노출
 - **Why:** "이 글이 어떻게 만들어졌는지" 에이전트가 쿼리 가능
@@ -77,10 +80,6 @@
 ---
 
 ## 후순위 (콘텐츠 축적 후)
-
-### 인라인 이미지/밈 전략
-- **What:** 글 중간에 밈, 짤, 일러스트 삽입 시스템
-- **Depends on:** 글 10개+ 축적 후 읽기 경험 개선 필요성 확인
 
 ### ~~Pretext 기반 디자인 보강~~ 보류
 - **What:** chenglou/pretext 라이브러리 활용 타이포그래피 개선 (Knuth-Plass 양끝맞춤 등)
