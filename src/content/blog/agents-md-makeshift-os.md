@@ -2,7 +2,7 @@
 title: 'AGENTS.md는 마크다운으로 만든 임시 OS다'
 description: 'AI 코딩 에이전트의 AGENTS.md, skills, hooks, 긴 프롬프트는 부족한 런타임을 컨텍스트로 메우는 임시 OS에 가깝다. 구조적 한계를 진단하고, 에이전트 시스템이 다음에 흡수해야 할 것을 짚는다.'
 summary: '현재 에이전트 시스템은 채팅+쉘을 붙인 수준이고, AGENTS.md와 하네스로 가짜 OS를 만들고 있다. 하네스는 과도기 최적해이지 종착점이 아니다.'
-pubDate: '2026-04-02'
+pubDate: '2026-04-02T13:23:00+09:00'
 category: 'essay'
 tags: ['AI Agent', 'AX', 'Developer Tools', 'Runtime']
 toolsUsed: ['Claude Code', 'Post Compiler']

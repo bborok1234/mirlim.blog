@@ -2,7 +2,7 @@
 title: 'AI는 두뇌가 아니라 실험실이다'
 description: 'AI를 제품의 중앙 두뇌로 두면 ROI가 안 나온다. AI의 진짜 역할은 해 공간을 탐색하는 실험 엔진이고, 실서비스는 결정론적 시스템이 먹여살린다. 추론비를 운영비가 아니라 개발비로 전환하면 원가 구조가 완전히 달라진다.'
 summary: 'AI를 중앙에 두면 결과는 들쭉날쭉하고 비용은 계속 샌다. AI는 최적해를 찾는 실험 엔진이고, 찾은 답은 결정론적 시스템에 굳혀야 한다. 추론비가 운영비에서 개발비로 바뀌는 순간 게임이 달라진다.'
-pubDate: '2026-04-03'
+pubDate: '2026-04-03T14:33:00+09:00'
 category: 'essay'
 tags: ['AI', 'AX', 'Product Strategy', 'SaaS']
 toolsUsed: ['Claude Code', 'Post Compiler']

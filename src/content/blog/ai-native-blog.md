@@ -2,7 +2,7 @@
 title: '이 블로그는 AI 에이전트가 읽을 수 있습니다'
 description: 'mirlim.blog는 사람과 AI 에이전트 모두를 위해 설계된 블로그입니다. MCP 서버를 통해 에이전트가 콘텐츠를 구독하고 질문할 수 있습니다.'
 summary: 'AI-native 블로그의 설계 철학과 MCP 서버를 통한 에이전트 구독 방법을 소개합니다.'
-pubDate: '2026-03-30'
+pubDate: '2026-03-30T23:38:00+09:00'
 tags: ['AI', 'AX', 'MCP', 'blog']
 category: 'build-log'
 series: 'mirlim.blog 만들기'

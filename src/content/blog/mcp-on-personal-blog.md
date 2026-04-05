@@ -2,7 +2,7 @@
 title: '개인 블로그에 MCP를 달았다. 에이전트가 읽는 블로그의 현실.'
 description: '개인 블로그에 MCP 서버를 직접 구현한 경험기. 7개 도구 설계, stdio와 Streamable HTTP 두 가지 transport 선택, Cloudflare Workers 배포, 그리고 아직 아무도 안 쓴다는 현실까지.'
 summary: '블로그에 MCP 서버를 붙여서 AI 에이전트가 글을 검색하고 읽을 수 있게 만들었다. 실전에서 부딪힌 transport 선택, 도구 설계, stateless 아키텍처의 트레이드오프를 정리했다.'
-pubDate: '2026-04-01'
+pubDate: '2026-04-01T14:42:00+09:00'
 category: 'essay'
 tags: ['MCP', 'AI Agent', 'AX', 'Cloudflare Workers']
 toolsUsed: ['Claude Code', 'Post Compiler']

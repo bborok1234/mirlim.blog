@@ -2,7 +2,7 @@
 title: '강의를 사는 나라, 제품을 만드는 나라'
 description: '한국은 Claude Code 사용량 세계 Top 5이고 바이브코딩 열풍이 진짜지만, SNS에는 강의 링크와 데모뿐 실제 수익 사례는 드뭅니다. 해외에서는 비개발자가 $456K ARR을 만드는데 한국은 왜 안 되는지, 환경(결제 인프라)과 성향(강의 소비 패턴) 양쪽을 짚습니다.'
 summary: '한국의 AI 도구 열광은 숫자로 진짜인데, 실제 제품과 수익은 해외에 뒤처진다. 결제 인프라 장벽과 강의 소비 패턴이 원인.'
-pubDate: '2026-03-31'
+pubDate: '2026-03-31T10:09:00+09:00'
 category: 'essay'
 tags: ['AI', 'AX', 'Claude Code', 'Korea', 'Vibe Coding']
 toolsUsed: ['Claude Code', 'Post Compiler']

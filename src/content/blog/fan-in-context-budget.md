@@ -2,7 +2,7 @@
 title: 'Fan-out은 쉽다. Fan-in이 어렵다.'
 description: 'AI 에이전트 런타임에서 1,000개 요소를 병렬 LLM 심층 평가한 뒤 메인 에이전트의 컨텍스트에 합치는 fan-in 문제를 다룹니다. 컨텍스트 예산 관리, Observation Masking, 계층적 위임 패턴, 로컬 vs 원격 도구 비용 차이까지.'
 summary: '에이전트 오케스트레이션에서 fan-out은 쉽지만 fan-in이 진짜 병목이다. 컨텍스트 윈도우를 예산으로 다루는 실전 패턴들.'
-pubDate: '2026-03-31'
+pubDate: '2026-03-31T10:08:00+09:00'
 category: 'essay'
 tags: ['AI Agent', 'Context Window', 'AX', 'Runtime']
 toolsUsed: ['Claude Code', 'Post Compiler']

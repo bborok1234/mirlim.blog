@@ -2,7 +2,7 @@
 title: '당신의 하루가 바쁜 진짜 이유'
 description: '대부분의 업무는 구조적으로 단순한 반복 루프다. 사람을 지치게 하는 건 일의 본질이 아니라 조직 마찰이다. 행위의 복잡성, 목적 달성의 어려움, 조직 마찰은 전부 다른 문제인데 우리는 하나로 뭉개고 있다.'
 summary: '업무의 60%는 work about work다. 대부분의 일은 어렵지 않다, 지저분할 뿐이다. 행위의 단순함과 조직의 마찰을 분리해서 봐야 진짜 문제가 보인다.'
-pubDate: '2026-04-03'
+pubDate: '2026-04-03T18:04:00+09:00'
 category: 'essay'
 tags: ['Work', 'Productivity', 'AI', 'AX']
 toolsUsed: ['Claude Code', 'Post Compiler']

@@ -2,7 +2,7 @@
 title: '에이전트에게 신분증이 필요하다'
 description: 'AI 코딩 에이전트가 코드를 쓰는 시대에 "누가 이 코드를 왜 썼는가"를 추적하는 구조가 없다. Agent Trace, ANS, Runtime Identity 등 에이전트 아이덴티티 표준이 실제로 만들어지고 있다. 거버넌스는 규제가 아니라 엔지니어링 문제다.'
 summary: '에이전트가 코드를 쓰는데 신분증이 없다. git blame은 커밋한 사람만 알려주고, 어떤 프롬프트로 어떤 맥락에서 나왔는지는 추적 불가. Agent Trace, ANS 같은 표준이 이 빈자리를 채우기 시작했다.'
-pubDate: '2026-04-02'
+pubDate: '2026-04-02T15:39:00+09:00'
 category: 'essay'
 tags: ['AI Agent', 'AX', 'Developer Tools', 'Governance']
 toolsUsed: ['Claude Code', 'Post Compiler']

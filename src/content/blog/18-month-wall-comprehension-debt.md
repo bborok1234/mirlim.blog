@@ -2,7 +2,7 @@
 title: '18개월 후, 이 코드를 읽을 수 있는 사람이 남아 있을까'
 description: 'AI 코딩 에이전트가 만든 코드의 유지보수 문제. 생산성 역설(체감 +25%, 실제 -19%), 이해 부채(comprehension debt), 18개월 벽, 그리고 주니어 개발자 파이프라인 붕괴. 만드는 속도가 아니라 이해하는 속도가 병목이다.'
 summary: 'AI가 코드를 만드는 속도는 빨라졌지만 사람이 이해하는 속도는 그대로다. 이해 부채, 18개월 벽, 주니어 파이프라인 붕괴. 만드는 열광 뒤에 아무도 안 묻는 질문.'
-pubDate: '2026-04-02'
+pubDate: '2026-04-02T18:28:00+09:00'
 category: 'essay'
 tags: ['AI Agent', 'AX', 'Technical Debt', 'Developer Tools']
 toolsUsed: ['Claude Code', 'Post Compiler']

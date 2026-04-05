@@ -2,7 +2,7 @@
 title: '글 한 편 쓰려고 파이프라인을 만들었다'
 description: 'Claude Code skill 기반 콘텐츠 파이프라인 Post Compiler의 설계와 구현 과정. 리서치→brief→초안→AI slop 검수→발행까지 원스톱 시스템을 만든 빌드로그.'
 summary: '블로그 글 하나를 제대로 쓰기 위해 콘텐츠 파이프라인을 설계하고 구현한 과정. run artifact, AI slop 검수, 빌드로그 자동 생성까지.'
-pubDate: '2026-03-31'
+pubDate: '2026-03-31T09:00:00+09:00'
 category: 'build-log'
 series: 'mirlim.blog 만들기'
 seriesOrder: 2
