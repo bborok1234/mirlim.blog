@@ -73,9 +73,10 @@ const posts = (await getCollection('blog'))
 		margin-bottom: 8px;
 		display: flex;
 		align-items: center;
-		gap: 12px;
+		gap: 8px 12px;
+		flex-wrap: wrap;
 	}
-	.post-tags { display: flex; gap: 6px; }
+	.post-tags { display: flex; gap: 6px; flex-wrap: wrap; }
 	.tag {
 		font-family: var(--font-mono);
 		font-size: 0.7rem;
