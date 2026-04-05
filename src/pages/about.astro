@@ -15,60 +15,28 @@ import { SITE_TITLE } from '../consts';
 		<main>
 			<h1>About</h1>
 			<div class="content">
-				<section class="about-me">
-					<h2>임미르</h2>
-					<p>
-						백엔드 개발자. Python과 TypeScript로 서버를 만들고, 요즘은 AI 에이전트가 실제로 돌아가는 런타임을 설계하는 데 시간을 쓰고 있습니다.
-					</p>
-					<p>
-						커리어 초반에는 TmaxSoft에서 LLVM 기반 컴파일러를 만들었고, Buzzvil에서 DAU 200만+ 광고 플랫폼을 다뤘습니다. 이후 두 번 창업해서 한 번은 M&A Exit했고, 한 번은 실패했습니다.
-					</p>
-					<p>
-						현재는 <strong>SearcHRight AI</strong>에서 채용 평가 과정을 AI 에이전트로 자동화하는 시스템을 만들고 있습니다. Claude Code 기반의 코딩 에이전트 환경을 팀 단위로 운영하면서, 에이전트가 만든 코드를 사람이 유지보수할 수 있으려면 무엇이 필요한지 고민하고 있습니다.
-					</p>
-					<div class="links">
-						<a href="https://www.linkedin.com/in/mi-reulim-4b5b69119" target="_blank" rel="noopener">LinkedIn</a>
-						<a href="https://github.com/bborok1234" target="_blank" rel="noopener">GitHub</a>
-					</div>
-				</section>
-
-				<section class="about-blog">
-					<h2>이 블로그에 대해</h2>
-					<p>
-						에이전트 시대의 개발 환경, 런타임, 이해 부채, 거버넌스, 그리고 일의 본질 같은 주제에 대해 씁니다.
-					</p>
-					<p>
-						이 블로그는 두 종류의 독자를 위해 설계됐습니다. 사람은 브라우저로, AI 에이전트는 <a href="/subscribe">MCP 서버</a>로 콘텐츠를 읽습니다. 구조화된 frontmatter, concepts 그래프, 7개의 MCP 도구가 에이전트용 인터페이스를 제공합니다.
-					</p>
-					<p class="tech-stack">
-						Astro + Cloudflare Workers + MCP + TypeScript
-					</p>
-				</section>
-
-				<section class="about-career">
-					<h2>경력</h2>
-					<dl class="career">
-						<dt>SearcHRight AI</dt>
-						<dd>Technical Lead <span class="period">2026.02 ~</span></dd>
-						<dd class="desc">채용 평가 AI 에이전트 런타임 설계. 후보자 평가 500명/10분.</dd>
-
-						<dt>Snapvault, Inc.</dt>
-						<dd>Co-Founder <span class="period">2024.02 ~ 2026.02</span></dd>
-						<dd class="desc">2년간 3개 제품, 2회 투자 유치 (연세대, 알토란벤처스). 스크린샷 RAG, IR 데이터룸, AI 캐릭터 챗.</dd>
-
-						<dt>AOCG Inc. (Kollectors)</dt>
-						<dd>CEO <span class="period">2020.07 ~ 2022.05</span></dd>
-						<dd class="desc">수집품 거래 플랫폼. 프라이머 19기. M&A Exit.</dd>
-
-						<dt>Buzzvil</dt>
-						<dd>Software Engineer <span class="period">2017.02 ~ 2019.01</span></dd>
-						<dd class="desc">DAU 200만+ 잠금화면 광고 서버.</dd>
-
-						<dt>TmaxSoft</dt>
-						<dd>Junior Research Engineer <span class="period">2014.02 ~ 2017.02</span></dd>
-						<dd class="desc">LLVM 기반 메인프레임 컴파일러/런타임 개발.</dd>
-					</dl>
-				</section>
+				<p>
+					임미르. 백엔드 개발자이고, 요즘은 AI 에이전트가 실제로 돌아가는 런타임을 만들고 있습니다.
+				</p>
+				<p>
+					컴파일러 만들다가 광고 서버 만들다가 창업해서 한 번 팔고 한 번 망했습니다.
+					지금은 <strong>SearcHRight AI</strong>에서 채용 과정을 에이전트로 자동화하는 일을 하면서,
+					에이전트가 만든 코드를 사람이 어떻게 살릴 수 있을지를 고민합니다.
+				</p>
+				<p>
+					이 블로그는 그 고민들을 글로 쓰는 곳입니다. 에이전트 시대의 개발 환경,
+					AI 제품이 왜 안 먹히는지, 일의 본질은 뭔지 같은 주제를 다룹니다.
+					가끔 맞고 가끔 틀리겠지만 솔직하게 쓰려고 합니다.
+				</p>
+				<p>
+					그리고 이 블로그 자체가 하나의 실험입니다. 사람만 읽는 게 아니라
+					AI 에이전트도 읽을 수 있도록 설계했습니다.
+					<a href="/subscribe">MCP 서버</a>에 연결하면 에이전트가 글을 검색하고 질문할 수 있습니다.
+				</p>
+				<div class="links">
+					<a href="https://www.linkedin.com/in/mi-reulim-4b5b69119" target="_blank" rel="noopener">LinkedIn</a>
+					<a href="https://github.com/bborok1234" target="_blank" rel="noopener">GitHub</a>
+				</div>
 			</div>
 		</main>
 		<Footer />
@@ -79,25 +47,19 @@ import { SITE_TITLE } from '../consts';
 	h1 { margin-bottom: 32px; }
 	.content {
 		color: var(--text-muted);
-		max-width: 600px;
+		max-width: 540px;
 	}
-	.content p { line-height: 1.8; }
+	.content p {
+		line-height: 1.8;
+		margin-bottom: 1.5em;
+	}
 	.content strong { color: var(--text); }
-
-	h2 {
-		font-size: 1.25rem;
-		color: var(--text);
-		margin-bottom: 16px;
-	}
-
-	section {
-		margin-bottom: 48px;
-	}
+	.content a { color: var(--accent); }
 
 	.links {
 		display: flex;
 		gap: 16px;
-		margin-top: 16px;
+		margin-top: 24px;
 	}
 	.links a {
 		font-family: var(--font-mono);
@@ -110,39 +72,5 @@ import { SITE_TITLE } from '../consts';
 	}
 	.links a:hover {
 		background: rgba(59, 130, 246, 0.08);
-	}
-
-	.tech-stack {
-		font-family: var(--font-mono);
-		font-size: 0.8rem;
-		color: var(--text-muted);
-		margin-top: 16px;
-	}
-
-	.career {
-		margin: 0;
-	}
-	.career dt {
-		color: var(--text);
-		font-weight: 600;
-		margin-top: 20px;
-	}
-	.career dt:first-of-type {
-		margin-top: 0;
-	}
-	.career dd {
-		margin-left: 0;
-		font-size: 0.9rem;
-	}
-	.career .period {
-		font-family: var(--font-mono);
-		font-size: 0.75rem;
-		color: var(--text-muted);
-		margin-left: 8px;
-	}
-	.career .desc {
-		color: var(--text-muted);
-		font-size: 0.85rem;
-		margin-top: 4px;
 	}
 </style>
