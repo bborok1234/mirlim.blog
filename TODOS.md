@@ -104,10 +104,21 @@
 - **What:** chenglou/pretext 라이브러리 활용 타이포그래피 개선 (Knuth-Plass 양끝맞춤 등)
 - **Status:** 조사 완료 (2026-04-02). @chenglou/pretext v0.0.4는 한글(0xAC00-0xD7AF)을 CJK로 분류해 글자 단위 줄바꿈 적용. 한국어에 필요한 word-break: keep-all 미지원. 라이브러리가 한국어 어절 단위 줄바꿈을 지원할 때까지 보류.
 
-### 콘텐츠 관리 전략 (CMS / 저장소)
-- **What:** git 기반 관리의 한계 해결. 헤드리스 CMS 검토.
-- **Depends on:** 글 20개+ 축적 후 실제 pain point 확인
+### Local Admin + Editorial Dashboard
+- **What:** 로컬 웹 UI(`bun run admin`)로 콘텐츠 관리 + Editorial Engine 대시보드.
+  글 10개에서 이미 git commit 기반 편집이 불편함 (오타 수정에 4단계, 이미지 교체 번거로움).
+- **현재 pain point:**
+  - 글 오타 수정 → git add + commit + push + deploy (4단계)
+  - 이미지 교체 → 파일 교체 + frontmatter 수정 + 커밋 + 배포
+  - draft 토글 → frontmatter 수정 + 커밋 + 배포
+- **비전:** Astro 서버 모드 위에 `/admin` 경로 추가. 1단계: 글 목록 + draft 토글 + frontmatter 편집 + 원클릭 배포. 2단계: Editorial Engine 리뷰 큐 UI + 토픽 추천 대시보드. 3단계: Cloudflare 배포 + 인증.
+- **대안 검토 필요:** Keystatic/Tina(Git-backed CMS) vs 커스텀 어드민 vs 하이브리드. `/office-hours`로 스코프 결정 필요.
+- **Depends on:** Editorial Engine Phase A dogfooding 결과
+
+### MCP 원클릭 구독 + 배포
+- **What:** "Add to Claude" 버튼으로 MCP 원클릭 등록. 현재는 사용자가 URL을 직접 MCP 클라이언트에 설정해야 해서 진입장벽 높음.
+- **Depends on:** Local Admin 또는 별도 랜딩 페이지
 
 ### 구독 방식 현대화
-- **What:** 원클릭 MCP 구독, 이메일 뉴스레터, RSS 개선
-- **Depends on:** MCP 원격 배포 + 월 3,000 PV 달성
+- **What:** 이메일 뉴스레터 (Resend/Buttondown), RSS 개선
+- **Depends on:** 월 3,000 PV 달성
