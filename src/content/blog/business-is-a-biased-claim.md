@@ -5,6 +5,8 @@ summary: '좋은 제품은 세상에 대한 하나의 편향된 주장이다. �
 pubDate: '2026-07-23T09:00:00+09:00'
 category: 'essay'
 tags: ['Product Strategy', 'Startup', 'AI', 'AX']
+series: '편향된 주장'
+seriesOrder: 1
 toolsUsed: ['Claude Code', 'Post Compiler']
 heroImage: '../../assets/heroes/business-is-a-biased-claim.jpg'
 heroImagePrompt: 'Minimalist editorial illustration. A single small boat cutting decisively in one direction across dark water, while dozens of faint arrows and oars point in conflicting directions around it. The chosen path glows in cool blue against a near-black background. Blueprint grid texture, architectural line-art style, sense of one strong bias against noise.'
@@ -88,15 +90,6 @@ Rails를 만든 DHH는 이걸 "오마카세"라고 불렀다. 무엇을 쓸지 �
 
 이게 은유만은 아니다. 인터넷을 떠받치는 ATM(비동기 전송 모드, Asynchronous Transfer Mode) 셀 크기가 왜 하필 53바이트인지 아는가. 유럽은 32바이트를, 미국은 64바이트를 원했고, 위원회는 그 중간인 48을 택한 뒤 헤더 5바이트를 붙였다. 기술적 최적이 아니라 정치적 절충의 산물이다.[^11] 아무도 만족하지 않았고 아무도 크게 반대하지 못한 숫자가 표준이 됐다.
 
-```mermaid
-graph TD
-  R["영업·전문가·경영진·개발·고객의 요구"]
-  R --> P1["모두 반영: 평균으로 절충"]
-  R --> P2["충분히 듣되 무엇을 버릴지 결정"]
-  P1 --> O1["아무도 반대 안 하는 평범한 제품"]
-  P2 --> O2["누군가는 불편해하지만 방향이 있는 제품"]
-```
-
 영업의 요구, 전문가의 우려, 경영진의 비전, 개발의 제약, 디자인의 원칙, 기존 고객의 요청은 모두 들어볼 가치가 있다. 하지만 모두 듣는 것과 모두 반영하는 것은 다르다. 마이클 포터는 전략을 이렇게 정의했다. 전략의 본질은 무엇을 하지 않을지 선택하는 것이다.[^13] 잡스도 같은 말을 했다. 집중은 아니라고 말하는 것이다.[^14]
 
 제품 책임자의 역할은 모든 요구사항을 아름답게 통합하는 게 아니다. 충분히 들은 뒤 무엇을 버릴지를 결정하는 일이다. 그 우려는 맞지만 이번에는 감수한다. 그 사용자도 존재하지만 우리의 첫 고객은 아니다. 그 기능은 유용하지만 현재의 주장을 검증하지 않는다. 기존 방식과 충돌하지만 바로 그 행동을 바꾸는 것이 이 제품의 목적이다.
@@ -122,6 +115,30 @@ graph TD
 버리는 것은 실패가 아니다. 틀린 주장에 대한 충성을 끝내고, 배운 것을 다음 주장으로 옮기는 일이다.
 
 문제는 사람이 이 버리기를 지독하게 못 한다는 것이다. 1985년의 한 실험이 이걸 잘 보여준다. 실패가 예상되는 프로젝트를 두고, 이미 큰 돈을 쏟아부었다는 정보를 준 집단은 85%가 계속 투자하겠다고 답했다. 같은 프로젝트인데 매몰비용 정보를 지운 집단은 10%만 투자하겠다고 했다.[^15] 이미 쓴 돈이 아까워서, 낭비처럼 보이기 싫어서 우리는 틀린 주장에 계속 매달린다.
+
+<svg viewBox="0 0 640 380" role="img" aria-label="이미 쓴 매몰비용을 알린 집단은 85퍼센트가 실패 예상 프로젝트를 계속하겠다고 답했지만 매몰비용 정보를 지운 집단은 10퍼센트만 그랬다" style="width:100%;max-width:640px;height:auto;display:block;margin:2.5em auto;font-family:'Instrument Sans', system-ui, sans-serif">
+<g stroke="#1E1E22" stroke-width="1">
+<line x1="60" y1="320" x2="600" y2="320"/>
+<line x1="60" y1="253" x2="600" y2="253"/>
+<line x1="60" y1="185" x2="600" y2="185"/>
+<line x1="60" y1="118" x2="600" y2="118"/>
+<line x1="60" y1="50" x2="600" y2="50"/>
+</g>
+<g fill="#7E7E8A" font-size="12" text-anchor="end">
+<text x="52" y="324">0</text>
+<text x="52" y="257">25</text>
+<text x="52" y="189">50</text>
+<text x="52" y="122">75</text>
+<text x="52" y="54">100%</text>
+</g>
+<rect x="140" y="91" width="110" height="229" rx="4" fill="#F59E0B"/>
+<text x="195" y="81" fill="#F59E0B" font-size="17" font-weight="600" text-anchor="middle">85%</text>
+<text x="195" y="342" fill="#E8E8ED" font-size="13" text-anchor="middle">매몰비용을 알렸을 때</text>
+<rect x="410" y="293" width="110" height="27" rx="4" fill="#7E7E8A"/>
+<text x="465" y="283" fill="#7E7E8A" font-size="17" font-weight="600" text-anchor="middle">10%</text>
+<text x="465" y="342" fill="#E8E8ED" font-size="13" text-anchor="middle">매몰비용을 지웠을 때</text>
+<text x="330" y="374" fill="#7E7E8A" font-size="11.5" text-anchor="middle">실패가 예상되는 프로젝트에 계속 투자하겠다는 응답 (Arkes &amp; Blumer, 1985)</text>
+</svg>
 
 그래서 예전에는 자기부정의 비용이 너무 컸다. 하나의 사업 가설을 실제 제품으로 구현하려 해도 사람을 채용하고 자금을 마련하고 몇 달을 개발해야 했다. 한번 시작하면 매몰비용이 커져서 결과가 나빠도 쉽게 버리지 못했다. 틀린 주장을 인정하는 대신 기능을 더 붙이고 데이터를 더 모으고 마케팅을 강화하며 계속 정당화했다.
 
