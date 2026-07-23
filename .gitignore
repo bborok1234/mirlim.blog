@@ -22,6 +22,11 @@ public/fonts/
 # environment variables
 .env
 .env.production
+.env.local
+.env.*.local
+
+# source drafts (personal / raw idea exports)
+source/
 
 # macOS-specific files
 .DS_Store

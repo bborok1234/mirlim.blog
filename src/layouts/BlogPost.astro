@@ -12,7 +12,7 @@ type Props = CollectionEntry<'blog'>['data'] & {
 	seriesPosts?: Array<{ slug: string; title: string; order: number }>;
 };
 
-const { title, description, pubDate, updatedDate, heroImage, tags = [], slug, series, seriesPosts = [] } = Astro.props;
+const { title, description, pubDate, updatedDate, heroImage, tags = [], toolsUsed = [], slug, series, seriesPosts = [] } = Astro.props;
 ---
 
 <html lang="ko">
@@ -64,6 +64,12 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], slug, se
 									<a href={`/blog/tag/${encodeURIComponent(tag)}`} class:list={['tag', { agent: ['MCP', 'AX', 'AI'].includes(tag) }]}>{tag}</a>
 								))}
 							</div>
+						)}
+						{toolsUsed.length > 0 && (
+							<p class="ai-disclosure">
+								이 글은 생성형 AI와 함께 작성되었습니다
+								<span class="tools">· {toolsUsed.join(', ')}</span>
+							</p>
 						)}
 					</div>
 					<slot />
@@ -144,6 +150,17 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], slug, se
 		display: flex;
 		gap: 6px;
 		flex-wrap: wrap;
+	}
+	.ai-disclosure {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		color: var(--text-muted);
+		margin-top: 14px;
+		margin-bottom: 0;
+		letter-spacing: 0.01em;
+	}
+	.ai-disclosure .tools {
+		opacity: 0.7;
 	}
 	.tag {
 		font-family: var(--font-mono);

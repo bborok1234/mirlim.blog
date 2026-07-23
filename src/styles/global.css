@@ -72,16 +72,11 @@ img {
 	border-radius: 8px;
 }
 
-/* .prose 내 이미지 하단 여백 */
+/* .prose 내 인라인 이미지(밈/짤/스크린샷): 항상 중앙 정렬 */
 .prose img {
 	display: block;
-	margin-bottom: 2em;
-}
-
-/* 인라인 밈/짤 이미지 */
-.prose img[alt*="/"] {
 	max-width: min(480px, 100%);
-	margin: 32px auto;
+	margin: 2em auto;
 	border: 1px solid var(--border);
 }
 
@@ -173,9 +168,14 @@ li::marker {
 	border-radius: 8px;
 	overflow-x: auto;
 }
+.prose pre.mermaid {
+	text-align: center;
+}
 .prose pre.mermaid svg {
 	max-width: 100%;
 	height: auto;
+	display: block;
+	margin: 0 auto;
 }
 /* mermaid 노드 텍스트 패딩 보정 */
 .prose pre.mermaid .node rect,

@@ -170,24 +170,39 @@ graph LR
   A["입력"] --> B["처리"] --> C["출력"]
 ```
 
-**Hero 이미지**:
-- frontmatter에 `heroImagePrompt` 필드 추가 (영문, Unsplash 검색 또는 AI 생성용)
+**Hero 이미지** (생성 우선):
+- frontmatter에 `heroImagePrompt` 필드 추가 (영문 이미지 생성 프롬프트)
 - 글의 핵심 개념을 추상적/시각적으로 표현
-- 실제 이미지는 Step 4에서 사람이 Unsplash에서 선택하여 `src/assets/heroes/{slug}.jpg`에 저장
-- frontmatter에 `heroImage: '../../assets/heroes/{slug}.jpg'` 추가
+- **기본 방식은 AI 생성이다.** 기존 사진을 끼워맞추는 것보다 주제에 정확히 맞는 이미지를 생성하는 편이 결과가 좋다.
+  - `.env.local`의 `OPENAI_API_KEY`로 gpt-image-2 (`https://api.openai.com/v1/images/generations`, model `gpt-image-2`, size `1536x1024`) 호출
+  - 프롬프트에 **DESIGN.md 팔레트를 명시적으로 얹는다**: near-black 배경(#0A0A0B), cool blue 액센트(#3B82F6), 블루프린트 그리드, architectural line-art, industrial/editorial 톤
+  - 프롬프트에 반드시 "no text, no letters, no words, no watermark" 포함 (gpt-image는 텍스트를 잘못 렌더)
+  - 응답 `b64_json` → `sharp().jpeg({quality:82})` → `src/assets/heroes/{slug}.jpg`
+  - 생성 후 **반드시 이미지를 Read로 눈으로 확인** (텍스트 혼입·톤 이탈 체크), 어긋나면 프롬프트 수정 후 재생성
+- 대안(Unsplash): API 키가 있고 사진이 더 적합할 때만. `bun run scripts/hero-image.ts auto <slug> "키워드"`
+- frontmatter에 `heroImage: '../../assets/heroes/{slug}.jpg'` 추가 (생성/선택 후)
 
 **인라인 밈/짤 전략** (Brief 단계에서 결정):
 - Brief의 `memeStrategy` 필드로 사용 여부를 명시적으로 결정
-- 밈이 적합한 글: 가벼운 essay, note
+- 밈이 적합한 글: 가벼운 essay, note. 진지한 글도 톤이 유머러스해지는 특정 지점(예: 조직/실패 풍자)에 1개는 호흡용으로 가능
 - 밈이 부적합한 글: 거버넌스/보안 주제, 심각한 톤의 research
 - 글당 최대 2개, 무거운 논증 뒤 호흡 용도로 배치
 - 도입부/마무리에는 넣지 않음, 밈 사이 최소 300단어 간격
-- 마크다운 문법: `![설명](../../assets/memes/파일명.jpg)`
-- 개발자 커뮤니티에서 검증된 포맷 사용 (Drake, "this is fine", distracted boyfriend 등)
-- `src/assets/memes/`에 저장, 재사용 가능
-- 밈 생성 명령어: `bun run scripts/meme.ts create <template> <slug> "텍스트1" "텍스트2"`
-- 사용 가능한 템플릿: drake, distracted, buttons, uno, change-my-mind, batman, woman-cat 등
-- Step 3(초안 작성) 중 memeStrategy에 따라 밈을 자동 생성하고 마크다운에 삽입
+
+**조달 방식 (원본 짤 우선, imgflip 템플릿 지양):**
+- 밈의 힘은 "이미 다들 아는 이미지"라는 공유 맥락에서 나온다. imgflip으로 텍스트를 새로 얹으면 "만든 티"가 나서 밈 특유의 자연스러움이 죽는다.
+- **이미 밈으로 돌아다니는 원본 짤을 그대로 조달해 첨부한다.** WebSearch로 밈을 특정 → meming.world / Know Your Meme 등에서 원본 이미지 URL 확보 → `curl -L -A "Mozilla/5.0"`로 다운로드 → `src/assets/memes/{밈이름}.jpg` (범용 밈은 글 slug 아닌 밈 이름으로 저장해 재사용)
+- 다운로드 후 **반드시 Read로 실제 이미지 확인** (원하는 밈이 맞는지)
+- **한글 블로그 융화**: 밈 이미지(영어 캡션 포함)는 원본 그대로 두고, 맥락을 잡는 **한국어 캡션을 이미지 아래 별도 문단**으로 단다. 밈은 만국 공통 시각 언어라 이미지는 손대지 않고 해석만 한국어로 얹는다.
+- **alt는 접근성용 한국어 설명**으로 작성 (과거의 `"top / bottom"` alt 관례는 폐기 — CSS가 alt와 무관하게 중앙 정렬·크기를 처리한다)
+- **원작자 표기**: 저작권 있는 밈(예: "This is fine"=KC Green)은 캡션 문단 끝에 각주로 출처를 정직하게 단다
+- 마크다운 문법:
+  ```markdown
+  ![접근성용 한국어 설명](../../assets/memes/파일명.jpg)
+
+  이미지 맥락을 잡는 한국어 캡션 문장.[^N]
+  ```
+- Step 3(초안 작성) 중 memeStrategy에 따라 밈을 조달하고 마크다운에 삽입
 
 **이미지 배치 리듬**: hero → ~300단어 텍스트 → 첫 다이어그램 또는 밈 → ~400단어 → 두번째 다이어그램 → 마무리
 
