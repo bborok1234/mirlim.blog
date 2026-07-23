@@ -159,6 +159,17 @@ li::marker {
 /* 각주 위첨자 간격 */
 [data-footnote-ref] { margin-left: 2px; }
 
+/* 본문 끝과 각주 사이 divider + 여백 */
+.prose .footnotes {
+	margin-top: 4em;
+	padding-top: 2em;
+	border-top: 1px solid var(--border);
+	font-size: 0.875rem;
+	color: var(--text-muted);
+}
+.prose .footnotes li { margin-bottom: 0.4em; }
+.prose .footnotes p { margin: 0; }
+
 /* Mermaid 다이어그램 */
 .prose pre.mermaid {
 	margin: 2em 0;

@@ -143,32 +143,35 @@ AskUserQuestion으로 사용자에게 brief를 보여주고:
 
 #### 이미지 전략
 
-글에 시각 요소를 포함하세요:
+시각 요소는 **정보가치**로 판단한다. "요구→주장→결정" 같은 개념 플로우 다이어그램은 예쁘게 그려도 정보가 없다. 넣지 마라. 대신 글 안에 **실제 데이터·수치·비교**가 있으면 그것을 차트로 만든다.
 
-**Mermaid 다이어그램** (아키텍처, 플로우, 관계도):
-- 마크다운에 ```mermaid 코드블록으로 직접 작성
-- 글당 1-2개. 복잡한 개념을 설명할 때 텍스트 대신 사용
-- 다이어그램 전후에 설명 텍스트 필수 (다이어그램만 던지지 않음)
+**1순위: 데이터 인포그래픽 (`scripts/write-post/charts.ts`)**
 
-**Mermaid 필수 규칙 (렌더링 깨짐 방지):**
-- 모든 노드 레이블을 큰따옴표로 감싸기: `A["텍스트"]` (특수문자, 한국어 안전)
-- `<br/>`, `/`, `:` 등 특수문자를 노드 레이블에 넣지 않기
-- subgraph 안에 `direction` 지시자 사용 금지 (mermaid 11.x에서 미지원)
-- 비교/대조 다이어그램은 subgraph 대신 별도 다이어그램 2개로 분리
+글에서 가장 정보가치 높은 데이터 지점을 찾아, 차트 타입을 매칭하고, 스펙(디자인 문법)만 채워 정적 SVG를 생성한다. DESIGN.md 팔레트가 내장돼 있어 일관된다. 의존성·런타임 0.
 
-**Mermaid 가독성 규칙 (사람이 읽기 좋게):**
-- LR(좌→우)은 노드 3-4개 이하의 단순 흐름에만 사용
-- 노드 5개 이상이면 TD(위→아래) 사용
-- 동일한 에지 라벨이 3회 이상 반복되면 제거 (텍스트로 설명)
-- 연속 의문문 4개 이상 나열 금지 (AI 패턴)
-- 한 다이어그램에 노드 8개 초과 시 분리 검토
+- 언제: 표/텍스트에 묻힌 수치가 있을 때 (예: "정보 5→40개인데 정확도는 17% 고정, 확신만 2배" → line / "대형<10% vs 소형90%" → bar).
+- 차트 타입(10종)과 언제 쓰나:
+  - `line` — 추세·시계열·두 값의 벌어짐. `{xTicks, xAxisLabel, yMax, yUnit, series:[{name,color,dash,area,points,endLabel}], ariaLabel}`
+  - `area` — 누적·성장 추세 강조. line과 동일 스펙, `type:"area"` (또는 series에 `area:true`)
+  - `bar` — 소수 항목의 크기 대비(세로). `{bars:[{label,value,color,note,valueLabel}], yMax, yUnit, xAxisLabel, ariaLabel}`
+  - `hbar` — 순위·긴 라벨(가로). `{bars:[{label,value,color,valueLabel}], xMax, unit, ariaLabel}`
+  - `grouped-bar` — 여러 계열을 그룹으로 비교. `{groups:[{label,values:[]}], seriesNames:[], colors?, yMax, yUnit, ariaLabel}`
+  - `stacked-bar` — 구성 비율 + 절대량. `{bars:[{label,segments:[{name,value,color}]}], yMax, yUnit, ariaLabel}`
+  - `donut` — 소수 항목의 구성 비율(합=100 느낌). `{items:[{label,value,color}], centerLabel, unit, ariaLabel}`
+  - `scatter` — 두 변수의 상관·분포. `{points:[{x,y,label,color}], xMax, yMax, xAxisLabel, yAxisLabel, ariaLabel}`
+  - `treemap` — 전체 중 구성(항목 많을 때). `{items:[{label,value,color,note}], yUnit, ariaLabel}`
+  - `stat` — 핵심 수치 1~3개를 큰 숫자 카드로 강조(에세이 도입/전환에 유용). `{stats:[{value,label,note,color}], ariaLabel}`
+  - 색 미지정 시 팔레트 자동 배정. 강조 대상만 `color` 지정(#3B82F6 accent, #10B981 success, #F59E0B warning, #EF4444 error).
+- 생성:
+  ```bash
+  bun run scripts/write-post/charts.ts bar '{"bars":[{"label":"대형","value":9,"valueLabel":"<10%"},{"label":"소형","value":90,"valueLabel":"~90%"}],"yMax":100,"yUnit":"%","ariaLabel":"..."}'
+  ```
+  → stdout의 인라인 SVG를 마크다운에 그대로 붙여넣는다 (.md에서 렌더됨). 색 미지정 시 팔레트 자동 배정, 강조 대상만 `color`로 지정(#3B82F6 accent, #F59E0B warning 등).
+- **`ariaLabel`은 반드시 데이터 결론을 서술문으로** (접근성 + 무엇을 봐야 하는지).
+- 차트 앞뒤에 반드시 설명 문장. 차트만 던지지 않는다.
+- CSS는 이미 중앙 정렬·반응형 처리됨(인라인 `style`의 `max-width:100%`).
 
-예시 (좋은 패턴):
-
-```mermaid
-graph LR
-  A["입력"] --> B["처리"] --> C["출력"]
-```
+**2순위: Mermaid** — 진짜 관계도·상태 전이·아키텍처처럼 *구조 자체가 정보*일 때만. 개념 나열 플로우엔 쓰지 마라. (규칙: 노드 레이블 큰따옴표, subgraph에 `direction` 금지, 노드 8개 초과 분리.)
 
 **Hero 이미지** (생성 우선):
 - frontmatter에 `heroImagePrompt` 필드 추가 (영문 이미지 생성 프롬프트)
