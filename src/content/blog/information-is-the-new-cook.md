@@ -10,7 +10,7 @@ seriesOrder: 2
 toolsUsed: ['Claude Code', 'Post Compiler']
 heroImage: '../../assets/heroes/information-is-the-new-cook.jpg'
 heroImagePrompt: 'Minimalist editorial illustration, same visual world as a boat cutting through dark water. A single boat pushes forward through a thick fog of faint data fragments, numbers, arrows and citation marks swirling as noise. A cool electric blue (#3B82F6) searchlight beam projects forward from the boat, probing the fog ahead rather than steering. Near-black background (#0A0A0B), blueprint grid texture, architectural line-art, industrial. No text, no letters, no words, no watermark.'
-draft: true
+draft: false
 concepts:
   - name: 'Information as Too-Many-Cooks'
     related: ['Analysis Paralysis', 'Information Overload', 'Decision Quality']

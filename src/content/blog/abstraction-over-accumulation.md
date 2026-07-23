@@ -10,7 +10,7 @@ seriesOrder: 3
 toolsUsed: ['Claude Code', 'Post Compiler']
 heroImage: '../../assets/heroes/abstraction-over-accumulation.jpg'
 heroImagePrompt: 'Split composition: left, a boat buried under a mountain of stacked crates and data blocks, stuck; right, the same boat sailing free as glowing blue blueprint line-art. Near-black background, blueprint grid, cool blue accent. Accumulation buries, abstraction moves. No text.'
-draft: true
+draft: false
 concepts:
   - name: 'Abstraction over Accumulation'
     related: ['Domain Modeling', 'Primitive Design', 'No Silver Bullet']
