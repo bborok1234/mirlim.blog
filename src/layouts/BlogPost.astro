@@ -13,6 +13,11 @@ type Props = CollectionEntry<'blog'>['data'] & {
 };
 
 const { title, description, pubDate, updatedDate, heroImage, tags = [], toolsUsed = [], slug, series, seriesPosts = [] } = Astro.props;
+
+// 시리즈 다음 글 (본문 끝 "다음 글" 버튼용). 마지막 편이면 null.
+const sortedSeries = [...seriesPosts].sort((a, b) => a.order - b.order);
+const curIdx = sortedSeries.findIndex((p) => p.slug === slug);
+const nextPost = curIdx >= 0 && curIdx < sortedSeries.length - 1 ? sortedSeries[curIdx + 1] : null;
 ---
 
 <html lang="ko">
@@ -73,6 +78,13 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], toolsUse
 						)}
 					</div>
 					<slot />
+					{nextPost && (
+						<a class="next-post" href={`/blog/${nextPost.slug}/`}>
+							<span class="np-label">다음 글</span>
+							<span class="np-title">{nextPost.title}</span>
+							<span class="np-arrow" aria-hidden="true">→</span>
+						</a>
+					)}
 					{series && seriesPosts.length > 1 && (
 						<SeriesNav seriesName={series} posts={seriesPosts} currentSlug={slug!} />
 					)}
@@ -126,7 +138,35 @@ const { title, description, pubDate, updatedDate, heroImage, tags = [], toolsUse
 	.prose {
 		max-width: 720px;
 		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
 	}
+	/* 본문(0) → 다음 글 버튼(1) → 각주(2) → 시리즈 네비(3) */
+	.next-post {
+		order: 1;
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		margin-top: 48px;
+		padding: 18px 22px;
+		background: var(--surface);
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		text-decoration: none;
+		transition: border-color 0.15s;
+	}
+	.next-post:hover { border-color: var(--accent); }
+	.np-label {
+		font-family: var(--font-mono);
+		font-size: 0.7rem;
+		font-weight: 600;
+		color: var(--accent);
+		white-space: nowrap;
+	}
+	.np-title { flex: 1; color: var(--text); font-weight: 500; }
+	.np-arrow { color: var(--accent); font-size: 1.2rem; }
+	:global(.prose > .footnotes) { order: 2; }
+	:global(.prose > .series-nav) { order: 3; }
 	.article-header {
 		margin-bottom: 48px;
 		padding-bottom: 32px;

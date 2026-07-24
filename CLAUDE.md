@@ -66,6 +66,15 @@ Posts are created as drafts by default. Add `--no-draft` to publish immediately.
 - Inline images: 마크다운에서 상대 경로로 참조
 - OG images: prebuild에서 satori+sharp로 자동 생성 (`scripts/generate-og.ts`)
 
+## 글 작업 철칙 (write-post — 반드시 지킬 것)
+
+이 규칙은 세션·환경을 넘어 유지되는 이 레포의 SSOT다. (글로벌 메모리가 아니라 여기가 진실 원천.)
+
+- **배포 게이트: 로컬 프리뷰 → 사용자 확인 → 명시적 승인 → 배포.** 승인 없이 `draft: false` 전환·`git push`·`bun run deploy` 절대 금지. "빌드 통과"는 승인이 아니다. 사용자가 "발행해/배포해/올려"라고 말하기 전엔 배포하지 않는다.
+- **소스는 원자재다.** 사용자가 준 원문(대화 export, 초고)을 그대로 옮기지 않는다. 실제 작업은 (1) 주장을 뒷받침할 근거를 웹에서 리서치, (2) 근거가 논증의 뼈대가 되도록 재구성(각주 장식·원문 복붙 금지), (3) 이해를 돕는 시각자료, (4) 전체 개선이다.
+- **매번 전체 파이프라인을 선제적으로:** research(근거) → brief(각도·논지 + 승인) → draft → review(모순·slop·스토리라인·시각자료 자체 점검) → 로컬 프리뷰 → 승인 → 배포. 지시받은 부분만 즉석에서 고치면 사용자가 세부 명령을 반복하게 된다. 새 주장을 넣기 전에 근거가 있는지 스스로 확인하고, 없으면 research부터 돈다.
+- **시각자료:** 정보가치 없는 개념 플로우 다이어그램은 넣지 않는다. 실데이터는 `scripts/write-post/charts.ts`(10종 SVG 생성기). 관계·순서·구조 자체가 정보일 때만 mermaid. 한국어 본문에 em-dash(—) 금지(영어 원제 각주는 예외).
+
 ## Skill routing
 
 When the user's request matches an available skill, ALWAYS invoke it using the Skill
