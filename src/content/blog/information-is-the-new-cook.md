@@ -86,6 +86,41 @@ AI 시대에 위험한 건, 그 방향키를 슬그머니 AI에 넘기게 된다
 
 ## 사공석에 앉은 AI의 두 얼굴
 
+<svg viewBox="0 0 640 440" role="img" aria-label="판단을 얼마나 AI에 맡길지는 자율성 슬라이더로 조절하며 손잡이는 사람이 쥔다. 손잡이를 놓으면 같은 AI가 질문에 따라 정반대로 망가진다. 열린 질문에는 무난함(평균값)으로, 내 편 드는 질문에는 아첨(확증)으로 갈리지만 둘 다 내가 판단을 놓았다는 하나의 원인에서 나온다" style="width:100%;max-width:600px;height:auto;display:block;margin:2.5em auto;font-family:'Instrument Sans', system-ui, sans-serif">
+<text x="320" y="26" text-anchor="middle" fill="#3B82F6" font-size="13" font-weight="600" font-family="'JetBrains Mono', monospace">자율성 슬라이더</text>
+<text x="320" y="47" text-anchor="middle" fill="#7E7E8A" font-size="11.5">판단을 얼마나 AI에 맡길지, 손잡이는 당신이 쥔다</text>
+<line x1="160" y1="76" x2="480" y2="76" stroke="#7E7E8A" stroke-width="3" stroke-linecap="round"/>
+<circle cx="320" cy="76" r="9" fill="#3B82F6" stroke="#0A0A0B" stroke-width="2"/>
+<text x="160" y="99" text-anchor="middle" fill="#7E7E8A" font-size="11">사람이 판단</text>
+<text x="480" y="99" text-anchor="middle" fill="#7E7E8A" font-size="11">AI가 판단</text>
+<rect x="110" y="120" width="420" height="46" rx="6" fill="#141416" stroke="#F59E0B" stroke-width="1.5"/>
+<text x="320" y="140" text-anchor="middle" fill="#E8E8ED" font-size="12.5">손잡이를 놓으면, 같은 AI가</text>
+<text x="320" y="159" text-anchor="middle" fill="#E8E8ED" font-size="12.5">질문에 따라 정반대로 망가진다</text>
+<line x1="320" y1="166" x2="320" y2="186" stroke="#7E7E8A" stroke-width="1.5"/>
+<path d="M165 206 L165 186 L475 186 L475 206" fill="none" stroke="#7E7E8A" stroke-width="1.5"/>
+<rect x="55" y="206" width="220" height="46" rx="6" fill="#141416" stroke="#1E1E22"/>
+<text x="165" y="225" text-anchor="middle" fill="#7E7E8A" font-size="10.5" font-family="'JetBrains Mono', monospace">열린 질문</text>
+<text x="165" y="243" text-anchor="middle" fill="#E8E8ED" font-size="12.5">"이 제품 어때?"</text>
+<line x1="165" y1="252" x2="165" y2="272" stroke="#7E7E8A" stroke-width="1.5"/>
+<rect x="55" y="272" width="220" height="58" rx="6" fill="rgba(126,126,138,0.08)" stroke="#7E7E8A" stroke-width="1.5"/>
+<text x="165" y="297" text-anchor="middle" fill="#E8E8ED" font-size="15" font-weight="600">무난함</text>
+<text x="165" y="318" text-anchor="middle" fill="#7E7E8A" font-size="11.5">평균값으로 흐려진다</text>
+<rect x="365" y="206" width="220" height="46" rx="6" fill="#141416" stroke="#1E1E22"/>
+<text x="475" y="225" text-anchor="middle" fill="#7E7E8A" font-size="10.5" font-family="'JetBrains Mono', monospace">내 편 드는 질문</text>
+<text x="475" y="243" text-anchor="middle" fill="#E8E8ED" font-size="12.5">"A가 맞지?"</text>
+<line x1="475" y1="252" x2="475" y2="272" stroke="#7E7E8A" stroke-width="1.5"/>
+<rect x="365" y="272" width="220" height="58" rx="6" fill="rgba(245,158,11,0.09)" stroke="#F59E0B" stroke-width="1.5"/>
+<text x="475" y="297" text-anchor="middle" fill="#F59E0B" font-size="15" font-weight="600">아첨</text>
+<text x="475" y="318" text-anchor="middle" fill="#7E7E8A" font-size="11.5">믿는 쪽으로 굳는다</text>
+<line x1="165" y1="330" x2="165" y2="354" stroke="#7E7E8A" stroke-width="1.5"/>
+<line x1="475" y1="330" x2="475" y2="354" stroke="#7E7E8A" stroke-width="1.5"/>
+<line x1="165" y1="354" x2="475" y2="354" stroke="#7E7E8A" stroke-width="1.5"/>
+<line x1="320" y1="354" x2="320" y2="372" stroke="#7E7E8A" stroke-width="1.5"/>
+<rect x="150" y="372" width="340" height="48" rx="6" fill="#141416" stroke="#3B82F6" stroke-width="1.5"/>
+<text x="320" y="393" text-anchor="middle" fill="#E8E8ED" font-size="12.5">정반대로 보이지만 원인은 하나</text>
+<text x="320" y="412" text-anchor="middle" fill="#3B82F6" font-size="11.5">내가 판단을 AI에 맡겼다</text>
+</svg>
+
 **첫째, 무난함으로 흐려진다.** 열린 질문을 던질 때다. "이 제품 어때?"라고 물으면 AI는 즉시 반대 사례와 놓친 세그먼트와 예외 조건을 정연하게 정리해준다. 문제는 그 목록이 언제나 옳다는 데 있다. 실제로 모든 주장에는 반례가 있으니까. 그래서 강했던 주장이 조사를 거칠수록 부드러워진다. "사람은 식재료 재고를 꾸준히 기록하지 않는다"는 날카로운 관찰이, 검토를 반복하면 "일부 사용자는 직접 기록을 선호하고, 가구 형태와 구매 채널에 따라 다르므로 영수증 인식과 수동 입력을 겸한 유연한 시스템이 필요하다"는 결론으로 뭉개진다. 두 번째 문장이 더 정확해 보이지만, 그 문장으로는 어떤 제품도 만들 수 없다.
 
 AI는 구조적으로 이 방향으로 기운다. 연구자들은 LLM이 명확한 입장을 피하고 반대 관점을 나란히 얹어 중립을 유지하는 헤지 경향을 측정했다.[^4] 서로 다른 대륙, 다른 회사에서 만든 언어 모델 스물두 개를 사람 백여 명과 비교한 연구에서는, 모델들이 사람보다 훨씬 낮은 다양성을 보였고 모델 사이의 평균 유사도가 81%에 달했다. 연구자들은 이걸 "인공 집단지성(artificial hivemind)"이라고 불렀다.[^5] 방향키를 AI에 맡기는 순간, 나는 나만의 편향된 주장이 아니라 그 집단지성의 평균값을 받아 적게 된다. 2025년 여러 사전이 관점 없이 대량 생산된 무난한 콘텐츠, "AI slop"을 올해의 단어로 뽑은 게 우연이 아니다.[^6]
@@ -110,6 +145,37 @@ AI는 구조적으로 이 방향으로 기운다. 연구자들은 LLM이 명확�
 
 **넷, 답이 아니라 선택지를 요구한다.** 카파시는 정말 신경 쓰는 코드에서 AI에게 "코드를 달라"고 하지 않는다. "몇 가지 방안을 달라"고 한 뒤 고르는 건 자기가 한다. 그리고 성공 기준을 먼저 정의한다. "잘못된 입력에 대한 테스트를 먼저 쓰고, 그걸 통과시켜라." 판단 기준은 사람이 세우고, AI는 그 기준을 향해 달릴 뿐이다.[^15]
 
+<svg viewBox="0 0 640 320" role="img" aria-label="AI를 노로 부리는 네 가지 방법. 1 부검을 시킨다: 실패를 기정사실로. 2 반대를 명령한다: 비판을 부탁이 아니라 역할로 강제. 3 입장을 숨긴다: 선호를 감춰야 분석이 나온다. 4 선택지를 요구한다: 답이 아니라 옵션, 성공 기준은 사람이 먼저 정한다" style="width:100%;max-width:600px;height:auto;display:block;margin:2.5em auto;font-family:'Instrument Sans', system-ui, sans-serif">
+<rect x="5" y="5" width="300" height="145" rx="8" fill="#141416" stroke="#1E1E22"/>
+<text x="27" y="41" fill="#3B82F6" font-size="15" font-weight="700" font-family="'JetBrains Mono', monospace">01</text>
+<text x="55" y="41" fill="#E8E8ED" font-size="14.5" font-weight="600">부검을 시킨다</text>
+<text x="27" y="69" fill="#7E7E8A" font-size="11.5">동의 대신 실패를 기정사실로 못박는다</text>
+<rect x="27" y="87" width="3" height="48" fill="#3B82F6" opacity="0.55"/>
+<text x="37" y="103" fill="#E8E8ED" font-size="10.5" font-family="'JetBrains Mono', monospace">"6개월 후, 이 프로젝트는</text>
+<text x="37" y="120" fill="#E8E8ED" font-size="10.5" font-family="'JetBrains Mono', monospace">실패했다. 이유를 전부."</text>
+<rect x="335" y="5" width="300" height="145" rx="8" fill="#141416" stroke="#1E1E22"/>
+<text x="357" y="41" fill="#3B82F6" font-size="15" font-weight="700" font-family="'JetBrains Mono', monospace">02</text>
+<text x="385" y="41" fill="#E8E8ED" font-size="14.5" font-weight="600">반대를 명령한다</text>
+<text x="357" y="69" fill="#7E7E8A" font-size="11.5">"비판해줘"로는 거의 안 통한다</text>
+<rect x="357" y="87" width="3" height="48" fill="#3B82F6" opacity="0.55"/>
+<text x="367" y="103" fill="#E8E8ED" font-size="10.5" font-family="'JetBrains Mono', monospace">"이 주장을 죽이는 가장</text>
+<text x="367" y="120" fill="#E8E8ED" font-size="10.5" font-family="'JetBrains Mono', monospace">강한 논거를, 동의 말고."</text>
+<rect x="5" y="165" width="300" height="145" rx="8" fill="#141416" stroke="#1E1E22"/>
+<text x="27" y="201" fill="#3B82F6" font-size="15" font-weight="700" font-family="'JetBrains Mono', monospace">03</text>
+<text x="55" y="201" fill="#E8E8ED" font-size="14.5" font-weight="600">입장을 숨긴다</text>
+<text x="27" y="229" fill="#7E7E8A" font-size="11.5">선호를 감춰야 분석이 나온다</text>
+<rect x="27" y="247" width="3" height="48" fill="#3B82F6" opacity="0.55"/>
+<text x="37" y="263" fill="#E8E8ED" font-size="10.5" font-family="'JetBrains Mono', monospace">"A 맞지?" 대신</text>
+<text x="37" y="280" fill="#E8E8ED" font-size="10.5" font-family="'JetBrains Mono', monospace">"A와 B를 각각 평가해줘."</text>
+<rect x="335" y="165" width="300" height="145" rx="8" fill="#141416" stroke="#1E1E22"/>
+<text x="357" y="201" fill="#3B82F6" font-size="15" font-weight="700" font-family="'JetBrains Mono', monospace">04</text>
+<text x="385" y="201" fill="#E8E8ED" font-size="14.5" font-weight="600">선택지를 요구한다</text>
+<text x="357" y="229" fill="#7E7E8A" font-size="11.5">답이 아니라 옵션. 기준은 내가 먼저</text>
+<rect x="357" y="247" width="3" height="48" fill="#3B82F6" opacity="0.55"/>
+<text x="367" y="263" fill="#E8E8ED" font-size="10.5" font-family="'JetBrains Mono', monospace">"코드 줘" 대신 "방안 몇</text>
+<text x="367" y="280" fill="#E8E8ED" font-size="10.5" font-family="'JetBrains Mono', monospace">개 줘." 성공 기준부터.</text>
+</svg>
+
 네 가지의 공통점은 하나다. AI에게 결론을 묻지 않는다. 재료를 시키고 결론은 내가 낸다. 반대로 이 선을 넘으면 무슨 일이 벌어지는지도 분명하다. 요즘 실제 사용자가 없을 때 AI로 가상 사용자(합성 페르소나)를 만들어 반응을 시뮬레이션하는 기법이 유행이다. 아이디어를 굴려보는 재료로는 쓸 만하다. 그런데 이 가상 사용자들은 하나같이 지나치게 호의적이고 우선순위 없는 칭찬을 쏟아낸다는 게 반복 관찰됐다.[^16] 여기에 제품 결정을 맡기는 순간 AI는 다시 사공이 된다. 재료로 쓰면 노, 판단을 맡기면 사공. 선은 늘 거기다. 그래서 최전선에서도 인간의 새 핵심 역량으로 "무엇이 좋은지 가려내는 판단(taste)"을 꼽는다.[^17]
 
 ## 리서치의 목적은 정보가 아니라 결정이다
@@ -118,7 +184,7 @@ AI는 구조적으로 이 방향으로 기운다. 연구자들은 LLM이 명확�
 
 제프 베조스는 2016년 주주서한에서 대부분의 결정은 원하는 정보의 70% 정도에서 내려야 한다고 썼다. 궤도를 잘 수정한다면 틀리는 비용은 생각보다 작고, 느린 것은 확실히 비싸다는 것이다.[^18] 지난 글에서 말한 "AI가 낮춘 진짜 비용은 틀릴 비용"과 같은 이야기다. 틀리는 게 싸졌으니 90%의 확신을 기다리며 정보를 더 모으는 건 손해다. 나머지 30%를 정보로 채우려 들면 분석 마비에 빠진다.[^19] 하필 AI 시대에는 그 30%를 채울 정보가 무한히 공급되기 때문에, 마음만 먹으면 영원히 결정하지 않을 수 있다.
 
-그래서 나는 리서치를 시작하기 전에 스스로에게 먼저 묻는다. 나는 지금 결정을 내리려는가, 아니면 결정을 미루려고 정보를 모으는가. 사공이 많으면 배가 산으로 간다는 옛말은 이제 사람에게만 해당되지 않는다. 정보도, AI도 방향키를 쥐면 사공이 된다. 그 자리를 내가 지키는 한, 정보가 아무리 밀려들어도 배의 방향은 하나다.
+그래서 나는 리서치를 시작하기 전에 스스로에게 먼저 묻는다. 나는 지금 결정을 내리려는가, 아니면 결정을 미루려고 정보를 모으는가. 사공이 많으면 배가 산으로 간다는 옛말은 이제 사람에게만 해당되지 않는다. 정보도, AI도 방향키를 쥐면 사공이 된다. 하지만 그 자리를 내가 지키는 한, 둘은 사공이 아니라 노가 된다. 그리고 AI가 강해질수록 그 노는 더 세진다. 방향키를 쥔 사람에게 AI 시대는 배가 산으로 가는 시대가 아니라, 그 어느 때보다 멀리 나아가는 시대다.
 
 이제 방향키를 쥐었고, 주장도 세웠다. 어디로 갈지는 정해졌다. 남은 건 배를 짓는 일이다. 그런데 여기서 많은 팀이 배를 짓기도 전에 창고부터 채우기 시작한다. 데이터를, 지식을, 온톨로지를. 그것만 충분히 쌓이면 배가 저절로 만들어질 것처럼. 다음 글은 그 창고 이야기다.
 
