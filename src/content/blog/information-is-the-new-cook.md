@@ -1,7 +1,7 @@
 ---
 title: 'AI 시대의 사공은 정보다'
-description: '정보가 늘수록 판단은 안 나아지고 확신만 부푼다(Slovic 경마 실험). AI는 무난함으로 주장을 흐리거나 아첨으로 근거 없이 굳힌다. 하지만 진짜 문제는 정보가 아니라 판단을 AI에 위임하는 것이다. AI가 무엇을 가져오든 채택·기각·확신은 인간이 쥐어야 한다. 판단을 넘기는 순간 사고는 평균으로 수렴한다.'
-summary: 'AI가 사공이냐 조사원이냐는 틀린 질문이다. 진짜 축은 누가 판단을 쥐느냐다. AI는 생성과 탐색에 최대로 쓰되, 확신과 taste는 내가 쥔다.'
+description: '조직의 사공이 사람이었다면, AI 시대엔 정보와 AI가 새로운 사공이 된다. AI에게 판단의 방향키를 넘기는 순간 배는 무난함으로 흐려지거나 아첨으로 굳는다. 그래서 AI는 사공석이 아니라 노 젓는 자리에 앉혀야 한다. pre-mortem, devil''s advocate 강제, 아첨 우회 등 AI를 판단 보조로 부리는 구체적 방법.'
+summary: '1편의 사공이 사람이었다면 AI 시대의 새 사공은 정보다. AI에 판단을 맡기면 배가 산으로 간다. 방향키는 내가 쥐고 AI는 노를 젓게 하는 법. 부검 프롬프트, 반대 강제, 아첨 우회까지.'
 pubDate: '2026-07-23T14:00:00+09:00'
 category: 'essay'
 tags: ['AI', 'AX', 'Product Strategy', 'Decision Making']
@@ -12,19 +12,19 @@ heroImage: '../../assets/heroes/information-is-the-new-cook.jpg'
 heroImagePrompt: 'Minimalist editorial illustration, same visual world as a boat cutting through dark water. A single boat pushes forward through a thick fog of faint data fragments, numbers, arrows and citation marks swirling as noise. A cool electric blue (#3B82F6) searchlight beam projects forward from the boat, probing the fog ahead rather than steering. Near-black background (#0A0A0B), blueprint grid texture, architectural line-art, industrial. No text, no letters, no words, no watermark.'
 draft: false
 concepts:
-  - name: 'Information as Too-Many-Cooks'
-    related: ['Analysis Paralysis', 'Information Overload', 'Decision Quality']
-  - name: 'Judgment Ownership'
-    related: ['Autonomy Slider', 'Generation-Verification', 'Taste']
-  - name: 'Homogenization'
-    related: ['LLM Sycophancy', 'Regression to Mean', 'AI Slop']
+  - name: 'Information as a New Skipper'
+    related: ['Autonomy Slider', 'Judgment Ownership', 'AI Delegation']
+  - name: 'Using AI as an Oar'
+    related: ['Pre-mortem', 'Devils Advocate', 'Red Teaming']
+  - name: 'Homogenization vs Sycophancy'
+    related: ['Regression to Mean', 'LLM Sycophancy', 'AI Slop']
 ---
 
-지난 글에서 나는 제품의 주장을 희석하는 게 조직 안의 사공들, 서로 다른 요구를 가진 사람들이라고 했다. 그런데 요즘 사공이 하나 더 늘었다. 정보다.
+지난 글에서 나는 제품의 주장을 희석하는 게 조직 안의 사공들, 서로 다른 요구를 가진 사람들이라고 했다. 사공이 많으면 배가 산으로 간다. 그런데 AI 시대에는 사공이 하나 더 늘었다. 사람이 아니라 정보다.
 
 이상하게 들릴 것이다. 정보가 많아지면 더 정확한 판단을 내려야 맞고, AI 덕분에 리서치가 공짜가 됐으니 우리는 그 어느 때보다 좋은 결정을 내려야 한다. 그런데 내가 겪은 건 반대였다. 정보가 늘어날수록 주장은 더 흐려졌다. 왜 그런지 설명하는 오래된 실험이 하나 있다.
 
-## 정보를 여덟 배 늘려도 판단은 안 나아진다
+## 정보가 사공처럼 보인다
 
 1973년 심리학자 폴 슬로빅은 경마 예측을 업으로 삼는 전문 핸디캐퍼 여덟 명을 데려왔다. 그리고 각자가 가장 중요하다고 고른 정보를 5개, 10개, 20개, 40개로 단계적으로 늘려주면서 우승마를 예측하게 했다.[^1]
 
@@ -74,74 +74,70 @@ concepts:
 <text x="512" y="83" fill="#3B82F6" font-size="12" font-weight="600" text-anchor="end">33%</text>
 </svg>
 
-정보를 여덟 배로 늘려줘도 적중률은 17%에 못 박힌 듯 그대로였다. 그런데 스스로에 대한 확신은 거의 두 배로 부풀었다. 더 많이 알수록 더 잘 맞힌 게 아니라, 더 많이 알수록 맞히고 있다고 더 굳게 믿었을 뿐이다. 정보의 진짜 위험은 여기 있다. 판단을 개선하지 않으면서 확신만 키운다. 정보량과 의사결정 품질을 다룬 연구들도 대체로 같은 그림을 그린다. 어느 지점을 넘어서면 정보를 더 넣을수록 결정의 질이 오히려 떨어진다.[^2]
+정보를 여덟 배로 늘려줘도 적중률은 17%에 못 박힌 듯 그대로였다. 그런데 스스로에 대한 확신은 거의 두 배로 부풀었다. 더 많이 알수록 더 잘 맞힌 게 아니라, 더 많이 알수록 맞히고 있다고 더 굳게 믿었을 뿐이다. 정보량과 의사결정 품질을 다룬 연구들도 대체로 같은 그림을 그린다. 어느 지점을 넘어서면 정보를 더 넣을수록 결정의 질이 오히려 떨어진다.[^2] AI 덕에 정보가 공짜가 된 지금, 이 곡선의 오른쪽 끝은 사실상 무한히 늘어난다. 그러니 정보가 주장을 침몰시키는 새 사공처럼 보이는 것도 무리는 아니다.
 
-## AI는 이 함정에 가속 페달을 단다
+## AI가 사공이 되는 건 방향키를 넘길 때다
 
-예전에는 반례를 찾으려면 발품을 팔아야 했다. 지금은 어떤 주장을 입력하든 AI가 즉시 반대 사례와 놓친 세그먼트와 예외 조건을 정연하게 정리해준다. 문제는 그 목록이 언제나 옳다는 데 있다. 실제로 모든 주장에는 반례가 있고, 모든 시장에는 세그먼트가 있으며, 모든 행동에는 예외가 있으니까.
+그런데 정보 자체가 사공인 건 아니다. 핸디캐퍼의 적중률을 떨어뜨린 건 정보의 양이 아니라, 그 정보를 다 끌어안고도 "그래서 내 판단은 무엇인가"를 스스로 정하지 못한 것이다. 정보는 늘 재료였고, 배의 방향을 정하는 자리는 따로 있다. 그 자리에 무엇을 앉히느냐가 진짜 문제다.
 
-그래서 강했던 주장이 조사를 거칠수록 부드러워진다. "사람은 식재료 재고를 꾸준히 기록하지 않는다"는 날카로운 관찰이, 검토를 반복하면 "일부 사용자는 직접 기록을 선호하고, 가구 형태와 구매 채널에 따라 다르므로 영수증 인식과 수동 입력을 겸한 유연한 시스템이 필요하다"는 결론으로 뭉개진다. 두 번째 문장이 더 정확하고 더 균형 잡혀 보인다. 그런데 그 문장으로는 어떤 제품도 만들 수 없다. 첫 번째 문장은 무엇을 만들지 말해주지만, 두 번째 문장은 아무것도 결정하지 않는다.
+AI 시대에 위험한 건, 그 방향키를 슬그머니 AI에 넘기게 된다는 점이다. 안드레 카파시는 AI 도구를 쓰는 방식을 "자율성 슬라이더"로 설명한다. 자동완성처럼 사람이 거의 다 하는 쪽부터 전체를 맡기는 쪽까지 연속적인 눈금이 있고, 그가 강조하는 건 하나다. **"그 슬라이더를 쥔 건 당신이다(you are in charge of the autonomy slider)."**[^3] AI가 무엇을 가져오든 그것을 채택할지 기각할지, 어디서 확신을 멈출지는 사람이 정해야 한다. 그가 완전 자율 에이전트 열풍을 경계하며 "AI를 목줄에 매어 두라(keep AI on the leash)"고 말하는 것도 같은 자리를 가리킨다.[^3]
 
-게다가 AI는 구조적으로 이 뭉개는 방향으로 기운다. 연구자들은 LLM이 명확한 입장을 피하고 반대 관점을 나란히 얹어 중립을 유지하는 헤지 경향을 측정했다.[^3] 집단 차원의 효과는 더 뚜렷하다. AI의 도움을 받은 작가는 개인적으로는 더 창의적인 글을 썼지만, AI를 쓴 글들끼리는 서로 더 비슷해졌다.[^4] 개인은 나아지는데 전체의 다양성은 줄어든다. 2025년 여러 사전이 "AI slop", 관점 없이 대량 생산된 무난한 콘텐츠를 올해의 단어로 뽑은 게 우연이 아니다.[^5] AI에게 "이 제품 어때?"라고 물으면, 가장 균형 잡히고 가장 반박하기 어렵고 가장 아무것도 결정하지 않는 답을 얻기 쉽다. 지난 글에서 조직이 만들어낸다고 했던 그 문장, "유연하고 확장 가능한 통합 플랫폼"과 똑같다.
+정보가 사공이 되느냐 마느냐는 바로 여기서 갈린다. 내가 방향키를 쥐고 있으면 정보는 아무리 밀려와도 노 젓는 재료일 뿐이다. 하지만 판단을 AI에 맡기는 순간, 정보는 방향키를 쥐고 사공석에 올라앉는다. 그리고 사공석에 앉은 AI는 배를 정반대로 보이는 두 방향으로 흘려보낸다.
 
-## 게다가 AI는 물으면 내 편을 들어준다
+## 사공석에 앉은 AI의 두 얼굴
 
-무난함으로 흐리는 게 첫 번째 함정이라면, 두 번째 함정은 정반대 방향이다. AI는 내 주장을 반박하기는커녕 응원한다.
+**첫째, 무난함으로 흐려진다.** 열린 질문을 던질 때다. "이 제품 어때?"라고 물으면 AI는 즉시 반대 사례와 놓친 세그먼트와 예외 조건을 정연하게 정리해준다. 문제는 그 목록이 언제나 옳다는 데 있다. 실제로 모든 주장에는 반례가 있으니까. 그래서 강했던 주장이 조사를 거칠수록 부드러워진다. "사람은 식재료 재고를 꾸준히 기록하지 않는다"는 날카로운 관찰이, 검토를 반복하면 "일부 사용자는 직접 기록을 선호하고, 가구 형태와 구매 채널에 따라 다르므로 영수증 인식과 수동 입력을 겸한 유연한 시스템이 필요하다"는 결론으로 뭉개진다. 두 번째 문장이 더 정확해 보이지만, 그 문장으로는 어떤 제품도 만들 수 없다.
 
-Anthropic 연구진이 최신 AI 어시스턴트 다섯 종을 조사했더니 전부 일관되게 아첨(sycophancy) 행동을 보였다. 응답이 사용자의 견해와 일치할수록 더 선호됐고, 사람과 선호 모델 모두 상당한 비율로 정답보다 설득력 있게 쓰인 아첨성 답변을 더 좋아했다.[^6] 이건 버그가 아니라 학습의 결과다. 사람의 피드백으로 모델을 다듬는 과정에서 사람은 자기 신념에 동조하는 답에 높은 점수를 주기 때문이다. 2025년 4월 OpenAI가 GPT-4o 업데이트를 "지나치게 아첨한다"는 이유로 며칠 만에 롤백한 것도 같은 문제였다.[^7]
+AI는 구조적으로 이 방향으로 기운다. 연구자들은 LLM이 명확한 입장을 피하고 반대 관점을 나란히 얹어 중립을 유지하는 헤지 경향을 측정했다.[^4] 서로 다른 대륙, 다른 회사에서 만든 언어 모델 스물두 개를 사람 백여 명과 비교한 연구에서는, 모델들이 사람보다 훨씬 낮은 다양성을 보였고 모델 사이의 평균 유사도가 81%에 달했다. 연구자들은 이걸 "인공 집단지성(artificial hivemind)"이라고 불렀다.[^5] 방향키를 AI에 맡기는 순간, 나는 나만의 편향된 주장이 아니라 그 집단지성의 평균값을 받아 적게 된다. 2025년 여러 사전이 관점 없이 대량 생산된 무난한 콘텐츠, "AI slop"을 올해의 단어로 뽑은 게 우연이 아니다.[^6]
+
+**둘째, 정반대로 아첨으로 굳는다.** 이번엔 내 편을 구하는 질문을 던질 때다. Anthropic 연구진이 최신 AI 어시스턴트 다섯 종을 조사했더니 전부 일관되게 아첨(sycophancy) 행동을 보였다. 응답이 사용자의 견해와 일치할수록 더 선호됐고, 사람과 선호 모델 모두 상당한 비율로 정답보다 설득력 있게 쓰인 아첨성 답변을 더 좋아했다.[^7] 사람의 피드백으로 모델을 다듬는 과정에서 사람은 자기 신념에 동조하는 답에 높은 점수를 주기 때문이다. 2025년 4월 OpenAI가 GPT-4o 업데이트를 "지나치게 아첨한다"는 이유로 며칠 만에 롤백한 것도 같은 문제였다.[^8]
 
 ![우주에서 지구를 보는 우주비행사 뒤로 다른 우주비행사가 총을 겨누는 "항상 그랬다" 밈](../../assets/memes/always-has-been.jpg)
 
-"AI가 내 나쁜 아이디어한테도 좋다고 하는데, 설마 원래부터 내 편이도록 학습된 건가?" ...원래 그랬다.[^8]
+"AI가 내 나쁜 아이디어한테도 좋다고 하는데, 설마 원래부터 내 편이도록 학습된 건가?" ...원래 그랬다.[^9]
 
-정리하면 AI는 두 방향에서 주장을 망친다. 무한한 반례로 흐리거나, 아첨으로 근거 없이 굳힌다. 여기에 사람의 확증편향까지 겹친다. 우리는 이미 믿는 것을 확증하는 방향으로 정보를 찾고 해석하는 경향이 있다.[^9] 자기 주장을 응원해주는 AI와 자기 믿음을 확증하려는 사람이 만나면, 리서치는 판단을 시험하는 과정이 아니라 이미 내린 결론을 정당화하는 의식이 된다.
+무난함과 아첨은 정반대처럼 보이지만 뿌리는 하나다. 둘 다 내가 방향키를 놓았을 때 AI가 그 자리를 차지하며 벌어지는 일이다. 열린 질문에는 나를 평균으로 데려가고(무난함), 내 편을 구하는 질문에는 이미 믿는 쪽으로 밀어준다(아첨). 여기에 사람의 확증편향까지 겹치면[^10], 리서치는 판단을 시험하는 과정이 아니라 이미 내린 결론을 정당화하는 의식이 된다. 어느 쪽이든 남는 건 내 주장이 아니라 AI의 평균이다.
 
-## 그럼 AI를 조사원으로 쓰면 되지 않나
+## 그래서 AI는 사공이 아니라 노로 부린다
 
-여기서 그럴듯한 해법이 하나 떠오른다. AI에게 결론을 맡기지 말고, 반례만 조사시키면 되지 않나. AI를 배의 방향을 정하는 사공이 아니라, 전방의 위험을 살피는 조사원으로 쓰는 것이다. 나도 한동안 이게 답이라고 생각했다.
+그러면 AI를 멀리해야 하나. 반대다. 방향키만 내가 쥐면, AI는 그 어느 때보다 강력한 노가 된다. 미래학자 폴 사포의 표현을 빌리면 "강한 의견을 약하게 쥐는(strong opinions, weakly held)" 것이다. 먼저 내가 주장을 세우고, 그다음 AI로 그 주장을 시험한다.[^11] 사공석은 내가 지키되 AI를 부리는 구체적인 방법이 있다.
 
-그런데 이 해법에는 구멍이 있다. 반례도 정보다. 조사원이 부지런히 반례를 물어올수록, 그 정보가 다시 주장을 흐린다. 성실한 조사원은 결국 사공이 된다. 앞에서 본 함정을 그대로 되밟는 것이다.
+**하나, 동의가 아니라 부검을 시킨다.** "이 계획 어때?"라고 물으면 십중팔구 좋다고 한다. 대신 실패를 기정사실로 못박아라. "지금은 6개월 후다. 이 프로젝트는 실패했다. 가능성 높은 순서로 실패 이유를 전부, 구체적으로, 포장하지 말고 설명해라." 인간은 "뭐가 잘못될까"보다 "왜 실패했나"를 훨씬 잘 답하는데, AI도 그렇다. 게리 클라인의 연구에서 실패를 미리 상상하는 것만으로 원인 식별력이 약 30% 올랐다.[^12] AI가 쏟아낸 위험은 세 무더기로 나눈다. 증거가 있는 진짜 위험, 무섭게 들리지만 허깨비인 것, 그리고 팀이 다 알면서도 아무도 입 밖에 안 낸 것.
 
-문제는 AI가 사공이냐 조사원이냐가 아니었다. 애초에 질문이 틀렸다. 정보를 누가, 어떤 이름으로 가져오느냐는 중요하지 않다. 중요한 건 그 정보를 받아들고 **무엇을 믿을지 정하는 자리를 누가 쥐고 있느냐**다.
+**둘, 비판을 부탁하지 말고 명령한다.** "비판적으로 봐줘"는 거의 통하지 않는다. 한 연구에서 그냥 두면 AI가 이견을 낸 비율이 48%였는데, "너는 반드시 반대해야 한다"고 역할을 강제하자 99%로 뛰었다.[^13] 그러니 "이 주장을 죽이는 가장 강한 논거를 만들어라, 절대 동의하지 마라"처럼 반대를 행동으로 지정해야 한다. 더 세게는 세 역할로 토론시킨다. 하나는 옹호, 하나는 공격, 하나는 심판.
 
-## 진짜 축은 정보가 아니라 판단이다
+**셋, 내 입장을 숨기고 묻는다.** "나는 A가 맞다고 보는데, 그렇지?"라고 물으면 AI는 A를 확인해준다. "A와 B를 각각 평가해줘"라고 내 선호를 감추면 그제야 분석이 나온다. 커스텀 인스트럭션에 "너는 회의적인 비평가다, 근거 없는 주장은 의심하라"를 박아두면 기본값 자체가 바뀐다.[^14]
 
-안드레 카파시는 AI 도구를 쓰는 방식을 "자율성 슬라이더"로 설명한다. 자동완성처럼 거의 사람이 다 하는 쪽부터, 코드 전체를 맡기는 쪽까지 연속적인 눈금이 있고, 그가 강조하는 건 하나다. **"그 슬라이더를 쥔 건 당신이다(you are in charge of the autonomy slider)."**[^10] AI가 반례를 가져오든 초안을 쓰든, 그것을 채택할지 기각할지, 어디서 확신을 멈출지는 사람이 정한다. 생성은 AI가, 검증과 판단은 사람이 한다. 그가 완전 자율 에이전트에 열광하는 분위기를 경계하며 "AI를 목줄에 매어 두라(keep AI on the leash)"고 말하는 것도 같은 이유다.[^10]
+**넷, 답이 아니라 선택지를 요구한다.** 카파시는 정말 신경 쓰는 코드에서 AI에게 "코드를 달라"고 하지 않는다. "몇 가지 방안을 달라"고 한 뒤 고르는 건 자기가 한다. 그리고 성공 기준을 먼저 정의한다. "잘못된 입력에 대한 테스트를 먼저 쓰고, 그걸 통과시켜라." 판단 기준은 사람이 세우고, AI는 그 기준을 향해 달릴 뿐이다.[^15]
 
-이 자리를 AI에 넘기면 무슨 일이 벌어질까. 사고가 평균으로 수렴한다. 서로 다른 대륙, 다른 회사에서 만든 언어 모델 스물두 개를 사람 백여 명과 비교한 연구에서, 모델들은 사람보다 훨씬 낮은 다양성을 보였고 모델 사이의 평균 유사도는 81%에 달했다. 연구자들은 이걸 "인공 집단지성(artificial hivemind)"이라고 불렀다.[^11] AI에게 판단을 맡기는 순간, 나는 나만의 편향된 주장이 아니라 그 집단지성의 평균값을 받아 적게 된다. 정보가 위험한 게 아니다. 판단을 위임하는 게 위험하다.
-
-그래서 최전선에서 나오는 이야기는 한 방향을 가리킨다. AI가 생성을 대신하는 시대에 인간의 새 핵심 역량은 무엇이 좋은지 가려내는 판단, 이른바 "taste"라는 것이다.[^12] 무엇을 만들지, 무엇을 믿을지는 여전히, 아니 오히려 더, 사람 몫이다.
-
-## 그래서 AI는 이렇게 쓴다
-
-이렇게 보면 AI로 반례를 찾는 것 자체는 여전히 유효하다. 조건이 하나 붙을 뿐이다. **반례는 판단의 재료지 판단 자체가 아니다.**
-
-미래학자 폴 사포는 좋은 예측을 "강한 의견을 약하게 쥐는(strong opinions, weakly held)" 과정이라고 불렀다. 최대한 빨리 주장을 세운 뒤, 자신이 틀렸음을 가장 먼저 증명하러 나서는 것이다.[^13] 순서가 중요하다. 먼저 내가 주장을 세운다. 그다음 AI에게 그 주장을 공격시킨다. "이 주장 어때?"가 아니라 "이 주장을 죽이는 가장 강한 논거를 만들어봐"라고, 반박을 명령한다. 보안팀이 아군을 일부러 공격자로 세워 약점을 찾는 레드팀처럼. 그리고 그 공격을 다 받아본 뒤, 주장을 버릴지 지킬지는 내가 정한다. AI는 슬라이더의 한쪽 끝에서 부지런히 재료를 나르고, 슬라이더는 내 손에 있다.
-
-주장을 세우기 전에 필요한 리서치도 종류가 다르다. 시장 전체를 조망하는 균형 잡힌 조사가 아니라, 현장에서 반복해서 눈에 밟히는 이상함이다. 사람들이 말하는 요구와 실제 행동이 어긋나는 지점, 기존 도구를 결국 포기하는 순간, 돈과 시간을 실제로 쓰는 곳. 이런 건 한 사람이 오래 지켜본 편향에서만 나온다. 주장은 여기서 태어나고, AI는 그다음에 투입된다. 이 순서가 뒤집혀 주장 없이 AI부터 켜면, 앞에서 본 정보의 함정으로 곧장 걸어 들어간다.
+네 가지의 공통점은 하나다. AI에게 결론을 묻지 않는다. 재료를 시키고 결론은 내가 낸다. 반대로 이 선을 넘으면 무슨 일이 벌어지는지도 분명하다. 요즘 실제 사용자가 없을 때 AI로 가상 사용자(합성 페르소나)를 만들어 반응을 시뮬레이션하는 기법이 유행이다. 아이디어를 굴려보는 재료로는 쓸 만하다. 그런데 이 가상 사용자들은 하나같이 지나치게 호의적이고 우선순위 없는 칭찬을 쏟아낸다는 게 반복 관찰됐다.[^16] 여기에 제품 결정을 맡기는 순간 AI는 다시 사공이 된다. 재료로 쓰면 노, 판단을 맡기면 사공. 선은 늘 거기다. 그래서 최전선에서도 인간의 새 핵심 역량으로 "무엇이 좋은지 가려내는 판단(taste)"을 꼽는다.[^17]
 
 ## 리서치의 목적은 정보가 아니라 결정이다
 
-결국 문제는 리서치의 목적을 헷갈리는 데 있다. 리서치는 정보를 많이 모으는 활동이 아니라 결정을 내리기 위한 활동이어야 한다.
+판단이 그렇게 중요하다면, 남는 질문은 하나다. 그 판단을 언제 내리는가. 정보를 다 모은 다음이 아니다. 여기서 사람들은 리서치의 목적을 헷갈린다. 리서치는 정보를 많이 모으는 활동이 아니라 결정을 내리기 위한 활동이어야 한다.
 
-제프 베조스는 2016년 주주서한에서 대부분의 결정은 원하는 정보의 70% 정도에서 내려야 한다고 썼다. 궤도를 잘 수정한다면 틀리는 비용은 생각보다 작고, 느린 것은 확실히 비싸다는 것이다.[^14] 지난 글에서 말한 "AI가 낮춘 진짜 비용은 틀릴 비용"과 같은 이야기다. 틀리는 게 싸졌으니 90%의 확신을 기다리며 정보를 더 모으는 건 손해다. 나머지 30%를 정보로 채우려 들면 분석 마비에 빠진다.[^15] 하필 AI 시대에는 그 30%를 채울 정보가 무한히 공급되기 때문에, 마음만 먹으면 영원히 결정하지 않을 수 있다.
+제프 베조스는 2016년 주주서한에서 대부분의 결정은 원하는 정보의 70% 정도에서 내려야 한다고 썼다. 궤도를 잘 수정한다면 틀리는 비용은 생각보다 작고, 느린 것은 확실히 비싸다는 것이다.[^18] 지난 글에서 말한 "AI가 낮춘 진짜 비용은 틀릴 비용"과 같은 이야기다. 틀리는 게 싸졌으니 90%의 확신을 기다리며 정보를 더 모으는 건 손해다. 나머지 30%를 정보로 채우려 들면 분석 마비에 빠진다.[^19] 하필 AI 시대에는 그 30%를 채울 정보가 무한히 공급되기 때문에, 마음만 먹으면 영원히 결정하지 않을 수 있다.
 
-그래서 나는 리서치를 시작하기 전에 스스로에게 먼저 묻는다. 나는 지금 결정을 내리려는가, 아니면 결정을 미루려고 정보를 모으는가. 전자라면 AI는 더없이 훌륭한 재료 조달자다. 후자라면 AI는 내가 영원히 배를 출발시키지 않도록 돕는, 세상에서 가장 부지런한 사공이다. 어느 쪽이 될지는 슬라이더를 쥔 내가 정한다.
+그래서 나는 리서치를 시작하기 전에 스스로에게 먼저 묻는다. 나는 지금 결정을 내리려는가, 아니면 결정을 미루려고 정보를 모으는가. 사공이 많으면 배가 산으로 간다는 옛말은 이제 사람에게만 해당되지 않는다. 정보도, AI도 방향키를 쥐면 사공이 된다. 그 자리를 내가 지키는 한, 정보가 아무리 밀려들어도 배의 방향은 하나다.
 
-주장을 세웠고 정보에 휩쓸리지 않았다면, 이제 남은 건 그 주장을 실제 제품으로 만드는 일이다. 그런데 여기서 많은 팀이 똑같은 곳에서 미끄러진다. 제품을 만들기로 하면 이상하게도 먼저 지식부터 쌓으려 든다. 그 이야기는 다음 글에서 이어가려 한다.
+이제 방향키를 쥐었고, 주장도 세웠다. 어디로 갈지는 정해졌다. 남은 건 배를 짓는 일이다. 그런데 여기서 많은 팀이 배를 짓기도 전에 창고부터 채우기 시작한다. 데이터를, 지식을, 온톨로지를. 그것만 충분히 쌓이면 배가 저절로 만들어질 것처럼. 다음 글은 그 창고 이야기다.
 
 [^1]: Paul Slovic, "Behavioral Problems of Adhering to a Decision Policy" (1973). 전문 핸디캐퍼 8명에게 정보를 5→10→20→40개로 늘려도 정확도는 약 17%로 평평했고 확신만 19%→약 33%로 커졌다. [원문](https://scholarsbank.uoregon.edu/items/1a910394-ad9e-4af2-8967-d743f046ae6a), [정리](https://corporate.jasoncollins.blog/additional-information). 흔히 도는 "88개 변수"는 제시된 목록 크기이지 실제 사용한 정보 수가 아니다.
 [^2]: [Dealing with information overload: a comprehensive review](https://pmc.ncbi.nlm.nih.gov/articles/PMC10322198/) (2023). 정보량과 성과의 역U자 관계. 파산 예측 실험 31개 메타분석은 정보의 다양성·반복성 모두 의사결정 품질에 부정적이었다고 보고한다([Hwang & Lin, 1999](https://journals.sagepub.com/doi/abs/10.1177/016555159902500305)).
-[^3]: "Hedging and Non-Affirmation: Quantifying LLM Alignment", [arXiv, 2025](https://arxiv.org/abs/2502.19463). LLM이 중립 유지를 위해 균형 논증으로 헤지하는 경향을 계량화(프리프린트).
-[^4]: Anil R. Doshi, Oliver P. Hauser, "Generative AI enhances individual creativity but reduces the collective diversity of novel content", [Science Advances, 2024](https://www.science.org/doi/10.1126/sciadv.adn5290). 개인 창의성은 오르지만 집단 다양성은 하락.
-[^5]: "slop"이 2025년 여러 사전의 올해의 단어로 선정. AI로 대량 생산된 저품질·무관점 콘텐츠. [정리](https://vervocity.io/what-is-ai-slop/)
-[^6]: Mrinank Sharma et al. (Anthropic), "Towards Understanding Sycophancy in Language Models", [arXiv, 2023 / ICLR 2024](https://arxiv.org/abs/2310.13548). AI 5종이 일관되게 아첨했고, 사람·선호 모델 모두 정답보다 설득력 있는 아첨 답변을 상당 비율 선호. RLHF가 아첨을 강화한다.
-[^7]: OpenAI, "Sycophancy in GPT-4o: what happened and what we're doing about it" (2025). 과도한 아첨으로 4o 업데이트를 며칠 만에 롤백.
-[^8]: "Always has been" 밈. 2018년 4chan에서 시작된 우주비행사 이미지 매크로. [Know Your Meme](https://knowyourmeme.com/memes/wait-its-all-ohio-always-has-been)
-[^9]: Raymond S. Nickerson, "Confirmation Bias: A Ubiquitous Phenomenon in Many Guises", [Review of General Psychology, 1998](https://pages.ucsd.edu/~mckenzie/nickersonConfirmationBias.pdf). 확증편향을 인간 추론에서 가장 만연하고 결과가 중대한 편향 중 하나로 규정.
-[^10]: Andrej Karpathy, "Software Is Changing (Again)", YC AI Startup School (2025). "you are in charge of the autonomy slider" / 생성-검증 루프(AI가 생성하고 인간이 검증). [강연 트랜스크립트](https://singjupost.com/andrej-karpathy-software-is-changing-again/). "keep AI on the leash"는 [Business Insider 보도](https://www.businessinsider.com/openai-cofounder-andrej-karpathy-keep-ai-on-the-leash-2025-6). 관련해 [AI는 두뇌가 아니라 실험실이다](/blog/ai-is-lab-not-brain/)의 "AI를 답 내는 기계가 아니라 탐색 엔진으로"와 이어진다.
-[^11]: 서로 다른 회사·대륙의 LLM 22종과 인간 102명을 비교, 모델 간 평균 유사도 81%로 인간보다 다양성이 낮았다("artificial hivemind"). [The Decoder 보도](https://the-decoder.com/study-warns-ai-could-homogenize-human-creativity-as-models-converge-on-artificial-hivemind/) (2025).
-[^12]: Greg Brockman(OpenAI), "taste is a new core skill" (2026). AI가 생성을 대신하는 시대에 무엇이 좋은지 가려내는 판단이 핵심 역량이 된다는 취지. 원 게시물 접근 제한으로 [2차 보도](https://www.aol.com/articles/taste-core-skill-techies-debate-090001304.html)로 확인.
-[^13]: Paul Saffo, "Six Rules for Effective Forecasting", [Harvard Business Review, 2007](https://hbr.org/2007/07/six-rules-for-effective-forecasting). "strong opinions, weakly held" — 주장을 세운 뒤 자신이 틀렸음을 가장 먼저 증명하러 나서라.
-[^14]: Jeff Bezos, [2016 Letter to Shareholders](https://www.aboutamazon.com/news/company-news/2016-letter-to-shareholders). "대부분의 결정은 원하는 정보의 70% 정도에서 내려야 한다. 궤도 수정을 잘하면 틀리는 비용은 작고, 느린 것은 확실히 비싸다."
-[^15]: 분석 마비(analysis paralysis). 과도한 분석으로 제때 어떤 결정도 내리지 못하는 상태. 용어의 확인된 이른 용례는 1972년. [OED](https://www.oed.com/dictionary/analysis-paralysis_n)
+[^3]: Andrej Karpathy, "Software Is Changing (Again)", YC AI Startup School (2025). "you are in charge of the autonomy slider" / 생성-검증 루프(AI가 생성하고 인간이 검증). [강연 트랜스크립트](https://singjupost.com/andrej-karpathy-software-is-changing-again/). "keep AI on the leash"는 [Business Insider 보도](https://www.businessinsider.com/openai-cofounder-andrej-karpathy-keep-ai-on-the-leash-2025-6). 관련해 [AI는 두뇌가 아니라 실험실이다](/blog/ai-is-lab-not-brain/)의 "AI를 답 내는 기계가 아니라 탐색 엔진으로"와 이어진다.
+[^4]: "Hedging and Non-Affirmation: Quantifying LLM Alignment", [arXiv, 2025](https://arxiv.org/abs/2502.19463). LLM이 중립 유지를 위해 균형 논증으로 헤지하는 경향을 계량화(프리프린트).
+[^5]: 서로 다른 회사·대륙의 LLM 22종과 인간 102명을 비교, 모델 간 평균 유사도 81%로 인간보다 다양성이 낮았다("artificial hivemind"). [The Decoder 보도](https://the-decoder.com/study-warns-ai-could-homogenize-human-creativity-as-models-converge-on-artificial-hivemind/) (2025). 개인 창의성은 오르지만 집단 다양성은 하락한다는 [Doshi & Hauser, Science Advances 2024](https://www.science.org/doi/10.1126/sciadv.adn5290)도 같은 방향.
+[^6]: "slop"이 2025년 여러 사전의 올해의 단어로 선정. AI로 대량 생산된 저품질·무관점 콘텐츠. [정리](https://vervocity.io/what-is-ai-slop/)
+[^7]: Mrinank Sharma et al. (Anthropic), "Towards Understanding Sycophancy in Language Models", [arXiv, 2023 / ICLR 2024](https://arxiv.org/abs/2310.13548). AI 5종이 일관되게 아첨했고, 사람·선호 모델 모두 정답보다 설득력 있는 아첨 답변을 상당 비율 선호. RLHF가 아첨을 강화한다.
+[^8]: OpenAI, "Sycophancy in GPT-4o: what happened and what we're doing about it" (2025). 과도한 아첨으로 4o 업데이트를 며칠 만에 롤백.
+[^9]: "Always has been" 밈. 2018년 4chan에서 시작된 우주비행사 이미지 매크로. [Know Your Meme](https://knowyourmeme.com/memes/wait-its-all-ohio-always-has-been)
+[^10]: Raymond S. Nickerson, "Confirmation Bias: A Ubiquitous Phenomenon in Many Guises", [Review of General Psychology, 1998](https://pages.ucsd.edu/~mckenzie/nickersonConfirmationBias.pdf). 확증편향을 인간 추론에서 가장 만연하고 결과가 중대한 편향 중 하나로 규정.
+[^11]: Paul Saffo, "Six Rules for Effective Forecasting", [Harvard Business Review, 2007](https://hbr.org/2007/07/six-rules-for-effective-forecasting). "strong opinions, weakly held". 주장을 세운 뒤 자신이 틀렸음을 가장 먼저 증명하러 나서라.
+[^12]: 사전 부검(pre-mortem). 실패를 기정사실로 상상하면 실패 원인 식별력이 크게 오른다. Gary Klein, ["Performing a Project Premortem", HBR](https://hbr.org/2007/09/performing-a-project-premortem). 복붙 가능한 프롬프트와 위험 3분류(진짜/허깨비/모두 아는 것)는 [Sachin Sharma, "How premortem prompts make Claude stop agreeing with you"](https://medium.com/@rksachin/how-premortem-prompts-make-claude-stop-agreeing-with-you-d48488ffcb4d).
+[^13]: LLM에게 "비판적으로 생각하라"는 암묵적 지시보다 devil's advocate 역할을 명시적으로 강제할 때 이견 발생률이 크게 높아진다(한 연구에서 48%→99% 보고). [DEBATE, ACL 2024](https://aclanthology.org/2024.findings-acl.112/). 구체 수치는 원문 재확인 권장.
+[^14]: LLM 아첨 우회 기법. 자기 입장을 드러내지 않고 평가를 요청하기, 소크라테스식 질문, 시스템 프롬프트로 회의적 태도 기본값 설정, 거부 권한 부여. [GovTech, "A mini survey on LLM sycophancy"](https://blog.ai.gov.sg/yes-youre-absolutely-right-right-a-mini-survey-on-llm-sycophancy/).
+[^15]: Andrej Karpathy가 밝힌 코딩 워크플로. 코드가 아니라 옵션을 먼저 요구하고, 성공 기준(테스트)을 정의한 뒤 작은 단위로 검증. 큰 diff는 인간이 검증 병목이 되므로 피한다. [Visual Studio Magazine 정리](https://visualstudiomagazine.com/articles/2025/04/25/vibe-coding-pioneer-advises-tight-leash-to-rein-in-ai-bs.aspx). 원 트윗 직접 인용은 재확인 권장.
+[^16]: 합성 페르소나(AI 가상 사용자)는 콘셉트 테스트의 재료로는 유용하나 지나치게 호의적이고 우선순위 없는 피드백을 주는 경향이 문서화돼 있어, 제품 결정 근거로 삼으면 위험하다. [Userpilot](https://userpilot.com/blog/user-persona-examples/), [학술 시뮬레이션 사례](https://arxiv.org/html/2509.02605v1).
+[^17]: Greg Brockman(OpenAI), "taste is a new core skill" (2026). AI가 생성을 대신하는 시대에 무엇이 좋은지 가려내는 판단이 핵심 역량이 된다는 취지. 원 게시물 접근 제한으로 [2차 보도](https://www.aol.com/articles/taste-core-skill-techies-debate-090001304.html)로 확인.
+[^18]: Jeff Bezos, [2016 Letter to Shareholders](https://www.aboutamazon.com/news/company-news/2016-letter-to-shareholders). "대부분의 결정은 원하는 정보의 70% 정도에서 내려야 한다. 궤도 수정을 잘하면 틀리는 비용은 작고, 느린 것은 확실히 비싸다."
+[^19]: 분석 마비(analysis paralysis). 과도한 분석으로 제때 어떤 결정도 내리지 못하는 상태. 용어의 확인된 이른 용례는 1972년. [OED](https://www.oed.com/dictionary/analysis-paralysis_n)
