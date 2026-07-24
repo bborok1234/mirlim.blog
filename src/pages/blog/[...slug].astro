@@ -6,7 +6,7 @@ import { findRelatedPostsBySlug } from '../../mcp/recommend.js';
 import { getGraph, getPost as getMcpPost } from '../../mcp/content.js';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog');
+	const posts = (await getCollection('blog')).filter(p => !p.data.draft);
 	return posts.map((post) => ({
 		params: { slug: post.id },
 		props: post,
